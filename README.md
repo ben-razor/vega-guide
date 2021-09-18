@@ -6,6 +6,10 @@ Vega Protocol is a decentralized platform for trading derivatives.
 
 Vega runs on it's own blockchain. Assets will be bridged from other networks for trading.
 
+## Vega Documentation
+
+These guides extend the official [Vega Documentation](https://docs.fairground.vega.xyz/docs). Key to this is the [API Documentation](https://docs.fairground.vega.xyz/docs/apis/) which provides how to guides focussing on gRPC and Rest APIs.
+
 ## Vega Fairground
 
 At the time of the hackathon, the network is running on testnet and there is a [web based playground app](https://fairground.wtf/).
