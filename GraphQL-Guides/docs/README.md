@@ -33,6 +33,8 @@ To create a new site using [https://github.com/alex-shpak/hugo-book](https://git
 hugo new site step-by-step; cd step-by-step
 git submodule add https://github.com/alex-shpak/hugo-book themes/book
 cp -R themes/book/exampleSite/content .
-
+```
+The server is then started to view the documentation:
+```
 hugo server --minify --theme book
 ```
