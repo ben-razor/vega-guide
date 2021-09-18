@@ -4,7 +4,7 @@ These guides will guide you through the process of interacting with the [Vega Pr
 
 The guides are a collection of walk-through and feature showcase applications using [ReactJS](https://reactjs.org/) and [GraphQL](https://graphql.org/).
 
-Step-by-step documentation is provided to take you though the applications from making simple market data exploration to Vega Protocol mastery using GraphQL.
+Step-by-step documentation is provided to take you though the applications from simple market data exploration to Vega Protocol mastery using GraphQL.
 
 ## React GraphQL Libraries
 
