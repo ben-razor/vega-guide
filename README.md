@@ -6,6 +6,30 @@ Vega Protocol is a decentralized platform for trading derivatives.
 
 Vega runs on it's own blockchain. Assets will be bridged from other networks for trading.
 
+## Requirements
+
+Detailed requirements are given in the [Gitcoin Bounty](https://gitcoin.co/issue/vegaprotocol/bounties/11/100026491). Important requirements used in this application are summarised here:
+
+* Design and create a great **showcase** or **walk-through** application
+* Bonus points for a set of supporting markdown files that describe how the application works, primarily the queries made to Vega
+* The [GraphQL playground](https://lb.testnet.vega.xyz/playground) should be referenced and described in the guides
+* Code examples should link directly to an appropriate section in the reference docs (https://docs.testnet.vega.xyz/api/graphql/)
+
+Essential Vega features to implement:
+
+- Listing markets and market data (including market status)
+- Streaming of orders and trades
+- Party (trader) information for a given public key, including account balances and positions.
+- Prepare and place an order on a market
+- Streaming of events
+- Governance proposals
+
+## Signing Transactions
+
+Reads against the Vega apis are permissionless. Writes / Updates must be signed using the Vega Wallet.
+
+There is an official guide for setting up a [Vega Wallet](https://docs.fairground.vega.xyz/docs/wallet/getting-started/).
+
 ## Vega Documentation
 
 These guides extend the official [Vega Documentation](https://docs.fairground.vega.xyz/docs). Key to this is the [API Documentation](https://docs.fairground.vega.xyz/docs/apis/) which provides how to guides focussing on gRPC and Rest APIs.
