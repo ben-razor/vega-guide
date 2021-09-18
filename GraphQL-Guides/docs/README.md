@@ -47,8 +47,9 @@ The documentation will be hosted using [Firebase](https://firebase.google.com/).
 
 Sign up for an account and create a project. We created a project called **vega-step-by-step** and followed the instructions to [host a Hugo site on Firebase](https://gohugo.io/hosting-and-deployment/hosting-on-firebase/).
 
-:warning: The deploy command was changed to deploy using the book theme:
+:warning: The deploy command must be changed to deploy using the book theme:
 ```
 hugo --theme book && firebase deploy --only hosting
 ```
 
+The deployed documentation is now available at [https://vega-step-by-step.web.app/](https://vega-step-by-step.web.app/)
