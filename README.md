@@ -1,6 +1,6 @@
 # Vega Guide
 
-This repositiory explores [Vega Protocol](https://vega.xyz/) as part of the Gitcoin GR11 Hackathon.
+This repositiory explores [Vega Protocol](https://vega.xyz/) as part of the [Gitcoin GR11 Hackathon](https://gitcoin.co/issue/vegaprotocol/bounties/11/100026491).
 
 Vega Protocol is a decentralized platform for trading derivatives.
 
