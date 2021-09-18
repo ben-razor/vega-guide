@@ -1,10 +1,10 @@
 ---
-weight: 1
+weight: 2
 bookFlatSection: true
-title: "ReactJS Starter"
+title: "GraphQL Walkthrough"
 ---
 
-# ReactJS Starter Application
+# Vega GraphQL Walkthrough
 
 ## Introduction 
 

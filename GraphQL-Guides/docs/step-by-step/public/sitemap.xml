@@ -2,110 +2,114 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/docs/example/</loc>
+    <loc>/docs/example/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/</loc>
+    <loc>/docs/vega/</loc>
   </url><url>
-    <loc>http://example.org/docs/example/table-of-contents/with-toc/</loc>
+    <loc>/docs/vega/vega-react/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/table-of-contents/with-toc/</loc>
+    <loc>/docs/example/table-of-contents/with-toc/</loc>
   </url><url>
-    <loc>http://example.org/docs/example/table-of-contents/without-toc/</loc>
+    <loc>/docs/vega/table-of-contents/with-toc/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/table-of-contents/without-toc/</loc>
+    <loc>/docs/vega/vega-react-walkthrough/</loc>
   </url><url>
-    <loc>http://example.org/posts/creating-a-new-theme/</loc>
+    <loc>/docs/example/table-of-contents/without-toc/</loc>
+  </url><url>
+    <loc>/docs/vega/table-of-contents/without-toc/</loc>
+  </url><url>
+    <loc>/posts/creating-a-new-theme/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/migrate-from-jekyll/</loc>
+    <loc>/posts/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/docs/example/table-of-contents/</loc>
+    <loc>/docs/example/table-of-contents/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/table-of-contents/</loc>
+    <loc>/docs/vega/table-of-contents/</loc>
   </url><url>
-    <loc>http://example.org/docs/example/collapsed/</loc>
+    <loc>/docs/example/collapsed/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/collapsed/</loc>
+    <loc>/docs/vega/collapsed/</loc>
   </url><url>
-    <loc>http://example.org/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/goisforlovers/</loc>
+    <loc>/posts/goisforlovers/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/development/</loc>
+    <loc>/categories/development/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/development/</loc>
+    <loc>/tags/development/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/posts/hugoisforlovers/</loc>
+    <loc>/posts/hugoisforlovers/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/go/</loc>
+    <loc>/tags/go/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/golang/</loc>
+    <loc>/tags/golang/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/categories/golang/</loc>
+    <loc>/categories/golang/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/hugo/</loc>
+    <loc>/tags/hugo/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/templates/</loc>
+    <loc>/tags/templates/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/tags/themes/</loc>
+    <loc>/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://example.org/docs/example/collapsed/3rd-level/4th-level/</loc>
+    <loc>/docs/example/collapsed/3rd-level/4th-level/</loc>
   </url><url>
-    <loc>http://example.org/docs/example/collapsed/3rd-level/</loc>
+    <loc>/docs/example/collapsed/3rd-level/</loc>
   </url><url>
-    <loc>http://example.org/docs/example/hidden/</loc>
+    <loc>/docs/example/hidden/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/</loc>
+    <loc>/docs/shortcodes/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/buttons/</loc>
+    <loc>/docs/shortcodes/buttons/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/columns/</loc>
+    <loc>/docs/shortcodes/columns/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/details/</loc>
+    <loc>/docs/shortcodes/details/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/expand/</loc>
+    <loc>/docs/shortcodes/expand/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/hints/</loc>
+    <loc>/docs/shortcodes/hints/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/katex/</loc>
+    <loc>/docs/shortcodes/katex/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/mermaid/</loc>
+    <loc>/docs/shortcodes/mermaid/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/section/</loc>
+    <loc>/docs/shortcodes/section/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/section/first-page/</loc>
+    <loc>/docs/shortcodes/section/first-page/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/section/second-page/</loc>
+    <loc>/docs/shortcodes/section/second-page/</loc>
   </url><url>
-    <loc>http://example.org/docs/shortcodes/tabs/</loc>
+    <loc>/docs/shortcodes/tabs/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/collapsed/3rd-level/4th-level/</loc>
+    <loc>/docs/vega/collapsed/3rd-level/4th-level/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/collapsed/3rd-level/</loc>
+    <loc>/docs/vega/collapsed/3rd-level/</loc>
   </url><url>
-    <loc>http://example.org/docs/vega/hidden/</loc>
+    <loc>/docs/vega/hidden/</loc>
   </url><url>
-    <loc>http://example.org/docs/</loc>
+    <loc>/docs/</loc>
   </url>
 </urlset>
