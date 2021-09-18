@@ -13,3 +13,7 @@ At the time of the hackathon, the network is running on testnet and there is a [
 ## Vega GraphQL
 
 A handy tool for exploring the GraphQL API is the [Vega GraphQL Playground](https://lb.testnet.vega.xyz/playground)
+
+## GR11 Hackathon
+
+The GraphQL guides are created for the [GraphQL Reference Applications](https://gitcoin.co/issue/vegaprotocol/bounties/11/100026491) bounties of the [GR11 Hackathon](https://gitcoin.co/hackathon/gr11/)
