@@ -2,6 +2,8 @@
 
 A collection of documentation for applications that interact with the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
+This document explains how the documentation was created.
+
 ## Documenting This Guide
 
 Documentation will follow the style of the [Vega Protocol documentation](https://docs.fairground.vega.xyz/).
