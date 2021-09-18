@@ -2,6 +2,7 @@
 title: Vega Step by Step
 type: docs
 bookToc: false
+theme: dark
 ---
 
 # Vega Step by Step using GraphQL

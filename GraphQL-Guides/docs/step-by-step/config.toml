@@ -1,3 +1,6 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'Vega - Step by Step using GraphQL'
+
+[params]
+    BookTheme = 'dark'
