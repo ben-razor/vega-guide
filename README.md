@@ -30,7 +30,7 @@ Essential Vega features to implement:
 
 ## Signing Transactions
 
-Reads against the Vega apis are permissionless. Writes / Updates must be signed using the Vega Wallet.
+Reads against the Vega apis do not require authentication. Writes / Updates must be signed using the Vega Wallet.
 
 There is an official guide for setting up a [Vega Wallet](https://docs.fairground.vega.xyz/docs/wallet/getting-started/).
 
