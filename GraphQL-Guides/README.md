@@ -1,6 +1,6 @@
 # Vega GraphQL Guides
 
-These guides will take you through the process of interacting with the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform using GraphQL.
+These guides take you through the process of interacting with the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform using GraphQL.
 
 The guides are a collection of walk-through and feature showcase applications using [ReactJS](https://reactjs.org/) and [GraphQL](https://graphql.org/).
 
