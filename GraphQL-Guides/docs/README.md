@@ -2,6 +2,10 @@
 
 A collection of documentation for applications that interact with the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
+At present this consists of [Vega Step by Step using GraphQL](https://vega-step-by-step.web.app/)
+
+The source for the documentation can be found in [step-by-step](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/docs/step-by-step).
+
 This document explains how the documentation was created.
 
 ## Documenting This Guide
