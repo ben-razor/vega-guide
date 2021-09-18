@@ -1,0 +1,3 @@
+[submodule "GraphQL-Guides/docs/step-by-step/themes/book"]
+	path = GraphQL-Guides/docs/step-by-step/themes/book
+	url = https://github.com/alex-shpak/hugo-book
