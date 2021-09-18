@@ -1,12 +1,12 @@
 ---
 weight: 1
 bookFlatSection: true
-title: "Vega Protocol Guide"
+title: "Introduction"
 ---
 
 # Introduction
 
-## Ferre hinnitibus erat accipitrem dixi Troiae tollens
+## A step-by-step guide to Vega Protocol with GraphQL
 
 Lorem markdownum, a quoque nutu est *quodcumque mandasset* veluti. Passim
 inportuna totidemque nympha fert; repetens pendent, poenarum guttura sed vacet
