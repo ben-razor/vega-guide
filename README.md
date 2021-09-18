@@ -6,6 +6,8 @@ Vega Protocol is a decentralized platform for trading derivatives.
 
 Vega runs on it's own blockchain. Assets will be bridged from other networks for trading.
 
+This document is the how and why for creating the guides. The documentation for the guides themselves can be found via the [Vega GraphQL Guides Intro](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides).
+
 ## Requirements
 
 Detailed requirements are given in the [Gitcoin Bounty](https://gitcoin.co/issue/vegaprotocol/bounties/11/100026491). Important requirements used in this application are summarised here:
