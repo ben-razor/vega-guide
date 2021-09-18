@@ -1,16 +1,20 @@
 ---
 weight: 1
 bookFlatSection: true
-title: "Introduction"
+title: "ReactJS Starter"
 ---
 
-# Vega Step by Step using GraphQL
+# ReactJS Starter Application
 
 ## Introduction 
 
-This guide will take you step-by-step through how to interact with Vega using GraphQL.
+This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
 
-A set of example applications will guide you from simple market data exploration to Vega Protocol mastery using GraphQL. 
+The source for the application can be found at [vega-react](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-react).
+
+This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.
+
+If you are looking for a platform agnostic step-by-step guide to using the Vega GraphQL API you can jump ahead to the [Vega GraphQL Walkthrough]({{< relref "/docs/example/vega-react-walkthrough.md" >}}).
 
 ## A Quick introduction to Vega Protocol
 

@@ -3,6 +3,7 @@ headless: true
 ---
 
 - [**Example Site**]({{< relref "/docs/example" >}})
+- [ReactJS Starter]({{< relref "/docs/example/vega-react.md" >}})
 - [Table of Contents]({{< relref "/docs/example/table-of-contents" >}})
   - [With ToC]({{< relref "/docs/example/table-of-contents/with-toc" >}})
   - [Without ToC]({{< relref "/docs/example/table-of-contents/without-toc" >}})
