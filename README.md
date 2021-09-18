@@ -8,7 +8,7 @@ Vega runs on it's own blockchain. Assets will be bridged from other networks for
 
 We create a collection of [showcase and walk-through applications and associated documentation](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides) to guide a new user in using the Vega Protocol using GraphQL.
 
-This document is the how and why for creating the guides. The documentation for the guides themselves can be found via the [Vega GraphQL Guides Intro](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides).
+This document is the how and why for creating the guides. The documentation for the guides themselves can be found in the [Vega GraphQL Guides](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides).
 
 ## Requirements
 
