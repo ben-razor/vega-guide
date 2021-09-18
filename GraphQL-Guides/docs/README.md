@@ -2,6 +2,10 @@
 
 A collection of documentation for applications that interact with the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
+The documentation is hosted at [Vega Step by Step using GraphQL](https://vega-step-by-step.web.app/).
+
+The source for the documentation can be found in [step-by-step](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/docs/step-by-step).
+
 This document explains how the documentation was created.
 
 ## Documenting This Guide
@@ -40,3 +44,16 @@ The server is then started to view the documentation:
 ```
 hugo server --minify --theme book
 ```
+
+### Hugo
+
+The documentation will be hosted using [Firebase](https://firebase.google.com/).
+
+Sign up for an account and create a project. We created a project called **vega-step-by-step** and followed the instructions to [host a Hugo site on Firebase](https://gohugo.io/hosting-and-deployment/hosting-on-firebase/).
+
+:warning: The deploy command must be changed to deploy using the book theme:
+```
+hugo --theme book && firebase deploy --only hosting
+```
+
+The deployed documentation is now available at [https://vega-step-by-step.web.app/](https://vega-step-by-step.web.app/)
