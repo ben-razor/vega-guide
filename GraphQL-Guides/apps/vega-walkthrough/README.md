@@ -2,6 +2,15 @@
 
 A ReactJS interactive walkthrough of the GraphQL API for the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
+Essential Vega features to implement:
+
+- Listing markets and market data (including market status)
+- Streaming of orders and trades
+- Party (trader) information for a given public key, including account balances and positions.
+- Prepare and place an order on a market
+- Streaming of events
+- Governance proposals
+
 View the docs at: [Vega Walkthrough Documentation](https://vega-step-by-step.web.app/docs/vega/vega-react-walkthrough/)
 
 ## Initialization
