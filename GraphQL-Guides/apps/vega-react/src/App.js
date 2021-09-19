@@ -207,15 +207,16 @@ function App() {
   }
 
   return (
-      <div className="App">
-        <SideBar />
-        <AppInfo />
+    <div className="App">
+      <SideBar />
+      <AppInfo />
 
+      <div class="container">
         <form onSubmit={handleQuerySubmit}>
           <div className="query-form-container">
 
             <div className="query-form-text-panel">
-              <textarea className="query-text-entry" value={queryText} rows={10} cols={40} 
+              <textarea className="query-text-entry" value={queryText} rows={10}
                         onChange={(e) => setQueryText(e.target.value)}>
               </textarea>
             </div>
@@ -224,7 +225,7 @@ function App() {
               <h3 className="query-form-heading">Vega GraphQL Explorer</h3>
 
               <select className="query-form-select" onChange={e => onTemplateIDChanged(e.target.value)} value={templateID}>
-                <option value="" selected>Select a template query...</option>
+                <option value="" selected>Select a template...</option>
                 <option value="markets-name">Markets</option>
                 <option value="markets-details">Market Orders</option>
                 <option value="assets">Assets</option>
@@ -246,8 +247,8 @@ function App() {
         <div className="results-content">
           {getResultsTable(data, loading, error)}
         </div>
-
       </div>
+    </div>
  );
 }
 

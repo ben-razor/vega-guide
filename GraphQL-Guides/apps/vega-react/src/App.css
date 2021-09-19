@@ -1,9 +1,3 @@
-#root {
-  width: 70%;
-  margin-left: 15em;
-  padding: 1em;
-}
-
 .App {
   text-align: center;
   display: flex;
@@ -15,6 +9,12 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.container {
+  width: 70%;
+  margin-left: 15em;
+  padding: 1em;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -54,6 +54,7 @@ body {
 
 .results-table th, td {
   padding: 0.4em;
+  word-break: break-all;
 }
 
 .results-table th {
@@ -68,6 +69,7 @@ body {
 }
 
 .query-text-entry {
+  width: 90%;
   background-color: darkslategrey;
   color: yellow;
   border-radius: 0.5em;
@@ -125,15 +127,19 @@ body {
   flex-direction: row;
   align-content: space-between;
   justify-content: space-around;
-  width: 100%;
+  width: 75%;
+}
+
+.query-form-text-panel {
+  flex: 1 1 auto;
 }
 
 .query-form-details-panel {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0em 1em;
-  width: 80%;
 }
 
 .query-form-heading {
@@ -185,3 +191,15 @@ a:hover {
   padding: 0.5em;
 }
 
+@media only screen and (max-width: 768px) {
+  .side-bar {
+    display: none;
+  }
+  .container {
+    margin-left: 0;
+  }
+  .query-form-container {
+    width: 100%;
+  }
+
+}
