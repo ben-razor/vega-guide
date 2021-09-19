@@ -31,6 +31,8 @@ We use the [Svelte Tutorial](https://svelte.dev/tutorial/basics) and [Svelete Ex
 
 The Svelte Tutorial and the [Vega GraphQL Playground](https://lb.testnet.vega.xyz/playground) use [CodeMirror](https://codemirror.net/) editor so we will use it in this application.
 
+We will need the [GraphQL mode](https://www.npmjs.com/package/codemirror-graphql).
+
 ## How This Code Was Bootstrapped
 
 #### Create React App
