@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import SideBar from './components/side_bar';
+import SideBar from './components/SideBar';
+import AppInfo from './components/AppInfo';
 import './App.css';
 import { useQuery, gql } from "@apollo/client";
 import vega_logo from './img/vega_logo.svg';
@@ -208,6 +209,7 @@ function App() {
   return (
       <div className="App">
         <SideBar />
+        <AppInfo />
 
         <form onSubmit={handleQuerySubmit}>
           <div className="query-form-container">

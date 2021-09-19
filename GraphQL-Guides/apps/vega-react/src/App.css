@@ -29,10 +29,6 @@ body {
   color: white;
 }
 
-input {
-
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -171,3 +167,21 @@ a, a:visited {
 a:hover {
   color: darkgoldenrod
 }
+
+.info-panel-trigger {
+  text-align: right;
+}
+
+.info-panel {
+  position: absolute;
+  right: 0.5em;
+  top: 0;
+  width: 22%;
+  margin: 0.25em;
+}
+
+.info-panel-info {
+  border: 1px solid yellow;
+  padding: 0.5em;
+}
+
