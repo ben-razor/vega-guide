@@ -218,6 +218,10 @@ a:hover {
     margin: auto;
   }
 
+  .query-form-details-panel {
+    align-items: center;
+  }
+
   .info-panel {
     position: relative;
     right: 0;
