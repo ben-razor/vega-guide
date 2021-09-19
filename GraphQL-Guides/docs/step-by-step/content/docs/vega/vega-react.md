@@ -10,6 +10,8 @@ title: "ReactJS Starter"
 
 This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
 
+The application is available online at [vega-react.web.app](https://vega-react.web.app/).
+
 The source for the application can be found at [vega-react](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-react).
 
 This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.
@@ -57,7 +59,7 @@ We will be interacting with the Vega Testnet so we initialize the client with th
     });
 ```
 
-The final step in [index.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/index.js) is to add the Apollo Provider:
+The final step in [index.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/index.js) is to add the Apollo Provider around the <App /> element:
 
 ```jsx
     <ApolloProvider client={client}> 
@@ -89,9 +91,9 @@ import templateQueries from './template_queries';
 
 ## Connecting Everything Together
 
-Now we have everything set up we are ready to perform queries against the Vega API and display the results to the user.
+Now we have everything set up and are ready to perform queries against the Vega API and display the results to the user.
 
-In [App.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/App.js) we create a form with a textarea, a template query sector and a submit form (*layout divs not shown*):
+In [App.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/App.js) we create a form with a textarea, a template select box and a submit button (*layout divs not shown*):
 
 ```jsx
 <form onSubmit={handleQuerySubmit}>
@@ -201,6 +203,8 @@ The following code in [App.js](https://github.com/ben-razor/vega-guide/blob/main
 
 We now have a simple ReactJS application that can make queries against the Vega Protocol
 GraphQL API.
+
+The application is available online at [vega-react.web.app](https://vega-react.web.app/).
 
 The following resources are available to explore the API further: 
 
