@@ -2,7 +2,7 @@
 
 A ReactJS interactive walkthrough of the GraphQL API for the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
-View the docs at: [Vega React Documentation](https://vega-step-by-step.web.app/docs/vega/vega-react-walkthrough/)
+View the docs at: [Vega Walkthrough Documentation](https://vega-step-by-step.web.app/docs/vega/vega-react-walkthrough/)
 
 ## Initialization
 
@@ -17,3 +17,7 @@ The [Apollo Query Guide](https://www.apollographql.com/docs/react/data/queries/)
 ## Inspiration
 
 We use the [Svelte Tutorial](https://svelte.dev/tutorial/basics) and [Svelete Examples](https://svelte.dev/examples#hello-world) as inspiration for simple hands-on getting-started documentation.
+
+## CodeMirror
+
+The Svelte Tutorial and the [Vega GraphQL Playground](https://lb.testnet.vega.xyz/playground) use [CodeMirror](https://codemirror.net/) editor so we will use it in this application.
