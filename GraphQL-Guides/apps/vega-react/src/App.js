@@ -4,6 +4,8 @@ import './App.css';
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
 import vega_logo from './img/vega_logo.svg';
 
+const MAX_RECORDS = 20;
+
 const initialQueryText = `{
   markets {
     name 
@@ -26,17 +28,35 @@ const assetQueryText = `{
   }
 }`;
 
+const statisticsQueryText = `{
+  statistics {
+    totalTrades, tradesPerSecond, upTime, totalPeers
+  }
+}`;
+
 const templateQueries = {
-  'market-name': initialQueryText,
-  'market-maker-fee': makerFeeQueryText,
-  'assets': assetQueryText
+  'markets-name': initialQueryText,
+  'markets-maker-fee': makerFeeQueryText,
+  'assets': assetQueryText,
+  'statistics': statisticsQueryText
+}
+
+const schemaLinks = {
+  'markets': 'https://docs.fairground.vega.xyz/api/graphql/market.doc.html',
+  'assets': 'https://docs.fairground.vega.xyz/api/graphql/asset.doc.html',
+  'statistics': 'https://docs.fairground.vega.xyz/api/graphql/statistics.doc.html'
+}
+
+function getTemplateType(templateID) {
+  return templateID.split('-')[0];
 }
 
 function App() {
-  const [templateQuery, setTemplateQuery] = useState(gql`${initialQueryText}`);
+  const [templateQuery, setTemplateQuery] = useState('markets-name');
   const [queryText, setQueryText] = useState(initialQueryText);
   const [query, setQuery] = useState(gql`${initialQueryText}`);
-  const { loading, error, data } = useQuery(query);
+  const { loading, error, data } = useQuery(query, { errorPolicy: 'all' });
+  console.log(loading, error, data);
 
   /**
    * When the Run Query button is clicked, setQuery is called with the new query 
@@ -83,7 +103,7 @@ function App() {
     console.log(error);
 
     let errorMsg = 'Check the console for errors.';
-    if(error.networkError.result.errors) {
+    if(error.networkError?.result?.errors) {
       let networkErrorMsg = error.networkError.result.errors[0].message;
       if(networkErrorMsg) {
         errorMsg = networkErrorMsg;
@@ -105,25 +125,35 @@ function App() {
    */
   function getResultsTable(data, loading, error) {
     let content;
+    let records;
 
     if(loading) {
       content = <div>Loading data...</div>;
     }
-    else if(error) {
-      content = <div>Error loading data: <br /> {getErrorMessage(error)}</div>;
-      console.log(error.networkError.result.errors);
-    }
     else if(data) {
       let recordType = Object.keys(data)[0];
-      let records = data[recordType];
+
+      if(Array.isArray(data[recordType])) {
+        records = data[recordType].slice(0, MAX_RECORDS);
+      }
+      else {
+        records = [ data[recordType] ];
+      }
+
       let numRows = records.length;
       
       if(numRows > 0) {
         content = tabulateRecords(records);
+        if(numRows === MAX_RECORDS) {
+          content = [content, <div className="max-records-message">The maximum of {MAX_RECORDS} records are displayed</div>]
+        }
       }
       else {
         content = <div>The query returned no records</div>
       }
+    }
+    else if(error) {
+      content = <div>Error loading data: <br /> {getErrorMessage(error)}</div>;
     }
     return content;
   }
@@ -142,7 +172,10 @@ function App() {
     for(let row of records) {
       let cols = [];
       for(let key of keys) {
-        let keyText = typeof row[key] === 'object' ? formatObject(row[key]) : row[key];
+        let keyText = 'None';
+        if(row[key] !== null) {
+          keyText = typeof row[key] === 'object' ? formatObject(row[key]) : row[key];
+        }
         cols.push(<td>{keyText}</td>);
       }
       rows.push(<tr>{cols}</tr>)
@@ -212,11 +245,17 @@ function App() {
               <h3 className="query-form-heading">Vega Markets GraphQL</h3>
               <select className="query-form-select" onChange={e => onTemplateQueryChanged(e.target.value)} value={templateQuery}>
                 <option value="" selected>Select a template query...</option>
-                <option value="market-name">Markets</option>
-                <option value="market-maker-fee">Maker Fees</option>
+                <option value="markets-name">Markets</option>
+                <option value="markets-maker-fee">Maker Fees</option>
                 <option value="assets">Assets</option>
+                <option value="statistics">Statistics</option>
               </select>
               <input className="query-text-submit" type="submit" value="Run Query" />
+
+              <p>
+                <img alt="Vega Protocol Logo" className="logo-vega-small" src={vega_logo} />
+                View the schema for <a target="_blank" rel="noreferrer" href={schemaLinks[getTemplateType(templateQuery)]}>{getTemplateType(templateQuery)}</a>
+              </p>
             </div>
           </div>
         </form>
