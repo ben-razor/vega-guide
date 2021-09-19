@@ -36,7 +36,7 @@ yarn start
 
 We enter [App.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/App.js) and delete the content of the App element.
 
-To interact with GraphQL we need a library. For this example we will use the [Apollo Client](https://www.apollographql.com/docs/react/get-started/):
+To interact with GraphQL we need a library. For this applicaton we use [Apollo Client](https://www.apollographql.com/docs/react/get-started/):
 
 ```
 yarn add @apollo/client graphql
@@ -52,7 +52,7 @@ import {
 
 ## Vega Configuration
 
-We will be interacting with the Vega Testnet so we initialize the client with the Vega URI. Add the following to useEffect in [App.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/App.js):
+We will be interacting with the Vega Testnet so we initialize the client with the Vega URI. We add this to [App.js](https://github.com/ben-razor/vega-guide/blob/main/GraphQL-Guides/apps/vega-react/src/App.js):
 
 ```JavaScript
     const client = new ApolloClient({
@@ -60,3 +60,13 @@ We will be interacting with the Vega Testnet so we initialize the client with th
         cache: new InMemoryCache()
     });
 ```
+
+## Extending The Application
+
+We now have the tools in place to interact with all the advanced features that Vega GraphQL API has to offer.
+
+The following resources are available to explore the API further: 
+
+[Vega GraphQL schema](https://docs.fairground.vega.xyz/api/graphql/market.doc.html)
+
+[Vega GraphQL playground](https://lb.testnet.vega.xyz/playground)
