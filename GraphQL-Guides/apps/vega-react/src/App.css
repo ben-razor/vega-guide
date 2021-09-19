@@ -191,7 +191,7 @@ a:hover {
   padding: 0.5em;
 }
 
-@media only screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .side-bar {
     display: none;
   }
@@ -201,5 +201,27 @@ a:hover {
   .query-form-container {
     width: 100%;
   }
+}
 
+@media (max-width: 576px) {
+  body {
+    font-size: 0.7em;
+  }
+
+  .container {
+    width: 94%;
+  }
+
+  .query-form-container {
+    width: 94%;
+    flex-direction: column;
+    margin: auto;
+  }
+
+  .info-panel {
+    position: relative;
+    right: 0;
+    width: 94%;
+    margin: auto;
+  }
 }
