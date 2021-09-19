@@ -98,6 +98,14 @@ input {
   height: 5em;
 }
 
+.logo-vega-small {
+  display: inline;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: middle;
+  margin-right: 0.3em;
+}
+
 .query-form-container {
   display: flex;
   flex-direction: row;
@@ -131,4 +139,17 @@ input {
 
 .query-form-select option {
   font-size: 1.1em;
+}
+
+.max-records-message {
+  color: yellow;
+  padding: 0.5em;
+}
+
+a, a:visited {
+  color: yellow;
+}
+
+a:hover {
+  color: darkgoldenrod
 }
