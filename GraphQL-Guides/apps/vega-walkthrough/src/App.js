@@ -22,6 +22,7 @@ const options = {
 
 function App() {
   const [value, setValue] = useState();
+  console.log(value);
   return (
     <div className="App">
       <div class="walkthrough-header">
@@ -31,25 +32,29 @@ function App() {
       </div>
       <div class="walkthrough-panels">
         <div class="walkthrough-panel walkthrough-panels-tutorial">
-          <h3>
-            Querying Vega
-          </h3>
+          <div class="walkthrough-controls">
+            <button class="walkthrough-control-button"><i class="fa fa-arrow-left" /></button>
+            <span>2. Querying Vega</span>
+            <button class="walkthrough-control-button"><i class="fa fa-arrow-right" /></button>
+          </div>
           Type some GraphQL and see the output.
         </div>
-        <div class="walkthrough-panel walkthrough-panels-input">
-          <CodeMirror value={value}
-              options={options}
-              onBeforeChange={(editor, data, value) => {
-                setValue(value);
-              }}
-              onChange={(editor, data, value) => {
-              }}
-            />
+        <div class="walkthrough-panel walkthrough-panels-io">
+          <div class="walkthrough-panels-input">
+            <CodeMirror value={value}
+                options={options}
+                onBeforeChange={(editor, data, value) => {
+                  setValue(value);
+                }}
+                onChange={(editor, data, value) => {
+                }}
+              />
+          </div>
+          <div class="walkthrough-panels-output">
+            This is the output.
+          </div>
         </div>
-        <div class="walkthrough-panel walkthrough-panels-output">
-          This is the output.
-        </div>
-      </div>
+     </div>
      </div>
   );
 }
