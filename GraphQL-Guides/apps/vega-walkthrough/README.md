@@ -49,5 +49,6 @@ yarn add @apollo/client graphql
 ```
 yarn add codemirror
 yarn add react-codemirror2
+yarn add codemirror-graphql
 ```
 
