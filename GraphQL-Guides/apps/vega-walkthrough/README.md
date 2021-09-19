@@ -1,4 +1,4 @@
-# Vega GraphQL Walkthrough
+# Vega GraphQL Walkthrough Application
 
 A ReactJS interactive walkthrough of the GraphQL API for the [Vega Protocol](https://vega.xyz/) decentralized derivatives trading platform.
 
@@ -30,3 +30,23 @@ We use the [Svelte Tutorial](https://svelte.dev/tutorial/basics) and [Svelete Ex
 ## CodeMirror
 
 The Svelte Tutorial and the [Vega GraphQL Playground](https://lb.testnet.vega.xyz/playground) use [CodeMirror](https://codemirror.net/) editor so we will use it in this application.
+
+## How This Code Was Bootstrapped
+
+#### Create React App
+```
+npx create-react-app vega-walkthrouh
+cd vega-walkthrouh
+yarn start
+```
+
+#### Apollo GraphQL Library
+```
+yarn add @apollo/client graphql
+```
+
+#### CodeMirror Code Editor
+```
+yarn add react-codemirror
+```
+
