@@ -1,5 +1,16 @@
+#root {
+  width: 70%;
+  margin: auto;
+  padding: 1em;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto;
+  min-height: 90vh;
 }
 
 .App-logo {
@@ -13,15 +24,14 @@
   }
 }
 
-.body {
-  background-color: #282c34;
+body {
+  background-color: hsl(0deg, 0%, 10%);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+}
+
+input {
+
 }
 
 .App-link {
@@ -35,4 +45,90 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.results-content {
+  margin-top: 1em;
+}
+
+.results-table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+
+.results-table th, td {
+  padding: 0.4em;
+}
+
+.results-table th {
+  background-color: black;
+  color: yellow;
+}
+
+.results-table td {
+  background-color: hsl(0deg, 0%, 20%);
+  color: white;
+  border: 1px solid hsl(200deg, 0%, 50%);
+}
+
+.query-text-entry {
+  background-color: darkslategrey;
+  color: yellow;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  border: 1px solid yellow;
+}
+
+.query-text-submit {
+  background-color: hsl(0deg, 0%, 20%);
+  color: white;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  color: yellow;
+  width: 14em;
+}
+
+.logo-vega {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  width: 5em;
+  height: 5em;
+}
+
+.query-form-container {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.query-form-details-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0em 1em;
+  width: 80%;
+}
+
+.query-form-heading {
+  padding: 0;
+  margin: 0.2em;
+}
+
+.query-form-select {
+  background-color: darkslategrey;
+  color: yellow;
+  font-size: 1.1em;
+  padding: 0.5em;
+  outline: 1px solid black;
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+}
+
+.query-form-select option {
+  font-size: 1.1em;
 }
