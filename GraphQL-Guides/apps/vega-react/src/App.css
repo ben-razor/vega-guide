@@ -1,6 +1,6 @@
 #root {
   width: 70%;
-  margin: auto;
+  margin-left: 15em;
   padding: 1em;
 }
 
@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: auto;
   min-height: 90vh;
 }
 
@@ -90,10 +89,29 @@ input {
   width: 14em;
 }
 
-.logo-vega {
+.side-bar {
   position: absolute;
+  left: 0;
+  top: 0;
+  width: 8em;
+  line-height: 2em;
+  text-align: left;
+}
+
+.side-bar-text {
+  margin-top: 0.5em;
+  margin-left: 1em;
+}
+
+.side-bar-about-app {
+  margin-top: 2em;
+  color: yellow;
+}
+
+.logo-vega {
+  position: relative;
   top: 1em;
-  left: 1em;
+  left: 0em;
   width: 5em;
   height: 5em;
 }

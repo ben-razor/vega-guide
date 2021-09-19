@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import SideBar from './components/side_bar';
 import './App.css';
 import { useQuery, gql } from "@apollo/client";
 import vega_logo from './img/vega_logo.svg';
@@ -207,12 +207,9 @@ function App() {
 
   return (
       <div className="App">
-        <a href="https://vega.xyz/" title="Vega Protocol: Decentralized Derivatives Trading Platform">
-          <img alt="Vega Protocol Logo" className="logo-vega" src={vega_logo} />
-        </a>
+        <SideBar />
 
         <form onSubmit={handleQuerySubmit}>
-
           <div className="query-form-container">
 
             <div className="query-form-text-panel">
