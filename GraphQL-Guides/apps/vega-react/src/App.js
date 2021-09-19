@@ -1,45 +1,13 @@
 import logo from './logo.svg';
 import { useEffect, useState } from 'react';
 import './App.css';
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from "@apollo/client";
+import { useQuery, gql } from "@apollo/client";
 import vega_logo from './img/vega_logo.svg';
+import templateQueries from './template_queries';
 
+const initialQueryID = 'markets-name';
+const initialTemplate = templateQueries[initialQueryID];
 const MAX_RECORDS = 20;
-
-const initialQueryText = `{
-  markets {
-    name 
-  }
-}`;
-
-const makerFeeQueryText = `{
-  markets {
-    name, fees {
-      factors {
-        makerFee
-      }
-    }
-  }
-}`;
-
-const assetQueryText = `{
-  assets {
-    name, symbol, totalSupply
-  }
-}`;
-
-const statisticsQueryText = `{
-  statistics {
-    totalTrades, tradesPerSecond, upTime, totalPeers
-  }
-}`;
-
-const templateQueries = {
-  'markets-name': initialQueryText,
-  'markets-maker-fee': makerFeeQueryText,
-  'assets': assetQueryText,
-  'statistics': statisticsQueryText
-}
 
 const schemaLinks = {
   'markets': 'https://docs.fairground.vega.xyz/api/graphql/market.doc.html',
@@ -52,9 +20,9 @@ function getTemplateType(templateID) {
 }
 
 function App() {
-  const [templateQuery, setTemplateQuery] = useState('markets-name');
-  const [queryText, setQueryText] = useState(initialQueryText);
-  const [query, setQuery] = useState(gql`${initialQueryText}`);
+  const [templateID, setTemplateID] = useState('markets-name');
+  const [queryText, setQueryText] = useState(initialTemplate);
+  const [query, setQuery] = useState(gql`${initialTemplate}`);
   const { loading, error, data } = useQuery(query, { errorPolicy: 'all' });
   console.log(loading, error, data);
 
@@ -113,7 +81,7 @@ function App() {
   }
 
   /**
-   * Takes the returned values from an Apollo useQuery call.
+   * processes returned values from an Apollo useQuery call.
    * 
    * Either returns a loading message, an error message, or a table containing
    * the results depending on the state of the response.
@@ -131,8 +99,10 @@ function App() {
       content = <div>Loading data...</div>;
     }
     else if(data) {
+      // The returned data is keyed by a record type like "assets" or "markets"
       let recordType = Object.keys(data)[0];
 
+      // If a single record is returned, convert it to array so all are treated equal
       if(Array.isArray(data[recordType])) {
         records = data[recordType].slice(0, MAX_RECORDS);
       }
@@ -143,6 +113,9 @@ function App() {
       let numRows = records.length;
       
       if(numRows > 0) {
+        // The tabulateRecords helper creates a table by looping through
+        // the records. If a value contains an object or array, it is cleaned
+        // up and stringified for display.
         content = tabulateRecords(records);
         if(numRows === MAX_RECORDS) {
           content = [content, <div className="max-records-message">The maximum of {MAX_RECORDS} records are displayed</div>]
@@ -153,6 +126,8 @@ function App() {
       }
     }
     else if(error) {
+      // The getErrorMessage helper grabs any textual error the server has sent and
+      // displays it.
       content = <div>Error loading data: <br /> {getErrorMessage(error)}</div>;
     }
     return content;
@@ -217,7 +192,7 @@ function App() {
    */
   function formatObject(obj) {
     let newObj = cleanObject(obj);
-    return JSON.stringify(newObj);
+    return JSON.stringify(newObj).slice(0, 100);
   }
 
   /**
@@ -225,39 +200,48 @@ function App() {
    * 
    * @param {string} value 
    */
-  function onTemplateQueryChanged(value) {
-    setTemplateQuery(value);
+  function onTemplateIDChanged(value) {
+    setTemplateID(value);
     setQueryText(templateQueries[value]);
   }
 
   return (
       <div className="App">
-        <a href="https://vega.xyz/">
+        <a href="https://vega.xyz/" title="Vega Protocol: Decentralized Derivatives Trading Platform">
           <img alt="Vega Protocol Logo" className="logo-vega" src={vega_logo} />
         </a>
 
         <form onSubmit={handleQuerySubmit}>
+
           <div className="query-form-container">
+
             <div className="query-form-text-panel">
-              <textarea className="query-text-entry" value={queryText} rows={10} cols={40} onChange={(e) => setQueryText(e.target.value)} />
+              <textarea className="query-text-entry" value={queryText} rows={10} cols={40} 
+                        onChange={(e) => setQueryText(e.target.value)}>
+              </textarea>
             </div>
+
             <div className="query-form-details-panel">
-              <h3 className="query-form-heading">Vega Markets GraphQL</h3>
-              <select className="query-form-select" onChange={e => onTemplateQueryChanged(e.target.value)} value={templateQuery}>
+              <h3 className="query-form-heading">Vega GraphQL Explorer</h3>
+
+              <select className="query-form-select" onChange={e => onTemplateIDChanged(e.target.value)} value={templateID}>
                 <option value="" selected>Select a template query...</option>
                 <option value="markets-name">Markets</option>
-                <option value="markets-maker-fee">Maker Fees</option>
+                <option value="markets-details">Market Orders</option>
                 <option value="assets">Assets</option>
                 <option value="statistics">Statistics</option>
               </select>
+
               <input className="query-text-submit" type="submit" value="Run Query" />
 
               <p>
                 <img alt="Vega Protocol Logo" className="logo-vega-small" src={vega_logo} />
-                View the schema for <a target="_blank" rel="noreferrer" href={schemaLinks[getTemplateType(templateQuery)]}>{getTemplateType(templateQuery)}</a>
+                View the schema for <a target="_blank" rel="noreferrer" href={schemaLinks[getTemplateType(templateID)]}>{getTemplateType(templateID)}</a>
               </p>
+
             </div>
           </div>
+
         </form>
 
         <div className="results-content">
