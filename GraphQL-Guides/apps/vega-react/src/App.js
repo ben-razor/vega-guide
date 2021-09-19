@@ -36,15 +36,29 @@ function App() {
   const [templateQuery, setTemplateQuery] = useState(gql`${initialQueryText}`);
   const [queryText, setQueryText] = useState(initialQueryText);
   const [query, setQuery] = useState(gql`${initialQueryText}`);
-
   const { loading, error, data } = useQuery(query);
 
+  /**
+   * When the Run Query button is clicked, setQuery is called with the new query 
+   * which sets in motion the Apollo Graph QL request process.
+   * 
+   * @param {object} event 
+   */
   function handleQuerySubmit(event) {
-    runQuery();
+    let newQuery = queryTextToGraphQL(query);
+    setQuery(newQuery); 
     event.preventDefault();
   }
 
-  function runQuery() {
+  /**
+   * Takes a textual GraphQL query and returns an Apollo Query object.
+   * 
+   * If the query is invalid, the previous query is maintained.
+   *  
+   * @param {string} query 
+   * @returns An Apollo GraphQL query object
+   */
+  function queryTextToGraphQL(query) {
     let newQuery = query;
 
     try {
@@ -52,10 +66,8 @@ function App() {
     }
     catch(e) { /* Ignore invalid queries */ };
 
-    setQuery(newQuery); 
+    return newQuery;
   }
-
-  console.log(loading, error, data);
 
   /**
    * Takes an Apollo GraphQL error object and returns a string representation of 
@@ -80,6 +92,17 @@ function App() {
     return errorMsg;
   }
 
+  /**
+   * Takes the returned values from an Apollo useQuery call.
+   * 
+   * Either returns a loading message, an error message, or a table containing
+   * the results depending on the state of the response.
+   * 
+   * @param {object} data Apollo GraphQl results object
+   * @param {boolean} loading 
+   * @param {object} error Apollo GraphQl error object
+   * @returns 
+   */
   function getResultsTable(data, loading, error) {
     let content;
 
@@ -105,6 +128,12 @@ function App() {
     return content;
   }
 
+  /**
+   * Takes an array of records retrieved by Apollo, formats them into a react table.
+   * 
+   * @param {array} records 
+   * @returns JSX table
+   */
   function tabulateRecords(records) {
     let table;
     let keys = Object.keys(records[0]).filter(x => !x.startsWith('__'));
@@ -158,6 +187,11 @@ function App() {
     return JSON.stringify(newObj);
   }
 
+  /**
+   * Handle the select box changing to a new query template id.
+   * 
+   * @param {string} value 
+   */
   function onTemplateQueryChanged(value) {
     setTemplateQuery(value);
     setQueryText(templateQueries[value]);
