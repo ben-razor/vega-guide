@@ -11,6 +11,15 @@ import 'codemirror/addon/lint/lint';
 import 'codemirror-graphql/hint';
 import 'codemirror-graphql/lint';
 import 'codemirror-graphql/mode';
+import { 
+  getErrorMessage, 
+  getResultsTable, 
+  tabulateRecords, 
+  cleanObject, 
+  formatObject 
+} from './helpers/apollo_helpers';
+
+const MAX_RECORDS = 20;
 
 const editorOptions = {
   lineNumbers: true,
@@ -22,10 +31,22 @@ const editorOptions = {
   lineWrapping: true
 }
 
+let initialTemplate = `{
+  markets {
+    id, name 
+  }
+}
+`;
+
 function App() {
   const [value, setValue] = useState();
   const [markdown, setMarkdown] = useState();
   const [sectionID, setSectionID] = useState('introduction');
+  const [hasRun, setHasRun] = useState(false);
+
+  const [query, setQuery] = useState(gql`${initialTemplate}`);
+  const { loading, error, data } = useQuery(query, { errorPolicy: 'all' });
+  console.log(loading, error, data);
 
   function setInstructions(text) {
     console.log(text);
@@ -57,6 +78,37 @@ function App() {
     
   }, [sectionID])
 
+
+  /**
+   * Takes a textual GraphQL query and returns an Apollo Query object.
+   * 
+   * If the query is invalid, the previous query is maintained.
+   *  
+   * @param {string} query 
+   * @returns An Apollo GraphQL query object
+   */
+  function queryTextToGraphQL(queryText, prevQuery) {
+    let newQuery = prevQuery;
+
+    try {
+      newQuery = gql`${queryText}`;
+    }
+    catch(e) { /* Ignore invalid queries */ };
+
+    return newQuery;
+  }
+
+  function runQuery() {
+    let gqlQuery = queryTextToGraphQL(value);
+    setQuery(gqlQuery, query);
+    setHasRun(true);
+  }
+
+  let resultsTable = 'Output from the query will be displayed here.'
+  if(hasRun) {
+    resultsTable = getResultsTable(data, loading, error);
+  }
+
   return (
     <div className="App">
       <div className="walkthrough-header">
@@ -70,10 +122,13 @@ function App() {
             <button className="walkthrough-control-button"><i className="fa fa-arrow-left" /></button>
             <span>2. Querying Vega</span>
             <button className="walkthrough-control-button"><i className="fa fa-arrow-right" /></button>
+            <button className="walkthrough-control-button-run" onClick={runQuery}>Run Query > </button>
           </div>
-          <ReactMarkdown>
-            {markdown}
-          </ReactMarkdown>
+          <div className="walkthrough-panels-tutorial-markdown">
+            <ReactMarkdown>
+              {markdown}
+            </ReactMarkdown>
+          </div>
         </div>
         <div className="walkthrough-panel walkthrough-panels-io">
           <div className="walkthrough-panels-input">
@@ -91,7 +146,7 @@ function App() {
             </div>
          </div>
           <div className="walkthrough-panels-output">
-            This is the output.
+            { resultsTable }
           </div>
         </div>
      </div>

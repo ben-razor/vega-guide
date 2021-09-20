@@ -27,9 +27,16 @@
 
 .walkthrough-panels-tutorial {
   flex: 1 1 auto; 
-  background-color: hsl(0deg, 0%, 30%);
-  color: yellow;
+  background-color: hsl(0deg, 0%, 20%);
+  color: white;
   width: 38%;
+}
+
+.walkthrough-panels-tutorial-markdown {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5em;
+  font-size: 0.9em;
 }
 
 .walkthrough-panels-io {
@@ -48,6 +55,10 @@
   border-width: 10px 0 0;
   border-color: lightgrey;
   border-style: solid;
+  background-color: hsl(0deg, 0%, 10%);
+  color: white;
+  font-size: 0.8em;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .walkthrough-controls {
@@ -67,3 +78,18 @@
   background-color: darkslategray;
   color: yellow;
 }
+
+.walkthrough-control-button-run {
+  background-color: hsl(100, 100%, 30%);
+  color: white;
+  font-weight: bold;
+}
+
+a, a:visited {
+  color: yellow;
+}
+
+a:hover {
+  color: darkgoldenrod
+}
+
