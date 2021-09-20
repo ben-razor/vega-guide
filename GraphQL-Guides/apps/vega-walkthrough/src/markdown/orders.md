@@ -1,4 +1,4 @@
-### Introduction
+### Placing Orders 
 
 The script on the right is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
 

@@ -11,15 +11,12 @@ import 'codemirror/addon/lint/lint';
 import 'codemirror-graphql/hint';
 import 'codemirror-graphql/lint';
 import 'codemirror-graphql/mode';
-import { 
-  getErrorMessage, 
-  getResultsTable, 
-  tabulateRecords, 
-  cleanObject, 
-  formatObject 
-} from './helpers/apollo_helpers';
+import { getResultsTable } from './helpers/apollo_helpers';
+import { sections, progressors } from './walkthrough/sections'
+import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
 
-const MAX_RECORDS = 20;
+
+const MAX_RECORDS = 5;
 
 const editorOptions = {
   lineNumbers: true,
@@ -41,12 +38,15 @@ let initialTemplate = `{
 function App() {
   const [value, setValue] = useState();
   const [markdown, setMarkdown] = useState();
-  const [sectionID, setSectionID] = useState('introduction');
+  const [sectionIndex, setSectionIndex] = useState(0);
   const [hasRun, setHasRun] = useState(false);
+  const [queryRunFromUI, setQueryRunFromUI] = useState(false);
 
   const [query, setQuery] = useState(gql`${initialTemplate}`);
   const { loading, error, data } = useQuery(query, { errorPolicy: 'all' });
   console.log(loading, error, data);
+
+  let sectionID = sections[sectionIndex].id;
 
   function setInstructions(text) {
     console.log(text);
@@ -64,18 +64,8 @@ function App() {
     })
     .catch(err => console.log(err));
 
-    let gqlFileName = `${sectionID}.gql`;
-    import(`./graphql/${gqlFileName}`)
-    .then(res => {
-        fetch(res.default)
-            .then(res => res.text())
-            .then(res => setValue(res))
-            .catch(err => console.log(err));
-    })
-    .catch(err => console.log(err));
+    setValue(sections[sectionIndex].graphQL);
 
-
-    
   }, [sectionID])
 
 
@@ -104,10 +94,29 @@ function App() {
     setHasRun(true);
   }
 
+  useEffect(() => {
+    if(hasRun) {
+      setQueryRunFromUI(true);
+    }
+  }, [query]);
+
   let resultsTable = 'Output from the query will be displayed here.'
-  if(hasRun) {
-    resultsTable = getResultsTable(data, loading, error);
+  if(queryRunFromUI) {
+    resultsTable = getResultsTable(data, loading, error, MAX_RECORDS);
   }
+
+  function changeSection(dx) {
+    let numSections = sections.length;
+    let newSectionIndex = Math.min(Math.max(sectionIndex + dx, 0), numSections - 1);
+    setSectionIndex(newSectionIndex);
+  }
+
+  useEffect(() => {
+    setHasRun(false);
+  }, [sectionIndex]);
+
+  let backDisabled = (sectionIndex === 0);
+  let forwardDisabled = (sectionIndex + 1 === sections.length);
 
   return (
     <div className="App">
@@ -119,10 +128,10 @@ function App() {
       <div className="walkthrough-panels">
         <div className="walkthrough-panel walkthrough-panels-tutorial">
           <div className="walkthrough-controls">
-            <button className="walkthrough-control-button"><i className="fa fa-arrow-left" /></button>
-            <span>2. Querying Vega</span>
-            <button className="walkthrough-control-button"><i className="fa fa-arrow-right" /></button>
-            <button className="walkthrough-control-button-run" onClick={runQuery}>Run Query > </button>
+            <button className="walkthrough-control-button" disabled={backDisabled} onClick={() => changeSection(-1)}><i className="fa fa-arrow-left" /></button>
+            <span>{sectionIndex + 1} - {sections[sectionIndex].title}</span>
+            <button className="walkthrough-control-button" disabled={forwardDisabled} onClick={() => changeSection(+1)}><i className="fa fa-arrow-right" /></button>
+            <button className="walkthrough-control-button-run" onClick={runQuery}>Run Query <i className="fa fa-arrow-right"></i> </button>
           </div>
           <div className="walkthrough-panels-tutorial-markdown">
             <ReactMarkdown>
