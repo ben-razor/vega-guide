@@ -1,11 +1,20 @@
 ### Subscriptions
 
-Traders need up to date informations to make effective decisions. GraphQL provides subscriptions to allow streaming the results of queries.
+Traders need up to date information to make effective decisions. GraphQL provides subscriptions to allow live feeds of results.
 
-We now 
+Let's get a live feed of the orders happening on Vega Testnet.
 
-#### Assets 
+#### Streaming Orders
 
-Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
+The query is a little different. To get live updates, the GraphQL begins with **subscription**.
 
-Click run to view the results.
+Getting the ID for the trade isn't too useful. Try adding the market name, and the size of the trade instead:
+
+```graphql
+subscription {
+  orders {
+    createdAt, market { name }, size
+  }
+}
+```
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/order.doc.html" target="_blank">Orders</a>  

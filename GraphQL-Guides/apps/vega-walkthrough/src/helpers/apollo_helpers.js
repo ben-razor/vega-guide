@@ -141,7 +141,17 @@ function cleanObject(obj) {
  */
 function formatObject(obj) {
   let newObj = cleanObject(obj);
-  return JSON.stringify(newObj).slice(0, 100);
+  return objectToString(newObj);
+}
+
+function objectToString(obj) {
+  let stringified = '';
+  let entryStrings = [];
+  for(let [key, value] of Object.entries(obj)) {
+    entryStrings.push(`${key}: ${value.slice(0, 64)}\n`);
+  }
+  stringified = entryStrings.join(', ');
+  return stringified;
 }
 
 export { 

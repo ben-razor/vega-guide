@@ -14,20 +14,24 @@
   }
 }
 
+.walkthrough-header-title {
+  margin: 0.8em;
+}
+
 .walkthrough-panels {
   display: flex;
   flex-direction: row;
 }
 
 .walkthrough-panel {
-  border-width: 10px 0 5px 1px;
+  border-width: 2px 0 5px 1px;
   border-color: lightgrey;
   border-style: solid;
 }
 
 .walkthrough-panels-tutorial {
   flex: 1 1 auto; 
-  background-color: hsl(210deg, 15%, 30%);
+  background-color: hsl(200deg, 20%, 20%);
   color: white;
   width: 38%;
 }
@@ -36,7 +40,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0.5em;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
 .walkthrough-panels-io {
@@ -132,4 +136,9 @@ a:hover {
 .max-records-message {
   color: yellow;
   padding: 0.5em;
+}
+
+pre {
+  padding: 0.25em;
+  background-color: hsl(0deg, 0%, 10%);
 }

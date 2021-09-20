@@ -11,12 +11,13 @@ import 'codemirror/addon/lint/lint';
 import 'codemirror-graphql/hint';
 import 'codemirror-graphql/lint';
 import 'codemirror-graphql/mode';
+import 'codemirror/theme/monokai.css';
 import { getResultsTable } from './helpers/apollo_helpers';
 import { sections, progressors } from './walkthrough/sections'
 import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
-
+import rehypeRaw from 'rehype-raw';
 
 const MAX_RECORDS = 5;
 
@@ -24,6 +25,7 @@ const editorOptions = {
   lineNumbers: true,
   readOnly: false,
   mode: 'graphql',
+  theme: 'monokai',
   autofocus: true,
   smartIndent: false,
   tabSize: 2,
@@ -108,7 +110,7 @@ function App() {
   return (
     <div className="App">
       <div className="walkthrough-header">
-        <h3>
+        <h3 className="walkthrough-header-title">
           Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
@@ -125,7 +127,7 @@ function App() {
             </div>
           </div>
           <div className="walkthrough-panels-tutorial-markdown">
-            <ReactMarkdown>
+            <ReactMarkdown rehypePlugins={[rehypeRaw]}>
               {markdown}
             </ReactMarkdown>
           </div>
@@ -146,11 +148,11 @@ function App() {
             </div>
          </div>
           <div className="walkthrough-panels-output">
-            {hasRun &&
+            {hasRun ? 
               (isSubscription ?
                 <GraphQLSubscription maxRecords={MAX_RECORDS} query={query} /> :
                 <GraphQLQuery maxRecords={MAX_RECORDS} query={query} />
-              )
+              ) : resultsTableDefault
             }
           </div>
         </div>
