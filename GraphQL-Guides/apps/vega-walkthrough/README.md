@@ -92,3 +92,11 @@ const splitLink = split(
 );
 ```
 
+Then we change the client to use the link splitter instead of a uri string:
+
+```js
+const client = new ApolloClient({
+  link: splitLink,
+  cache: new InMemoryCache()
+});
+```
