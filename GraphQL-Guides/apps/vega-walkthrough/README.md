@@ -54,3 +54,41 @@ yarn add react-codemirror2
 yarn add codemirror-graphql
 ```
 
+## GraphQL Subscriptions
+
+Subscriptions need to use WebSockets for continuous connectivity. Apollo provides a library for this:
+```
+npm install subscriptions-transport-ws
+```
+
+In indexJS, we need to change the Apollo Client to use **Links** instead of the uri:
+
+```js
+import { ApolloClient, InMemoryCache, ApolloProvider, split, HttpLink } from "@apollo/client";
+import { getMainDefinition } from '@apollo/client/utilities';
+import { WebSocketLink } from '@apollo/client/link/ws';
+
+const httpLink = new HttpLink({
+  uri: 'https://lb.testnet.vega.xyz/query'
+});
+
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:4000/subscriptions',
+  options: {
+    reconnect: true
+  }
+});
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink,
+);
+```
+
