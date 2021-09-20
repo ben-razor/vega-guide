@@ -12,7 +12,10 @@ function getErrorMessage(error) {
   console.log(error);
 
   let errorMsg = 'Check the console for errors.';
-  if(error.networkError?.result?.errors) {
+  if(error.message) {
+    errorMsg = error.message
+  }
+  else if(error.networkError?.result?.errors) {
     let networkErrorMsg = error.networkError.result.errors[0].message;
     if(networkErrorMsg) {
       errorMsg = networkErrorMsg;
@@ -38,6 +41,11 @@ function getResultsTable(data, loading, error, MAX_RECORDS=0) {
 
   if(loading) {
     content = <div>Loading data...</div>;
+  }
+  else if(error) {
+    // The getErrorMessage helper grabs any textual error the server has sent and
+    // displays it.
+    content = <div>Error loading data: <br /> {getErrorMessage(error)}</div>;
   }
   else if(data) {
     // The returned data is keyed by a record type like "assets" or "markets"
@@ -70,11 +78,6 @@ function getResultsTable(data, loading, error, MAX_RECORDS=0) {
     else {
       content = <div>The query returned no records</div>
     }
-  }
-  else if(error) {
-    // The getErrorMessage helper grabs any textual error the server has sent and
-    // displays it.
-    content = <div>Error loading data: <br /> {getErrorMessage(error)}</div>;
   }
   return content;
 }

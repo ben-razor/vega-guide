@@ -27,7 +27,7 @@
 
 .walkthrough-panels-tutorial {
   flex: 1 1 auto; 
-  background-color: hsl(0deg, 0%, 20%);
+  background-color: hsl(210deg, 15%, 30%);
   color: white;
   width: 38%;
 }
@@ -64,8 +64,7 @@
 .walkthrough-controls {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 100%;
   height: 2em;
   line-height: 2em;
@@ -73,8 +72,21 @@
   background-color: black;
 }
 
+.walkthrough-controls-sections-pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  flex: 3 1 auto;
+}
+
+.walkthrough-controls-sections-run {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
 .walkthrough-control-button {
-  width: 2.5em;
   background-color: darkslategray;
   color: yellow;
 }
@@ -83,6 +95,7 @@
   background-color: hsl(100, 100%, 30%);
   color: white;
   font-weight: bold;
+  width: 10em;
 }
 
 a, a:visited {

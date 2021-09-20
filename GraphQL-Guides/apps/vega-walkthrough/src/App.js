@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useSubscription, gql } from "@apollo/client";
 import {Controlled as CodeMirror} from 'react-codemirror2'
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -14,6 +14,8 @@ import 'codemirror-graphql/mode';
 import { getResultsTable } from './helpers/apollo_helpers';
 import { sections, progressors } from './walkthrough/sections'
 import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
+import GraphQLQuery from './components/GraphQLQuery';
+import GraphQLSubscription from './components/GraphQLSubscription';
 
 
 const MAX_RECORDS = 5;
@@ -40,13 +42,8 @@ function App() {
   const [markdown, setMarkdown] = useState();
   const [sectionIndex, setSectionIndex] = useState(0);
   const [hasRun, setHasRun] = useState(false);
-  const [queryRunFromUI, setQueryRunFromUI] = useState(false);
-
   const [query, setQuery] = useState(gql`${initialTemplate}`);
-  const { loading, error, data } = useQuery(query, { errorPolicy: 'all' });
-  console.log(loading, error, data);
-
-  let sectionID = sections[sectionIndex].id;
+  let isSubscription = query.definitions[0].operation === 'subscription';
 
   function setInstructions(text) {
     console.log(text);
@@ -54,6 +51,7 @@ function App() {
   }
 
   useEffect(() => {
+    let sectionID = sections[sectionIndex].id;
     let mdFileName = `${sectionID}.md`;
     import(`./markdown/${mdFileName}`)
     .then(res => {
@@ -65,8 +63,7 @@ function App() {
     .catch(err => console.log(err));
 
     setValue(sections[sectionIndex].graphQL);
-
-  }, [sectionID])
+  }, [sectionIndex, hasRun])
 
 
   /**
@@ -83,37 +80,27 @@ function App() {
     try {
       newQuery = gql`${queryText}`;
     }
-    catch(e) { /* Ignore invalid queries */ };
+    catch(e) {
+      console.log(e);
+    };
 
     return newQuery;
   }
 
   function runQuery() {
     let gqlQuery = queryTextToGraphQL(value);
-    setQuery(gqlQuery, query);
+    setQuery(gqlQuery);
     setHasRun(true);
   }
 
-  useEffect(() => {
-    if(hasRun) {
-      setQueryRunFromUI(true);
-    }
-  }, [query]);
+  let resultsTableDefault = 'Output from the query will be displayed here.'
 
-  let resultsTable = 'Output from the query will be displayed here.'
-  if(queryRunFromUI) {
-    resultsTable = getResultsTable(data, loading, error, MAX_RECORDS);
-  }
-
-  function changeSection(dx) {
+  function setSection(newSectionIndex) {
     let numSections = sections.length;
-    let newSectionIndex = Math.min(Math.max(sectionIndex + dx, 0), numSections - 1);
+    newSectionIndex = Math.min(Math.max(newSectionIndex, 0), numSections - 1);
+    setHasRun(false);
     setSectionIndex(newSectionIndex);
   }
-
-  useEffect(() => {
-    setHasRun(false);
-  }, [sectionIndex]);
 
   let backDisabled = (sectionIndex === 0);
   let forwardDisabled = (sectionIndex + 1 === sections.length);
@@ -128,10 +115,14 @@ function App() {
       <div className="walkthrough-panels">
         <div className="walkthrough-panel walkthrough-panels-tutorial">
           <div className="walkthrough-controls">
-            <button className="walkthrough-control-button" disabled={backDisabled} onClick={() => changeSection(-1)}><i className="fa fa-arrow-left" /></button>
-            <span>{sectionIndex + 1} - {sections[sectionIndex].title}</span>
-            <button className="walkthrough-control-button" disabled={forwardDisabled} onClick={() => changeSection(+1)}><i className="fa fa-arrow-right" /></button>
-            <button className="walkthrough-control-button-run" onClick={runQuery}>Run Query <i className="fa fa-arrow-right"></i> </button>
+            <div className="walkthrough-controls-sections-pagination">
+              <button className="walkthrough-control-button" disabled={backDisabled} onClick={() => setSection(sectionIndex - 1)}><i className="fa fa-arrow-left" /></button>
+              <span>{sectionIndex + 1} - {sections[sectionIndex].title}</span>
+              <button className="walkthrough-control-button" disabled={forwardDisabled} onClick={() => setSection(sectionIndex + 1)}><i className="fa fa-arrow-right" /></button>
+            </div>
+            <div className="walkthrough-controls-sections-run">
+              <button className="walkthrough-control-button-run" onClick={runQuery}>Run Query <i className="fa fa-arrow-right"></i> </button>
+            </div>
           </div>
           <div className="walkthrough-panels-tutorial-markdown">
             <ReactMarkdown>
@@ -155,7 +146,12 @@ function App() {
             </div>
          </div>
           <div className="walkthrough-panels-output">
-            { resultsTable }
+            {hasRun &&
+              (isSubscription ?
+                <GraphQLSubscription maxRecords={MAX_RECORDS} query={query} /> :
+                <GraphQLQuery maxRecords={MAX_RECORDS} query={query} />
+              )
+            }
           </div>
         </div>
      </div>

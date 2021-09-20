@@ -25,16 +25,16 @@ let sections = [
     title: "Markets",
     graphQL: `{
   markets {
-    name, symbol, totalSupply
+    name
   }
 }`
   },
   {
     id: "subscriptions",
     title: "Subscriptions",
-    graphQL: `{
-  assets {
-    name, symbol, totalSupply
+    graphQL: `subscription {
+  orders {
+    id, createdAt
   }
 }`
   },
