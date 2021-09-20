@@ -29,13 +29,13 @@
   flex: 1 1 auto; 
   background-color: hsl(0deg, 0%, 30%);
   color: yellow;
-  min-width: 40%;
+  width: 38%;
 }
 
 .walkthrough-panels-io {
   display: flex;
   flex-direction: column;
-  flex: 3 1 auto;
+  flex: 5 1 0;
 }
 
 .walkthrough-panels-input {
