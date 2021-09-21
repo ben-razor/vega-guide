@@ -12,14 +12,15 @@ function getErrorMessage(error) {
   console.log(error);
 
   let errorMsg = 'Check the console for errors.';
-  if(error.message) {
-    errorMsg = error.message
-  }
-  else if(error.networkError?.result?.errors) {
+  
+  if(error.networkError?.result?.errors) {
     let networkErrorMsg = error.networkError.result.errors[0].message;
     if(networkErrorMsg) {
       errorMsg = networkErrorMsg;
     }
+  }
+  else if(error.message) {
+    errorMsg = error.message
   }
   return errorMsg;
 }
@@ -70,7 +71,7 @@ function getResultsTable(data, loading, error, MAX_RECORDS=0) {
       // The tabulateRecords helper creates a table by looping through
       // the records. If a value contains an object or array, it is cleaned
       // up and stringified for display.
-      content = tabulateRecords(records);
+      content = tabulateRecords(records, MAX_RECORDS);
       if(numRows === MAX_RECORDS) {
         content = [content, <div className="max-records-message">The maximum of {MAX_RECORDS} records are displayed</div>]
       }
@@ -88,7 +89,7 @@ function getResultsTable(data, loading, error, MAX_RECORDS=0) {
  * @param {array} records 
  * @returns JSX table
  */
-function tabulateRecords(records) {
+function tabulateRecords(records, maxRecords) {
   let table;
   let keys = Object.keys(records[0]).filter(x => !x.startsWith('__'));
   let header = <tr> {keys.map(key => <th>{key}</th>)} </tr>
@@ -98,7 +99,7 @@ function tabulateRecords(records) {
     for(let key of keys) {
       let keyText = 'None';
       if(row[key] !== null) {
-        keyText = typeof row[key] === 'object' ? formatObject(row[key]) : row[key];
+        keyText = typeof row[key] === 'object' ? formatObject(row[key], maxRecords) : row[key];
       }
       cols.push(<td>{keyText}</td>);
     }
@@ -139,18 +140,31 @@ function cleanObject(obj) {
  * @param {object} obj An Apollo object returned from a GraphQL call  
  * @returns string A clean stringified representation of the record 
  */
-function formatObject(obj) {
+function formatObject(obj, maxRecords) {
   let newObj = cleanObject(obj);
-  return objectToString(newObj);
+  return objectToString(newObj, maxRecords).split('\n').map(str => <p>{str}</p>);
 }
 
-function objectToString(obj) {
+function objectToString(obj, maxRecords) {
   let stringified = '';
   let entryStrings = [];
   for(let [key, value] of Object.entries(obj)) {
-    entryStrings.push(`${key}: ${value.slice(0, 64)}\n`);
+    if(typeof value === 'string') {
+      entryStrings.push(`${key}: ${value.slice(0, 64)}\n`);
+    }
+    else if(Array.isArray(value)) {
+      for(let item in value) {
+        entryStrings.push(JSON.stringify(item)); 
+      }
+    }
+    else {
+      entryStrings.push(JSON.stringify(value, undefined, 2).replaceAll(/[{},]/g, ''));
+    }
   }
-  stringified = entryStrings.join(', ');
+  if(maxRecords) {
+    entryStrings = entryStrings.slice(0, maxRecords);
+  }
+  stringified = entryStrings.join('\n');
   return stringified;
 }
 

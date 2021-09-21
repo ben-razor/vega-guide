@@ -1,15 +1,19 @@
 ### Trader Information 
 
-The script on the right is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
+In the [Vega Protocol](https://vega.xyz/) each party is identified by their **public key**. The keys are generated and stored by a **wallet**. Traders may have more than one public key. A **party** is an entity represented by a public key, that trades on the system.
 
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
+This query gets information about the traders on the system.
 
-Vega provides APIs to allow you to interact with the system in a flexible way. In this guide we walk through using the GraphQL API. 
+You may want to see the trades that you or another party has performed. Try the following:
 
-You can use GraphQL to access every aspect of Vega Protocol. So you have great power.
-
-#### Assets 
-
-Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
-
-Click run to view the results.
+```
+{
+  parties(id: "79042cbcff5afd0d50c177870a151d59c0f87bea70614570301047d192f9cfc5") {
+    trades {
+      market {name}, size, price, createdAt
+    }
+  }
+}
+```
+___
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/party.doc.html" target="_blank">Traders</a> 

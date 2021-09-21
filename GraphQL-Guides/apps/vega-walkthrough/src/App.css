@@ -142,3 +142,7 @@ pre {
   padding: 0.25em;
   background-color: hsl(0deg, 0%, 10%);
 }
+
+code {
+  white-space: pre-wrap;
+}

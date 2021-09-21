@@ -17,4 +17,7 @@ subscription {
   }
 }
 ```
+___
 Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/order.doc.html" target="_blank">Orders</a>  
+
+View the available <a href="https://docs.fairground.vega.xyz/docs/api-howtos/event-stream/" target="_blank">Streams</a>

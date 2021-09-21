@@ -13,3 +13,5 @@ You can use GraphQL to access every aspect of Vega Protocol. So you have great p
 Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
 
 Click run to view the results.
+___
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/market.doc.html" target="_blank">Markets</a> 

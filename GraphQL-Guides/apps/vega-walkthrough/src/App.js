@@ -17,6 +17,7 @@ import { sections, progressors } from './walkthrough/sections'
 import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
+import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import rehypeRaw from 'rehype-raw';
 
 const MAX_RECORDS = 5;
@@ -45,10 +46,10 @@ function App() {
   const [sectionIndex, setSectionIndex] = useState(0);
   const [hasRun, setHasRun] = useState(false);
   const [query, setQuery] = useState(gql`${initialTemplate}`);
+  const [syntaxError, setSyntaxError] = useState('');
   let isSubscription = query.definitions[0].operation === 'subscription';
 
   function setInstructions(text) {
-    console.log(text);
     setMarkdown(text);
   }
 
@@ -81,9 +82,12 @@ function App() {
 
     try {
       newQuery = gql`${queryText}`;
+      setSyntaxError('');
     }
     catch(e) {
-      console.log(e);
+      console.log(e.message);
+      setSyntaxError(e.message);
+      newQuery = undefined;
     };
 
     return newQuery;
@@ -91,11 +95,15 @@ function App() {
 
   function runQuery() {
     let gqlQuery = queryTextToGraphQL(value);
-    setQuery(gqlQuery);
-    setHasRun(true);
+
+    if(gqlQuery) {
+      setQuery(gqlQuery);
+      setHasRun(true);
+    }
   }
 
   let resultsTableDefault = 'Output from the query will be displayed here.'
+  let resultsTableSyntaxError = <div>There is a syntax error in your query.<p>And it goes a little something like this...</p><p>{syntaxError}</p></div>
 
   function setSection(newSectionIndex) {
     let numSections = sections.length;
@@ -148,11 +156,15 @@ function App() {
             </div>
          </div>
           <div className="walkthrough-panels-output">
-            {hasRun ? 
-              (isSubscription ?
-                <GraphQLSubscription maxRecords={MAX_RECORDS} query={query} /> :
-                <GraphQLQuery maxRecords={MAX_RECORDS} query={query} />
-              ) : resultsTableDefault
+            {syntaxError ? resultsTableSyntaxError :
+              <SyntaxErrorBoundary>
+                {hasRun ? 
+                  (isSubscription ?
+                    <GraphQLSubscription maxRecords={MAX_RECORDS} query={query} /> :
+                    <GraphQLQuery maxRecords={MAX_RECORDS} query={query} />
+                  ) : syntaxError ? resultsTableSyntaxError : resultsTableDefault
+                }
+              </SyntaxErrorBoundary>
             }
           </div>
         </div>

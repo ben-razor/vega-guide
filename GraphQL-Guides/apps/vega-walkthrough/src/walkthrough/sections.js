@@ -42,8 +42,8 @@ let sections = [
     id: "traders",
     title: "Trader Information",
     graphQL: `{
-  assets {
-    name, symbol, totalSupply
+  parties {
+    id
   }
 }`
   },
