@@ -1,6 +1,5 @@
 ---
 weight: 50 
-bookFlatSection: true
 title: "Placing Orders"
 ---
 

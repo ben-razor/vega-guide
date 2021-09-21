@@ -16,4 +16,4 @@ You may want to see the trades that you or another party has performed. Try the 
 }
 ```
 ___
-Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/party.doc.html" target="_blank">Traders</a> 
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/party.doc.html" targcet="_blank">Traders</a> 

@@ -1,6 +1,5 @@
 ---
 weight: 30 
-bookFlatSection: true
 title: "Streaming Orders and Trades"
 ---
 

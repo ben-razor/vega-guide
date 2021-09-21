@@ -1,6 +1,6 @@
 ---
 weight: 2
-bookFlatSection: true
+bookFlatSection: false 
 title: "GraphQL Walkthrough"
 bookCollapseSection: true
 ---
@@ -9,25 +9,23 @@ bookCollapseSection: true
 
 ## Introduction 
 
-This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
+This guide will introduce you to interacting with the Vega Protocol using GraphQL.
 
-The source for the application can be found at [vega-react](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-react).
+To help you get familar with the GraphQL API, we provide an online [Walkthrough Application](https://vega-walkthrough.web.app/) to exectute queries and updates.
+
+Along the way you will learn how to:
+
+- View markets, orders, trades and accounts
+- Subscribe to live market updates
+- Place orders and manage your account
+- Interact with the Vega Ecosystem through Governance Proposals
+
 
 This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.
 
-If you are looking for a platform agnostic step-by-step guide to using the Vega GraphQL API you can jump ahead to the [Vega GraphQL Walkthrough]({{< relref "/docs/vega/vega-react-walkthrough.md" >}}).
+The source for the application can be found at [vega-walkthrough](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-walkthrough).
 
-## A Quick introduction to Vega Protocol
-
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
-
-A trading platform allows people to make agreements to trade assets when specified conditions such as price and timing are met. Derivatives are contracts whose value is based on underlying assets.
-
-[Vega Protocol](https://vega.xyz/) is decentralized. Instead of using a centralized organisation like a bank or traditional exchange, a network of computers is used to verify trades and agreements between parties.
-
-Each user has an identifier called a **public key**. Before a transaction is sent to the Vega network it is signed using a related **private key**. The public key, signed transaction, and previous transaction information are used by the network to ensure that the transaction is valid.
-
-A **wallet** stores the keys and handles tasks such as signing transactions. 
+If you are looking for a guide on how to create a React application that interacts with the Vega GraphQL API, take a look at the [Vega GraphQL React Starter]({{< relref "/docs/vega/vega-react.md" >}}) tutorial.
 
 ## Prerequisites
 
@@ -35,7 +33,7 @@ A **wallet** stores the keys and handles tasks such as signing transactions.
 
 Before using this guide check out the [Vega Documentation](https://docs.fairground.vega.xyz/).
 
-To use Vega you first need to set up a [wallet](https://docs.fairground.vega.xyz/docs/wallet/).
+To use Vega you need a [wallet](https://docs.fairground.vega.xyz/docs/wallet/).
 
 You can try out Vega using on the web using the [Testnet Fairground Console](https://console.fairground.wtf/).
 

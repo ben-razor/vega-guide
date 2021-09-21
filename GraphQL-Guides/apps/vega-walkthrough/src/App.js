@@ -12,13 +12,16 @@ import 'codemirror-graphql/hint';
 import 'codemirror-graphql/lint';
 import 'codemirror-graphql/mode';
 import 'codemirror/theme/monokai.css';
+import rehypeRaw from 'rehype-raw';
+
 import { getResultsTable } from './helpers/apollo_helpers';
 import { sections, progressors } from './walkthrough/sections'
 import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
+import GraphQLAuthQuery from  './components/GraphQLAuthQuery';
 import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
-import rehypeRaw from 'rehype-raw';
+import VegaWallet from './components/VegaWallet';
 
 const MAX_RECORDS = 5;
 
@@ -40,6 +43,8 @@ let initialTemplate = `{
 }
 `;
 
+const token = 'eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjM3NTUwNzYsImlzcyI6InZlZ2Egd2FsbGV0IiwiU2Vzc2lvbiI6IjQwNDJiNzMzMTk1YTA4ODY4M2RjNTZlODQzMzExNmViODVhN2FhMGY3N2Y5YTg1OTUyM2UwZGVhMzA2NTgwZTciLCJXYWxsZXQiOiJ2dzBnbjd4a3Z6MDQybGxlNGdhM3l4In0.XV7y_1on4Vusf46yZIBp89bZFm1qNa_aEqPYCfYsm5x39XGmYiNst9ln-U7H-qQh9Y88wfafFx9z-aXaSGWAcxTrCz-Jpr551oq03F-xfXq01RH0DEzv1eeW-dq0lUM_06E_BPhnJSuBXYFliYrEWMOZLL8CVD4A0jIs59VE6fi_BX2nIYLRjaP-TzWVHLJ6Efh4ixoBrXvplXuumoeDgVgaTDqNm1GAqjpVpmRPk6NFuUSx1zo6hRYe5sbKvWdHomd-pzUx_LCAedTCyif6tJBQlAKIYR7_HHllWwezRB1WSNmsXp5newfkESOeoCxoB_12xFqm3GLFHP1lZ86Y1_jQLRtuFS-f6M5saq1rYMQY3i2714-zAVUcgHehUjbdUjwzKKzEmRAOq-Joi-HiQq3zwd0--VXORzPo6HEBu-T5iJ-LsF6wDj4CD9sS-wqQwNhj9hpKxY8NBj9Tz2BVxtaNWpIXKuDpG0DnQpfNUYbXgvo64ViEz8ZSNM1JLplWjqjRWUW1vHzyxnTiKXqj2rWdMe4mo1Te-XkdCz7nPLBhhtdeSOGeI2uu_87023eaF9jXak74ms1p-98Msm7smAIm3eYS9_ZUNSHmM8h3FeTY5VQLg0Fhbbw-JXWuTlhPQJ6ny5nTtkFCxlGuFJPbASHRihHcTuQXIFwifGVe2rY';
+
 function App() {
   const [value, setValue] = useState();
   const [markdown, setMarkdown] = useState();
@@ -48,13 +53,16 @@ function App() {
   const [query, setQuery] = useState(gql`${initialTemplate}`);
   const [syntaxError, setSyntaxError] = useState('');
   let isSubscription = query.definitions[0].operation === 'subscription';
+  let isMutation = query.definitions[0].operation === 'mutation';
 
   function setInstructions(text) {
     setMarkdown(text);
   }
 
   useEffect(() => {
-    let sectionID = sections[sectionIndex].id;
+    let section = sections[sectionIndex];
+    let sectionID = section.id;
+
     let mdFileName = `${sectionID}.md`;
     import(`./markdown/${mdFileName}`)
     .then(res => {
@@ -65,7 +73,8 @@ function App() {
     })
     .catch(err => console.log(err));
 
-    setValue(sections[sectionIndex].graphQL);
+    setValue(section.graphQL);
+
   }, [sectionIndex, hasRun])
 
 
@@ -115,6 +124,18 @@ function App() {
   let backDisabled = (sectionIndex === 0);
   let forwardDisabled = (sectionIndex + 1 === sections.length);
 
+  let client;
+  if(isMutation) {
+    client = <GraphQLAuthQuery query={query} token={token} maxRecords={MAX_RECORDS} />
+  }
+  else if(isSubscription) {
+    client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} />
+  }
+  else {
+    client = <GraphQLQuery query={query} maxRecords={MAX_RECORDS} />
+  }
+
+  let doWallet = false;
   return (
     <div className="App">
       <div className="walkthrough-header">
@@ -122,6 +143,7 @@ function App() {
           Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
+      {doWallet && <VegaWallet />}
       <div className="walkthrough-panels">
         <div className="walkthrough-panel walkthrough-panels-tutorial">
           <div className="walkthrough-controls">
@@ -159,10 +181,8 @@ function App() {
             {syntaxError ? resultsTableSyntaxError :
               <SyntaxErrorBoundary>
                 {hasRun ? 
-                  (isSubscription ?
-                    <GraphQLSubscription maxRecords={MAX_RECORDS} query={query} /> :
-                    <GraphQLQuery maxRecords={MAX_RECORDS} query={query} />
-                  ) : syntaxError ? resultsTableSyntaxError : resultsTableDefault
+                  (client) : 
+                  resultsTableDefault
                 }
               </SyntaxErrorBoundary>
             }

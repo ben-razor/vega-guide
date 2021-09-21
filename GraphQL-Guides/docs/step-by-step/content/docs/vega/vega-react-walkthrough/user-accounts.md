@@ -1,6 +1,5 @@
 ---
 weight: 40 
-bookFlatSection: true
 title: "Trader Information"
 ---
 

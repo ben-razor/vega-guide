@@ -6,3 +6,4 @@ title: "Governance proposals"
 
 # Governance Proposals
 
+Governance proposals
