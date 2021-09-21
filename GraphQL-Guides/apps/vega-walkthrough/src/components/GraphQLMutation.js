@@ -23,7 +23,7 @@ function GraphQLMutation(props) {
         reference: "12345667"
       }
     });
-  }, [prepareOrder]);
+  }, [prepareOrder, query]);
  
 
   return <div className="results-graphql-query">
