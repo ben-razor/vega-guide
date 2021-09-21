@@ -45,7 +45,7 @@ function GraphQLAuthQuery(props) {
     });
 
     setClient(client);
-  }, []);
+  }, [token]);
 
   return <div className="results-graphql-query">
     { client ?

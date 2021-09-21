@@ -13,9 +13,6 @@ Vega provides a REST API to create keys and sign transactions. To sign we need a
 Enter a name and password to create a testnet wallet.
 ___
 
-Check out the schema for
-<a href="https://docs.fairground.vega.xyz/api/graphql/mutation.doc.html" target="_blank">Mutations</a>.
-
 Check out the <a href="https://docs.fairground.vega.xyz/docs/api-howtos/wallet/" target="_blank">Vega Wallet API Documentation</a> to see how to manage wallets.
 
 Find out more about <a href="https://docs.fairground.vega.xyz/docs/api-howtos/submit-order/" target="_blank">submitting API orders</a>.

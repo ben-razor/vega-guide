@@ -24,7 +24,6 @@ function GraphQLMutation(props) {
       }
     });
   }, [prepareOrder, query]);
- 
 
   return <div className="results-graphql-query">
     {resultsTable}

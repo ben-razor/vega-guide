@@ -52,6 +52,10 @@ function App() {
   const [hasRun, setHasRun] = useState(false);
   const [query, setQuery] = useState(gql`${initialTemplate}`);
   const [syntaxError, setSyntaxError] = useState('');
+  const [jsxComponent, setJsxComponent] = useState();
+  const [output, setOutput] = useState();
+  const [tx, setTx] = useState('');
+  const [propogate, setPropogate] = useState(true);
   let isSubscription = query.definitions[0].operation === 'subscription';
   let isMutation = query.definitions[0].operation === 'mutation';
 
@@ -73,9 +77,15 @@ function App() {
     })
     .catch(err => console.log(err));
 
-    setValue(section.graphQL);
+    if(section.jsxComponent) {
+      setJsxComponent(section.jsxComponent);
+    }
+    else {
+      setJsxComponent();
+      setValue(section.graphQL);
+    }
 
-  }, [sectionIndex, hasRun])
+  }, [sectionIndex, hasRun, jsxComponent])
 
 
   /**
@@ -135,7 +145,26 @@ function App() {
     client = <GraphQLQuery query={query} maxRecords={MAX_RECORDS} />
   }
 
-  let doWallet = false;
+  let editorComponent;
+
+  if(jsxComponent) {
+    editorComponent = <div className="walkthrough-jsx-component">
+      <VegaWallet tx={tx} propogate={propogate} setOutput={setOutput} />
+    </div>
+  }
+  else {
+    editorComponent =  <CodeMirror 
+      className="walkthrough-codemirror"
+      value={value}
+      options={editorOptions}
+      onBeforeChange={(editor, data, value) => {
+        setValue(value);
+      }}
+      onChange={(editor, data, value) => {
+      }}
+    />
+  }
+
   return (
     <div className="App">
       <div className="walkthrough-header">
@@ -143,7 +172,6 @@ function App() {
           Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
-      {doWallet && <VegaWallet />}
       <div className="walkthrough-panels">
         <div className="walkthrough-panel walkthrough-panels-tutorial">
           <div className="walkthrough-controls">
@@ -165,26 +193,23 @@ function App() {
         <div className="walkthrough-panel walkthrough-panels-io">
           <div className="walkthrough-panels-input">
             <div className="walkthrough-codemirror-container">
-              <CodeMirror 
-                className="walkthrough-codemirror"
-                value={value}
-                options={editorOptions}
-                onBeforeChange={(editor, data, value) => {
-                  setValue(value);
-                }}
-                onChange={(editor, data, value) => {
-                }}
-              />
-            </div>
+              { editorComponent }
+           </div>
          </div>
           <div className="walkthrough-panels-output">
-            {syntaxError ? resultsTableSyntaxError :
-              <SyntaxErrorBoundary>
-                {hasRun ? 
-                  (client) : 
-                  resultsTableDefault
-                }
-              </SyntaxErrorBoundary>
+            {
+              (
+              output ? output :
+                (
+                  syntaxError ? resultsTableSyntaxError :
+                  <SyntaxErrorBoundary>
+                    {hasRun ? 
+                      (client) : 
+                      resultsTableDefault
+                    }
+                  </SyntaxErrorBoundary>
+                )
+              )
             }
           </div>
         </div>

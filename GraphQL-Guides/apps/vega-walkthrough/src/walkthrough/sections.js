@@ -48,8 +48,13 @@ let sections = [
 }`
   },
   {
+    id: "orderswallet",
+    title: "Placing Orders (1. Wallets)",
+    jsxComponent: "VegaWallet"
+  },
+  {
     id: "orders",
-    title: "Placing Orders",
+    title: "Placing Orders (2. Preparing Order)",
     auth: true,
     graphQL: `mutation {
   prepareOrderSubmit(
