@@ -11,10 +11,13 @@ function VegaWallet(props) {
   const [walletName, setWalletName] = useState('');
   const [passPhrase, setPassPhrase] = useState('');
   const [walletDetails, setWalletDetails] = useState();
+  const [error, setError] = useState('');
 
   const tx = props.tx;
   const propogate = props.propogate;
-  const setOutput = props.setOutput;
+  const setCustomData = props.setCustomData;
+  const setTransactionDetails = props.setTransactionDetails;
+  const section = props.section;
 
   useEffect(() => {
 
@@ -42,14 +45,15 @@ function VegaWallet(props) {
     .then(json => {
       setSubmitting(false);
       console.log(json);
-      let outputText = '';
+
       if(json.error) {
-        outputText = json.error;
+        setError(json.error);
       }
       else if(json.errors) {
-        outputText = JSON.stringify(json.errors);
+        setError(JSON.stringify(json.errors));
       }
       else {
+        setError();
         setToken(json.token);
         setMnemonic(json.mnemonic);
 
@@ -66,21 +70,12 @@ function VegaWallet(props) {
           return keysResponse.json();
         }).then(keysJSON => {
           setPubKey(keysJSON.key.pub)
-
+         
           console.log(keysJSON);
         }).catch(keysError => {
           console.log(keysError);
         });
-
-        outputText = (
-          <div>
-            <div>Mnemonic: {mnemonic}</div>
-            <div>Public key: {pubKey}</div>
-          </div>
-        )
       }
-
-      setOutput(outputText);
    })
     .catch(error => {
           console.log(error);
@@ -90,15 +85,33 @@ function VegaWallet(props) {
   }, [walletDetails]);
 
   useEffect(() => {
-    if(pubKey && mnemonic) {
-      setOutput(
-        <div>
-          <div>Mnemonic: {mnemonic}</div>
-          <div>Public key: {pubKey}</div>
-        </div>
-      )
+    let output;
+    if(error) {
+      output = error;
     }
-  }, [pubKey, mnemonic, setOutput]);
+    else {
+      output = <div className="walkthrough-custom-data">
+        <div className="walkthrough-custom-data-row">Public key: {pubKey}</div>
+        <div className="walkthrough-custom-data-row">Mnemonic: {mnemonic}</div>
+        <div className="walkthrough-custom-data-row walkthrough-bearer-token">Bearer Token: {token}</div>
+      </div>;
+    }
+
+    setTransactionDetails({
+      pubKey: pubKey,
+      token: token
+    });
+
+    setCustomData({
+      'error': error,
+      'data': {
+        token: token,
+        pubKey: pubKey,
+        mnemonic: mnemonic
+      },
+      'output': output 
+    })
+  }, [pubKey, mnemonic, error, token, setCustomData, setTransactionDetails]);
 
   useEffect(() => {
     if(tx && token && pubKey) {

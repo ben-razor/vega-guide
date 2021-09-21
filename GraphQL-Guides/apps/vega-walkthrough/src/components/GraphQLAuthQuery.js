@@ -1,5 +1,4 @@
 import { gql, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { useMutation } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
 import { useEffect, useState } from 'react';
 import GraphQLMutation from './GraphQLMutation';

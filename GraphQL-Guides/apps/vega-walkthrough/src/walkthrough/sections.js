@@ -14,6 +14,28 @@ let sections = [
   {
     id: "introduction",
     title: "Introduction",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let hasAssets = resultData.assets && resultData.assets.length;
+
+      if(hasAssets) {
+        let firstAsset = resultData.assets[0];
+
+        if(hasKeys(firstAsset, ['name', 'symbol', 'totalSupply'])) {
+          success = true;
+        }
+        else {
+          reason = 'Fields name, symbol and totalSupply are not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-assets-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     graphQL: `{
   assets {
     name, symbol, totalSupply
@@ -50,12 +72,16 @@ let sections = [
   {
     id: "orderswallet",
     title: "Placing Orders (1. Wallets)",
-    jsxComponent: "VegaWallet"
+    jsxComponent: "VegaWallet",
+    runDisabled: true
   },
   {
-    id: "orders",
-    title: "Placing Orders (2. Preparing Order)",
+    id: "ordersprepare",
+    title: "Placing Orders (2. Prepare Order)",
     auth: true,
+    prog: (resultData) => {
+
+    },
     graphQL: `mutation {
   prepareOrderSubmit(
     marketId: "496ab9e8db8911859f5837c7c3df1f2c6456c5e59f5e9e226cc6a83991f8860c",
@@ -109,31 +135,4 @@ blob
   }
 ];
 
-let progressors = {
-  "introduction": [
-    data => {
-      let success = false;
-      let reason = '';
-      let hasAssets = data.assets && data.assets.length;
-
-      if(hasAssets) {
-        let firstAsset = data.assets[0];
-
-        if(hasKeys(firstAsset, ['name, symbol, totalSupply'])) {
-          success = true;
-        }
-      }
-      else {
-        reason = 'no-assets-returned';
-      }
-      return {
-        success: success, reason: reason
-      }
-    }
-  ],
-  "subscriptions": [
-
-  ]
-}
-
-export { sections, progressors };
+export { sections };

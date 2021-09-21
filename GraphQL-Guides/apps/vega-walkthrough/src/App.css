@@ -41,7 +41,7 @@
   width: 100%;
   padding: 0.5em;
   font-size: 0.8em;
-  }
+}
 
 .walkthrough-panels-io {
   display: flex;
@@ -104,6 +104,12 @@
   width: 10em;
 }
 
+.walkthrough-control-button-run:disabled {
+  background-color: hsl(100deg, 0%, 20%);
+  color:hsl(0deg, 0%, 30%);
+  border-width: 0;
+}
+
 .walkthrough-jsx-component {
   word-break: break-all;
 }
@@ -125,15 +131,50 @@
   width: 100%;
 }
 
-.walkthrough-details-form-input{
+.walkthrough-details-form-input {
   flex: 1 0 auto;
   margin-left: 0.5em;
+}
+
+.walkthrough-bearer-token {
+  word-break: break-all;
+}
+
+.walkthrough-custom-data-row {
+  margin-bottom: 1em;
+}
+
+@keyframes mildHighlight {
+  0% { opacity: 90%; }
+  1% { opacity: 60%; }
+  100% { opacity: 100%; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 30%; }
+  100% { opacity: 100%; }
+}
+
+@keyframes expand {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.walkthrough-progress-panel {
+  animation: fadeIn 3s;
+  animation: expand 1s;
+  background-color: hsl(0deg, 0%, 10%);
+  color: white;
+  padding: 0.5em 0.25em;
+}
+
+.walkthrough-fade-in {
+  animation: mildHighlight 3s;
 }
 
 .ordinary-button {
   padding: 0.6em; 
   border-radius: 0.5em;
-  border: 0;
   margin-left: auto;
   background-color: darkslategrey;
   color: white;

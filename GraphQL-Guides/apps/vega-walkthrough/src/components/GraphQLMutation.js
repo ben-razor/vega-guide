@@ -5,8 +5,15 @@ import { getResultsTable } from '../helpers/apollo_helpers';
 function GraphQLMutation(props) {
   let query = props.query;
   let client = props.client;
+  let setResultData = props.setResultData;
   const [prepareOrder, { loading, error, data }] = useMutation(query, { client: client, errorPolicy: 'all' });
   
+  useEffect(() => {
+    if(!error && data) {
+      setTimeout(() => { setResultData(data); }, 0);
+    }
+  }, [error, data, setResultData])
+
   let maxRecords = props.maxRecords;
   let resultsTable = getResultsTable(data, loading, error, maxRecords);
 
