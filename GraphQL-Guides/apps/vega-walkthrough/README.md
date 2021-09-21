@@ -100,3 +100,23 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 ```
+
+## Placing Orders
+
+The process of placing orders without a starting wallet is quite involved. The following documents are useful:
+
+[No Wallet -> Order Placed Python](https://github.com/vegaprotocol/api/blob/develop/rest/examples/python/submit-order.py)
+
+[Another Python with Amend/Cancel Order](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py)
+
+[Summary of Process](https://docs.fairground.vega.xyz/docs/api-howtos/submit-order/)
+
+[REST Wallet API](https://docs.fairground.vega.xyz/wallet-api/)
+
+[GraphQL prepareOrder](https://docs.fairground.vega.xyz/api/graphql/mutation.doc.html)
+
+[REST Sign Transaction API](https://docs.fairground.vega.xyz/wallet-api/#sign-a-transaction)
+
+
+
+
