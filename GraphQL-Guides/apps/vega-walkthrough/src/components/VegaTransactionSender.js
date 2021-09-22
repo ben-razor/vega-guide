@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { gql, ApolloClient, useQuery } from '@apollo/client';
 import {GraphQLTransactionSender} from './GraphQLTransactionSender';
+import {GraphQLAuthQuery} from './GraphQLAuthQuery';
 
+const MAX_RECORDS = 5;
 function VegaTransactionSender(props) {
   const transactionDetails = props.transactionDetails;
   const setTransactionDetails = props.setTransactionDetails;
   const setCustomData = props.setCustomData;
+  const setResultData = props.setResultData;
   const setValue = props.setValue;
 
   const [submitting, setSubmitting] = useState(false);
   const [orderParams, setOrderParams] = useState();
+  const [query, setQuery] = useState();
 
   useEffect(() => {
     let error;
@@ -30,6 +34,8 @@ function VegaTransactionSender(props) {
               type: ${type} 
             }
           }`;
+        
+        setQuery(submitTransaction);
       }
       else {
         error = "Both of transaction hash and the signature details were not provided.";
@@ -38,21 +44,22 @@ function VegaTransactionSender(props) {
     else {
       error = "No transaction details were provided.";
     }
-   const recentOrderQuery = `{
-      markets {
-        id, orders(first: 0, last: 1) {
-          price, size, expiresAt, side, timeInForce, type, reference
-        }
-      }
-    }`;
-  
-    const { loading, error, data } = useQuery(gql`${recentOrderQuery}`, { errorPolicy: 'all' })
-
   }, [transactionDetails, setTransactionDetails, setCustomData]);
 
+
+  let client;
+  if(query) {
+    client = <GraphQLAuthQuery query={query}
+                                transactionDetails={transactionDetails}
+                                setTransactionDetails={setTransactionDetails}
+                                maxRecords={MAX_RECORDS} setResultData={setResultData}>
+        <GraphQLTransactionSender />
+    </GraphQLAuthQuery>;
+  }
+
   return <div className="walkthrough-vega-transaction-sender">
-    <GraphQLTransactionSender />
+    {client}
   </div>;
 }
 
-export default VegaTransaction;
+export default VegaTransactionSender;

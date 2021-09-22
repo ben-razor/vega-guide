@@ -1,3 +1,4 @@
+import React from 'react';
 import { gql, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { useEffect, useState } from 'react';
@@ -57,15 +58,18 @@ function GraphQLAuthQuery(props) {
     }
   }, [transactionDetails]);
 
+
+  const GraphQLHandler = React.cloneElement(props.children[0], {
+    query: {query}, client: {client}, maxRecords: {maxRecords}, setResultData: {setResultData},
+    transactionDetails: {transactionDetails}, setTransactionDetails: {setTransactionDetails}
+  });
+
   return <div className="results-graphql-query">
     { error ? 
       error :
       (
         client ?
-        <GraphQLMutation query={query} client={client} maxRecords={maxRecords} 
-                         setResultData={setResultData}
-                         transactionDetails={transactionDetails}
-                         setTransactionDetails={setTransactionDetails} /> :
+        GraphQLHandler :
         'Waiting for authenticated client to connect...'
       )
     }

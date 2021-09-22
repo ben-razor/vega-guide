@@ -20,6 +20,7 @@ import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
 import GraphQLAuthQuery from  './components/GraphQLAuthQuery';
+import GraphQLMutation from './components/GraphQLMutation';
 import ProgressPanel from './components/ProgressPanel';
 import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import VegaWallet from './components/VegaWallet';
@@ -165,7 +166,9 @@ function App() {
     client = <GraphQLAuthQuery query={query}
                                transactionDetails={transactionDetails}
                                setTransactionDetails={setTransactionDetails}
-                               maxRecords={MAX_RECORDS} setResultData={setResultData} />
+                               maxRecords={MAX_RECORDS} setResultData={setResultData}>
+        <GraphQLMutation />
+    </GraphQLAuthQuery>;
   }
   else if(isSubscription) {
     client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />

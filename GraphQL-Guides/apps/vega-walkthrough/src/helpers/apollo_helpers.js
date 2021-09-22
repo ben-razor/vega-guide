@@ -92,18 +92,20 @@ function getResultsTable(data, loading, error, MAX_RECORDS=0) {
 function tabulateRecords(records, maxRecords) {
   let table;
   let keys = Object.keys(records[0]).filter(x => !x.startsWith('__'));
-  let header = <tr> {keys.map(key => <th>{key}</th>)} </tr>
+  let header = <tr>{keys.map(key => <th>{key}</th>)}</tr>
   let rows = [];
+  let rowIndex = 0;
   for(let row of records) {
     let cols = [];
+    let colIndex = 0;
     for(let key of keys) {
       let keyText = 'None';
       if(row[key] !== null) {
         keyText = typeof row[key] === 'object' ? formatObject(row[key], maxRecords) : row[key];
       }
-      cols.push(<td>{keyText}</td>);
+      cols.push(<td key={colIndex++}>{keyText}</td>);
     }
-    rows.push(<tr>{cols}</tr>)
+    rows.push(<tr key={rowIndex++}>{cols}</tr>)
   }
   table = <table className="results-table"><thead>{header}</thead><tbody>{rows}</tbody></table>
 

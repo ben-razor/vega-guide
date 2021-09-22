@@ -52,4 +52,4 @@ function GraphQLTransactionSender(props) {
   </div>;
 }
 
-export default GraphQLMutation;
+export default GraphQLTransactionSender;
