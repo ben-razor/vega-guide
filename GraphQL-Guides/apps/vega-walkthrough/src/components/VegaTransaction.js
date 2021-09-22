@@ -21,7 +21,6 @@ function VegaTransaction(props) {
     }
   }`;
 
-
   const { loading, error, data } = useQuery(gql`${recentOrderQuery}`, { errorPolicy: 'all' });
 
   useEffect(() => {
@@ -55,11 +54,15 @@ function VegaTransaction(props) {
 
   useEffect(() => {
     if(orderParams) {
+
+      let price = parseInt(orderParams.price, 10) || "10";
+      let size = orderParams.size || "10";
+
       let graphQL = `mutation {
   prepareOrderSubmit(
     marketId: "${orderParams.marketId}",
-    price: "${orderParams.price}",
-    size: "${orderParams.size}",
+    price: "${price}",
+    size: "${size}",
     side: ${orderParams.side},
     timeInForce: ${orderParams.timeInForce},
     expiration: "${orderParams.expiration}",

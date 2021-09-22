@@ -24,6 +24,7 @@ import ProgressPanel from './components/ProgressPanel';
 import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import VegaWallet from './components/VegaWallet';
 import VegaTransaction from './components/VegaTransaction';
+import VegaTransactionSigner from './components/VegaTransactionSigner';
 
 const MAX_RECORDS = 8;
 
@@ -90,7 +91,7 @@ function App() {
     })
     .catch(err => console.log(err));
 
-    if(section.id !== 'ordersprepare') {
+    if(section.id !== 'ordersprepare' && section.id !== 'orderssend') {
       setCustomData();
     }
     setResultData();
@@ -259,6 +260,13 @@ function App() {
                                setTransactionDetails={setTransactionDetails}
                                setCustomData={setCustomData}
                                setValue={setValue} />
+            }
+            {section.id === 'orderssend' &&
+              <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
+                               setTransactionDetails={setTransactionDetails}
+                               setCustomData={setCustomData}
+                               setValue={setValue} />
+
             }
             {
               (
