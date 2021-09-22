@@ -67,37 +67,6 @@ function VegaTransaction(props) {
               newTransactionDetails.signature = json.signedTx.sig.sig;
               newTransactionDetails.signedTx = json.signedTx;
               setTransactionDetails(newTransactionDetails);
-
-              let sendURL = 'https://lb.testnet.vega.xyz/transaction';
-              let sendOptions = {
-                method: 'POST',
-                headers : headers,
-                body: JSON.stringify({
-                  "tx": json.signedTx,
-                  "type": "TYPE_SYNC"
-                })
-              } 
-            
-              fetch(sendURL, sendOptions).then(sendResp => {
-                return sendResp.json();
-              })
-              .then(json => {
-                setSubmitting(false);
-                console.log(json);
-    
-                if(json.error) {
-                  error = JSON.stringify(json.error);
-                }
-                else if(json.errors) {
-                  error = JSON.stringify(json.errors);
-                }
-                else {
-                  console.log('SENT TX REPLY', json);
-                }
-              })
-              .catch(sendError => {
-                console.log(sendError);
-              });
             }
 
             let output;
@@ -148,9 +117,6 @@ function VegaTransaction(props) {
 
   }, [transactionDetails, setTransactionDetails, setCustomData]);
 
-  useEffect(() => {
- 
- }, [orderParams, setValue]);
 
   return <div className="walkthrough-vega-transaction-signer"></div>;
 }
