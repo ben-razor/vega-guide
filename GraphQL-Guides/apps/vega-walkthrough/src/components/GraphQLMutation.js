@@ -6,13 +6,28 @@ function GraphQLMutation(props) {
   let query = props.query;
   let client = props.client;
   let setResultData = props.setResultData;
+  let transactionDetails = props.transactionDetails;
+  let setTransactionDetails = props.setTransactionDetails;
+
   const [prepareOrder, { loading, error, data }] = useMutation(query, { client: client, errorPolicy: 'all' });
   
   useEffect(() => {
     if(!error && data) {
-      setTimeout(() => { setResultData(data); }, 0);
+      setTimeout(() => { 
+        setResultData(data); 
+
+        let txData = data.prepareOrderSubmit;
+
+        if(txData) {
+          if('blob' in txData) {
+            let newTransactionDetails = {...transactionDetails};
+            newTransactionDetails.txHash = txData.blob;
+            setTransactionDetails(newTransactionDetails);
+          }
+        }
+      }, 0);
     }
-  }, [error, data, setResultData])
+  }, [error, data, setResultData, setTransactionDetails, transactionDetails])
 
   let maxRecords = props.maxRecords;
   let resultsTable = getResultsTable(data, loading, error, maxRecords);

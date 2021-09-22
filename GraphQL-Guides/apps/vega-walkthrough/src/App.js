@@ -25,7 +25,7 @@ import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import VegaWallet from './components/VegaWallet';
 import VegaTransaction from './components/VegaTransaction';
 
-const MAX_RECORDS = 5;
+const MAX_RECORDS = 8;
 
 const editorOptions = {
   lineNumbers: true,
@@ -45,7 +45,6 @@ let initialTemplate = `{
 }
 `;
 
-const token = 'eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjM3NTUwNzYsImlzcyI6InZlZ2Egd2FsbGV0IiwiU2Vzc2lvbiI6IjQwNDJiNzMzMTk1YTA4ODY4M2RjNTZlODQzMzExNmViODVhN2FhMGY3N2Y5YTg1OTUyM2UwZGVhMzA2NTgwZTciLCJXYWxsZXQiOiJ2dzBnbjd4a3Z6MDQybGxlNGdhM3l4In0.XV7y_1on4Vusf46yZIBp89bZFm1qNa_aEqPYCfYsm5x39XGmYiNst9ln-U7H-qQh9Y88wfafFx9z-aXaSGWAcxTrCz-Jpr551oq03F-xfXq01RH0DEzv1eeW-dq0lUM_06E_BPhnJSuBXYFliYrEWMOZLL8CVD4A0jIs59VE6fi_BX2nIYLRjaP-TzWVHLJ6Efh4ixoBrXvplXuumoeDgVgaTDqNm1GAqjpVpmRPk6NFuUSx1zo6hRYe5sbKvWdHomd-pzUx_LCAedTCyif6tJBQlAKIYR7_HHllWwezRB1WSNmsXp5newfkESOeoCxoB_12xFqm3GLFHP1lZ86Y1_jQLRtuFS-f6M5saq1rYMQY3i2714-zAVUcgHehUjbdUjwzKKzEmRAOq-Joi-HiQq3zwd0--VXORzPo6HEBu-T5iJ-LsF6wDj4CD9sS-wqQwNhj9hpKxY8NBj9Tz2BVxtaNWpIXKuDpG0DnQpfNUYbXgvo64ViEz8ZSNM1JLplWjqjRWUW1vHzyxnTiKXqj2rWdMe4mo1Te-XkdCz7nPLBhhtdeSOGeI2uu_87023eaF9jXak74ms1p-98Msm7smAIm3eYS9_ZUNSHmM8h3FeTY5VQLg0Fhbbw-JXWuTlhPQJ6ny5nTtkFCxlGuFJPbASHRihHcTuQXIFwifGVe2rY';
 let sessionTransactionDetails;
 
 function App() {
@@ -162,7 +161,10 @@ function App() {
 
   let client;
   if(isMutation) {
-    client = <GraphQLAuthQuery query={query} token={token} maxRecords={MAX_RECORDS} setResultData={setResultData} />
+    client = <GraphQLAuthQuery query={query}
+                               transactionDetails={transactionDetails}
+                               setTransactionDetails={setTransactionDetails}
+                               maxRecords={MAX_RECORDS} setResultData={setResultData} />
   }
   else if(isSubscription) {
     client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
@@ -197,7 +199,7 @@ function App() {
   }
 
   useEffect(() => {
-    if(!hasRun) return;
+    if(!hasRun && !section.runDisabled) return;
     let success
     let reason;
     let progressPanel;
@@ -255,7 +257,8 @@ function App() {
             {section.id === 'ordersprepare' &&
               <VegaTransaction transactionDetails={sessionTransactionDetails} 
                                setTransactionDetails={setTransactionDetails}
-                               setCustomData={setCustomData} />
+                               setCustomData={setCustomData}
+                               setValue={setValue} />
             }
             {
               (

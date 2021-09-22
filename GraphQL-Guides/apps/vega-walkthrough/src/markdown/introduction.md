@@ -1,12 +1,12 @@
 ### Introduction
 
-The script in the editor is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
+<a href="https://vega.xyz/" target="_blank">Vega Protocol</a> is a decentralized derivatives trading platform.
 
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
+The script in the editor is GraphQL. <a href="https://graphql.org/" target="_blank">GraphQL</a> is a concise language for making queries.
 
-Vega provides APIs to allow you to interact with the system in a flexible way. In this guide we walk through using the GraphQL API. 
+In this guide we walk through using the Vega Protocol GraphQL API. 
 
-You can use GraphQL to access every aspect of Vega Protocol. You have great power.
+You can use GraphQL to access every aspect of Vega Protocol from viewing markets, subscribing to live updates, placing orders, and even governing the protocol.
 
 #### Assets 
 

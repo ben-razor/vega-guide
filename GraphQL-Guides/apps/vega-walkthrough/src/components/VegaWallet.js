@@ -16,6 +16,7 @@ function VegaWallet(props) {
   const tx = props.tx;
   const propogate = props.propogate;
   const setCustomData = props.setCustomData;
+  const setResultData = props.setResultData;
   const setTransactionDetails = props.setTransactionDetails;
   const section = props.section;
 
@@ -102,6 +103,7 @@ function VegaWallet(props) {
       token: token
     });
 
+
     setCustomData({
       'error': error,
       'data': {
@@ -110,7 +112,15 @@ function VegaWallet(props) {
         mnemonic: mnemonic
       },
       'output': output 
-    })
+    });
+
+    setResultData({
+      'data': {
+        token: token,
+        pubKey: pubKey,
+        mnemonic: mnemonic
+      }
+    });
   }, [pubKey, mnemonic, error, token, setCustomData, setTransactionDetails]);
 
   useEffect(() => {

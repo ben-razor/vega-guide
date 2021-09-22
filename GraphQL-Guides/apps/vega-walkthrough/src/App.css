@@ -40,7 +40,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0.5em;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 
 .walkthrough-panels-io {
@@ -57,7 +57,7 @@
 
 .walkthrough-panels-output {
   padding: 0.5em;
-  flex: 1 1 10em;
+  flex: 1 1 auto;
   border-width: 10px 0 0;
   border-color: lightgrey;
   border-style: solid;
@@ -95,6 +95,7 @@
 .walkthrough-control-button {
   background-color: darkslategray;
   color: yellow;
+  border-radius: 3px;
 }
 
 .walkthrough-control-button-run {
@@ -102,6 +103,7 @@
   color: white;
   font-weight: bold;
   width: 10em;
+  border-radius: 4px;
 }
 
 .walkthrough-control-button-run:disabled {
@@ -165,8 +167,18 @@
   animation: expand 1s;
   background-color: hsl(0deg, 0%, 10%);
   color: white;
-  padding: 0.5em 0.25em;
+  padding: 0.25em 0.25em;
 }
+
+.walkthrough-progress-head {
+  margin: 0.25em;
+}
+
+.walkthrough-progress-content {
+  margin: 0.25em; 
+  font-size: 0.9em;
+}
+
 
 .walkthrough-fade-in {
   animation: mildHighlight 3s;
@@ -222,4 +234,5 @@ pre {
 
 code {
   white-space: pre-wrap;
+  word-break: break-all;
 }

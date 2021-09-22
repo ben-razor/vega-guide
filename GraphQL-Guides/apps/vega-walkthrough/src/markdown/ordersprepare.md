@@ -8,9 +8,9 @@ Transactions must be **signed** before sending. We first need to prepare our ord
 
 #### Prepare Order 
 
-We have gathered some recent trade information and created a GraphQL order based on it.
+We have gathered some recent order information and created a GraphQL order based on it.
 
-This order is preceeded by **mutation** meaning that it will make changes on the Vega System. **blob** in the query means that the **blob** field of the prepareOrderSubmit will be returned. This is the transaction hash that we will use when signing the transaction.
+This order is preceeded by **mutation** meaning that it will make changes to the Vega System. **blob** in the query means that the **blob** field of the prepareOrderSubmit will be returned. This is the transaction hash that we will use when signing the transaction.
 
 Click **Run Query** to get a transaction hash.
 ___

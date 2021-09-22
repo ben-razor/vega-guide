@@ -10,6 +10,29 @@ function hasKeys(obj, keys) {
   return success;
 }
 
+let unusedSections = [
+  {
+    id: "inlinefragments",
+    titile: "Inline Fragments",
+    graphQL: `{
+  markets {
+    name, tradableInstrument {
+      instrument { 
+        product {
+          ... on Future {
+            settlementAsset {
+              symbol
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `
+  }
+]
+
 let sections = [
   {
     id: "introduction",
@@ -45,6 +68,29 @@ let sections = [
   {
     id: "markets",
     title: "Markets",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let rows = resultData.markets;
+      let hasRows = rows && rows.length;
+
+      if(hasRows) {
+        let firstRow = rows[0];
+
+        if(hasKeys(firstRow, ['data', 'name', 'state'])) {
+          success = true;
+        }
+        else {
+          reason = 'Fields data, name and state are not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-markets-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     graphQL: `{
   markets {
     name
@@ -54,6 +100,29 @@ let sections = [
   {
     id: "subscriptions",
     title: "Subscriptions",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let rows = resultData.orders;
+      let hasRows = rows && rows.length;
+
+      if(hasRows) {
+        let firstRow = rows[0];
+
+        if(hasKeys(firstRow, ['createdAt', 'market', 'size'])) {
+          success = true;
+        }
+        else {
+          reason = 'Fields createdAt, market and size are not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-orders-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     graphQL: `subscription {
   orders {
     id, createdAt
@@ -63,6 +132,29 @@ let sections = [
   {
     id: "traders",
     title: "Trader Information",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let rows = resultData.parties;
+      let hasRows = rows && rows.length;
+
+      if(hasRows) {
+        let firstRow = rows[0];
+
+        if(hasKeys(firstRow, ['trades'])) {
+          success = true;
+        }
+        else {
+          reason = 'Fields trades is not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-parties-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     graphQL: `{
   parties {
     id
@@ -72,6 +164,27 @@ let sections = [
   {
     id: "orderswallet",
     title: "Placing Orders (1. Wallets)",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let data = resultData.data; 
+
+      if(data) {
+
+        if(hasKeys(data, ['token', 'pubKey', 'mnemonic'])) {
+          success = true;
+        }
+        else {
+          reason = 'All fields token, pubKey and mnemonic are not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-data-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     jsxComponent: "VegaWallet",
     runDisabled: true
   },
@@ -79,8 +192,25 @@ let sections = [
     id: "ordersprepare",
     title: "Placing Orders (2. Prepare Order)",
     auth: true,
-    prog: (resultData) => {
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let data = resultData.prepareOrderSubmit;
 
+      if(data) {
+        if(hasKeys(data, ['blob'])) {
+          success = true;
+        }
+        else {
+          reason = 'Transaction has blob is not in the results.'; 
+        }
+      }
+      else {
+        reason = 'no-data-returned';
+      }
+      return [
+        success, reason
+      ]
     },
     graphQL: `mutation {
   prepareOrderSubmit(

@@ -11,9 +11,7 @@ function GraphQLQuery(props) {
   
   useEffect(() => {
     if(!error && data) {
-      setTimeout(() => {
-        setResultData(data);
-      }, 0);
+      setTimeout(() => { setResultData(data); }, 0);
     }
   }, [error, data, setResultData])
 

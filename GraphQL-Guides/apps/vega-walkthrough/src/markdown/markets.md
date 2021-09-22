@@ -1,17 +1,25 @@
 ### Markets 
 
-The script on the right is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
+Markets show products we can trade with our asssets.
 
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
+Click run to list the names of some markets.
 
-Vega provides APIs to allow you to interact with the system in a flexible way. In this guide we walk through using the GraphQL API. 
+#### Sub Queries
 
-You can use GraphQL to access every aspect of Vega Protocol. So you have great power.
+Each market has a field called **data** that contains information about the current state of the market.
 
-#### Assets 
+This is an object containing multiple fields so we use a sub query to pick out the information we need.
 
-Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
+Run the following query to get recent prices for the markets:
 
-Click run to view the results.
+```graphql
+{
+  markets {
+    name, state, data {
+    	bestBidPrice, bestOfferPrice
+    }
+  }
+}
+```
 ___
 Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/market.doc.html" target="_blank">Markets</a> 
