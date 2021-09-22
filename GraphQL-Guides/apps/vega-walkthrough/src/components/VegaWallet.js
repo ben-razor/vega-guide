@@ -77,7 +77,7 @@ function VegaWallet(props) {
           console.log(keysError);
         });
       }
-   })
+    })
     .catch(error => {
           console.log(error);
           setSubmitting(false);
@@ -102,7 +102,6 @@ function VegaWallet(props) {
       pubKey: pubKey,
       token: token
     });
-
 
     setCustomData({
       'error': error,

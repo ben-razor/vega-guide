@@ -3,6 +3,7 @@ import { gql, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client
 import { setContext } from '@apollo/client/link/context';
 import { useEffect, useState } from 'react';
 import GraphQLMutation from './GraphQLMutation';
+import GraphQLTransactionSender from './GraphQLTransactionSender';
 
 function GraphQLAuthQuery(props) {
   let query = props.query;
@@ -13,6 +14,7 @@ function GraphQLAuthQuery(props) {
   
   let maxRecords = props.maxRecords;
   let setResultData = props.setResultData;
+  let section = props.section;
 
   useEffect(() => {
     if(transactionDetails && transactionDetails.token) {
@@ -47,6 +49,10 @@ function GraphQLAuthQuery(props) {
           enum OrderType {
             Market, Limit, Network
           }
+
+          enum SubmitTransactionType {
+            Async, Sync, Commit
+          }
         `
       });
 
@@ -58,18 +64,22 @@ function GraphQLAuthQuery(props) {
     }
   }, [transactionDetails]);
 
-
-  const GraphQLHandler = React.cloneElement(props.children[0], {
-    query: {query}, client: {client}, maxRecords: {maxRecords}, setResultData: {setResultData},
-    transactionDetails: {transactionDetails}, setTransactionDetails: {setTransactionDetails}
-  });
+  let GraphQLHandler;
 
   return <div className="results-graphql-query">
     { error ? 
       error :
       (
         client ?
-        GraphQLHandler :
+        (
+          section.id === 'ordersprepare' ?
+          <GraphQLMutation query={query} client={client} maxRecords={maxRecords} setResultData={setResultData} 
+                     transactionDetails={transactionDetails} setTransactionDetails={setTransactionDetails}
+                     /> :
+          <GraphQLTransactionSender query={query} client={client} maxRecords={maxRecords} setResultData={setResultData} 
+          transactionDetails={transactionDetails} setTransactionDetails={setTransactionDetails}
+          />
+        ) :
         'Waiting for authenticated client to connect...'
       )
     }

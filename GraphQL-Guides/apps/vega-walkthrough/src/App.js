@@ -164,11 +164,10 @@ function App() {
   let client;
   if(isMutation) {
     client = <GraphQLAuthQuery query={query}
-                               transactionDetails={transactionDetails}
-                               setTransactionDetails={setTransactionDetails}
-                               maxRecords={MAX_RECORDS} setResultData={setResultData}>
-        <GraphQLMutation />
-    </GraphQLAuthQuery>;
+                              transactionDetails={transactionDetails}
+                              setTransactionDetails={setTransactionDetails}
+                              maxRecords={MAX_RECORDS} setResultData={setResultData}
+                              section={section} />
   }
   else if(isSubscription) {
     client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
@@ -269,7 +268,6 @@ function App() {
                                setTransactionDetails={setTransactionDetails}
                                setCustomData={setCustomData}
                                setValue={setValue} />
-
             }
             {
               (

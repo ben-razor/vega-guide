@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import VegaTransactionSender from "./VegaTransactionSender";
 
-function VegaTransaction(props) {
+function VegaTransactionSigner(props) {
   const transactionDetails = props.transactionDetails;
   const setTransactionDetails = props.setTransactionDetails;
   const setCustomData = props.setCustomData;
   const setValue = props.setValue;
+  const section = {id: 'orderssign'};
 
   const [submitting, setSubmitting] = useState(false);
   const [orderParams, setOrderParams] = useState();
@@ -112,13 +114,27 @@ function VegaTransaction(props) {
         'output': error 
       });
     }
-
-
-
   }, [transactionDetails, setTransactionDetails, setCustomData]);
 
 
-  return <div className="walkthrough-vega-transaction-signer"></div>;
+  let transactionSender;
+
+  if(transactionDetails && transactionDetails.signedTx) {
+    const transactionDetails = props.transactionDetails;
+    const setTransactionDetails = props.setTransactionDetails;
+    const setCustomData = props.setCustomData;
+    const setResultData = props.setResultData;
+    const setValue = props.setValue
+    transactionSender = <VegaTransactionSender transactionDetails={transactionDetails}
+                       setTransactionDetails={setTransactionDetails} setCustomData={setCustomData}
+                       setResultData={setResultData} setValue={setValue}
+                       section={section} />
+  }
+
+
+  return <div className="walkthrough-vega-transaction-signer">
+    {transactionSender}
+  </div>;
 }
 
-export default VegaTransaction;
+export default VegaTransactionSigner;
