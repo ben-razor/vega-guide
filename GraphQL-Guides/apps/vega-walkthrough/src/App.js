@@ -15,7 +15,6 @@ import 'codemirror/theme/monokai.css';
 import rehypeRaw from 'rehype-raw';
 import {useMediaQuery} from 'react-responsive';
 
-
 import { sections } from './walkthrough/sections'
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
@@ -240,7 +239,8 @@ function App() {
 
   let walkthroughControls = <WalkthroughControls sections={sections} sectionIndex={sectionIndex}
                                                  backDisabled={backDisabled} forwardDisabled={forwardDisabled}
-                                                 setSection={setSection} runDisabled={runDisabled} />;
+                                                 setSection={setSection} runDisabled={runDisabled}
+                                                 runQuery={runQuery} />;
                        
   let outputPanel = <div className="walkthrough-panels-output">
     {section.id === 'ordersprepare' &&
