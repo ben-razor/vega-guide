@@ -8,7 +8,7 @@ Click run to get the public keys of the traders on the system.
 
 You may want to see the trades that you or another party has performed.
 
-Arguments are passed in brackets after the object name in the form **name(field: value)**.
+**Arguments** are passed in brackets after the object name in the form **name(field: value)**.
 
 Try the following:
 

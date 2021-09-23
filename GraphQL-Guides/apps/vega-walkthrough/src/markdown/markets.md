@@ -1,6 +1,6 @@
 ### Markets 
 
-Markets show products we can trade with our asssets.
+Markets list the products available to trade with our asssets.
 
 Click run to list the names of some markets.
 

@@ -166,11 +166,11 @@ function VegaWallet(props) {
   return <div className="walkthrough-details-form-panel">
     <form className="walkthrough-details-form" onSubmit={handleDetailsSubmit}>
       <div className="walkthrough-details-form-row">
-        <label htmlFor="name">Wallet name: </label>
+        <label className="walkthrough-details-form-label" htmlFor="name">Wallet name: </label>
         <input className="walkthrough-details-form-input" type="text" value={walletName} onChange={e => setWalletName(e.target.value) } />
       </div>
       <div className="walkthrough-details-form-row">
-        <label htmlFor="name">Pass phrase: </label>
+        <label className="walkthrough-details-form-label" htmlFor="name">Pass phrase: </label>
         <input className="walkthrough-details-form-input" type="text" value={passPhrase} onChange={e => setPassPhrase(e.target.value) } />
       </div>
       <div className="walkthrough-details-form-row">

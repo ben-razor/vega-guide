@@ -6,6 +6,9 @@ function VegaTransactionSigner(props) {
   const setTransactionDetails = props.setTransactionDetails;
   const setCustomData = props.setCustomData;
   const setValue = props.setValue;
+  const setResultData = props.setResultData;
+  const setRunDisabled = props.setRunDisabled;
+
   const section = {id: 'orderssign'};
 
   const [submitting, setSubmitting] = useState(false);
@@ -77,7 +80,15 @@ function VegaTransactionSigner(props) {
             }
             else {
               output = <div className="walkthrough-custom-data">
-                  <div className="walkthrough-custom-data-row">Signature: {newTransactionDetails.signature}</div>
+                  <div className="walkthrough-custom-data-row">
+                    The order was signed using the Vega REST API.
+                  </div>
+                  <div className="walkthrough-custom-data-row">
+                    Signature:
+                  </div>
+                  <div> className="walkthrough-custom-data-row"
+                    {newTransactionDetails.signature}
+                  </div>
                 </div>;
             }
             
@@ -120,17 +131,12 @@ function VegaTransactionSigner(props) {
   let transactionSender;
 
   if(transactionDetails && transactionDetails.signedTx) {
-    const transactionDetails = props.transactionDetails;
-    const setTransactionDetails = props.setTransactionDetails;
-    const setCustomData = props.setCustomData;
-    const setResultData = props.setResultData;
-    const setValue = props.setValue
+    
     transactionSender = <VegaTransactionSender transactionDetails={transactionDetails}
                        setTransactionDetails={setTransactionDetails} setCustomData={setCustomData}
                        setResultData={setResultData} setValue={setValue}
-                       section={section} />
+                       section={section} setRunDisabled={setRunDisabled} />
   }
-
 
   return <div className="walkthrough-vega-transaction-signer">
     {transactionSender}

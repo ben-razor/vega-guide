@@ -1,6 +1,6 @@
 ### Subscriptions
 
-Traders need up to date information to make profitable decisions. GraphQL provides subscriptions to live feeds of results.
+Traders need up to date information to make profitable decisions. GraphQL provides **subscriptions** to request live feeds of results.
 
 #### Streaming Orders
 

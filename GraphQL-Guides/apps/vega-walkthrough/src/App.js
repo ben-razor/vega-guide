@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import logo from './img/v-vega-1-64.png'; 
 import './App.css';
 import { useEffect, useState, useMemo, Fragment } from 'react'
 import ReactMarkdown from 'react-markdown'
@@ -14,6 +14,7 @@ import 'codemirror-graphql/mode';
 import 'codemirror/theme/monokai.css';
 import rehypeRaw from 'rehype-raw';
 
+
 import { getResultsTable } from './helpers/apollo_helpers';
 import { sections } from './walkthrough/sections'
 import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
@@ -26,6 +27,7 @@ import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import VegaWallet from './components/VegaWallet';
 import VegaTransaction from './components/VegaTransaction';
 import VegaTransactionSigner from './components/VegaTransactionSigner';
+import VegaOrdersWrapUp from './components/VegaOrdersWrapUp';
 
 const MAX_RECORDS = 8;
 
@@ -61,12 +63,18 @@ function App() {
   const [transactionDetails, setTransactionDetails] = useState(sessionTransactionDetails)
   const [tx, setTx] = useState('');
   const [propogate, setPropogate] = useState(true);
+  const [runDisabled, setRunDisabled] = useState(false)
   const [resultData, setResultData] = useState();
   const [progressPanel, setProgressPanel] = useState();
   const [startFade, setStartFade] = useState();
 
   let section = sections[sectionIndex];
-  let runDisabled = sections[sectionIndex].runDisabled;
+
+  useEffect(() => {
+    let runDisabledAtSectionStart = section.runDisabled;
+    setRunDisabled(runDisabledAtSectionStart)
+  }, [section, setRunDisabled])
+
 
   let isSubscription = query.definitions[0].operation === 'subscription';
   let isMutation = query.definitions[0].operation === 'mutation';
@@ -167,7 +175,7 @@ function App() {
                               transactionDetails={transactionDetails}
                               setTransactionDetails={setTransactionDetails}
                               maxRecords={MAX_RECORDS} setResultData={setResultData}
-                              section={section} />
+                              section={section} setRunDisabled={setRunDisabled} />
   }
   else if(isSubscription) {
     client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
@@ -179,15 +187,19 @@ function App() {
   let editorComponent;
 
   if(jsxComponent) {
-    let section = sections[sectionIndex];
-
-    editorComponent = <div className="walkthrough-jsx-component">
-      <VegaWallet section={section} tx={tx} propogate={propogate} 
-                  setCustomData={setCustomData} setTransactionDetails={setTransactionDetails} 
-                  setResultData={setResultData}
-            />
-    </div>
-  }
+    if(section.id === 'orderswallet') {
+      editorComponent = <div className="walkthrough-jsx-component">
+        <VegaWallet section={section} tx={tx} propogate={propogate} 
+                    setCustomData={setCustomData} setTransactionDetails={setTransactionDetails} 
+                    setResultData={setResultData} />
+      </div>;
+    }
+    else if(section.id === 'orderswrapup') {
+      editorComponent = <div className="walkthrough-jsx-component">
+        <VegaOrdersWrapUp setResultData={setResultData} setCustomData={setCustomData} />
+      </div>;
+    }
+ }
   else {
     editorComponent =  <CodeMirror 
       className="walkthrough-codemirror"
@@ -227,8 +239,9 @@ function App() {
   return (
     <div className="App">
       <div className="walkthrough-header">
+        <img alt="Vega GraphQL Walkthrough Logo" src={logo} className="walkthrough-logo"/>
         <h3 className="walkthrough-header-title">
-          Vega Protocol GraphQL Walkthrough
+          <span class="walkthrough-header-name">Vincent</span>  - A Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
       <div className={"walkthrough-panels"}>
@@ -267,7 +280,8 @@ function App() {
               <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
                                setTransactionDetails={setTransactionDetails}
                                setCustomData={setCustomData}
-                               setValue={setValue} />
+                               setValue={setValue}
+                               setResultData={setResultData} setRunDisabled={setRunDisabled} />
             }
             {
               (

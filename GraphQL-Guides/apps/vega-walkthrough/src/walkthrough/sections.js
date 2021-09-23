@@ -230,20 +230,18 @@ let sections = [
   {
     id: "orderssend",
     title: "Placing Orders (3. Send Tx)",
+    runDisabled: true,
     progressor: resultData => {
       let success = false;
       let reason = '';
-      let rows= resultData.parties; 
-      let hasRows = rows && rows.length;
+      let result = resultData.submitTransaction; 
 
-      if(hasRows) {
-        let firstRow = rows[0];
-
-        if(hasKeys(firstRow, ['orders'])) {
+      if(result) {
+        if(hasKeys(result, ['success'])) {
           success = true;
         }
         else {
-          reason = 'The orders field was not found in the results'; 
+          reason = 'The success field was not found in the results'; 
         }
       }
       else {
@@ -253,13 +251,27 @@ let sections = [
         success, reason
       ]
     },
-    graphQL: `{
-  parties(id: "public key not available") {
-    orders(first: 0, last: 1) {
-      id, size, price, reference, createdAt
-    }
+    graphQL: `mutation {
+  submitTransaction(
+    info: "GraphQL submitTransaction query will appear here when the transaction has been signed."
+    
+    info2: "Signing with the Vega REST API will take place if all the information from the previous steps have been provided") {
   }
 }`
+  },
+  {
+    id: "orderswrapup",
+    title: "Placing Orders (4. Wrapping Up)",
+    jsxComponent: "VegaOrdersWrapUp",
+    runDisabled: true,
+    progressor: resultData => {
+      let reason = '';
+      let success = resultData;
+
+      return [
+        success, reason
+      ]
+    }
   },
   {
     id: "events",

@@ -14,8 +14,28 @@
   }
 }
 
+.walkthrough-header {
+  margin: 0.2em;
+}
+
+.walkthrough-logo {
+  display: inline-block;
+  width: 64px;
+  vertical-align: middle;
+  margin: 0 0.5em;
+}
+
+.walkthrough-header-name {
+  color: yellow;
+  text-shadow: -2px 1px black;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
 .walkthrough-header-title {
-  margin: 0.8em;
+  text-shadow: -1px 0px black;
+  display: inline-block;
+  margin: 0;
 }
 
 .walkthrough-panels {
@@ -30,10 +50,10 @@
 }
 
 .walkthrough-panels-tutorial {
-  flex: 1 1 auto; 
-  background-color: hsl(200deg, 20%, 20%);
+  box-sizing: content-box;
+  background-color: hsl(200deg, 45%, 40%);
   color: white;
-  width: 38%;
+  width: 50%;
 }
 
 .walkthrough-panels-tutorial-markdown {
@@ -44,10 +64,11 @@
 }
 
 .walkthrough-panels-io {
+  box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  flex: 5 1 0;
   border-left-width: 1px;
+  width: 50%;
 }
 
 .walkthrough-panels-input {
@@ -75,7 +96,6 @@
   height: 2em;
   line-height: 2em;
   vertical-align: middle;
-  background-color: black;
 }
 
 .walkthrough-controls-sections-pagination {
@@ -84,6 +104,7 @@
   align-items: stretch;
   justify-content: space-between;
   flex: 3 1 auto;
+  background-color: black;
 }
 
 .walkthrough-controls-sections-run {
@@ -95,11 +116,14 @@
 .walkthrough-control-button {
   background-color: darkslategray;
   color: yellow;
-  border-radius: 3px;
+  border-radius: 5px;
+  width: 4em;
 }
 
 .walkthrough-control-button-run {
-  background-color: hsl(100, 100%, 30%);
+  background-color: hsl(100, 100%, 20%);
+  background-image: linear-gradient( 180deg, #23cb38, transparent 120% );
+  border-color: hsl(100, 100%, 40%);
   color: white;
   font-weight: bold;
   width: 10em;
@@ -107,6 +131,7 @@
 }
 
 .walkthrough-control-button-run:disabled {
+  background-image: initial;
   background-color: hsl(100deg, 0%, 20%);
   color:hsl(0deg, 0%, 30%);
   border-width: 0;
@@ -117,12 +142,13 @@
 }
 
 .walkthrough-details-form-panel {
-  background-color: hsl(200deg, 20%, 40%);
+  background-color: hsl(200deg, 45%, 40%);
   padding: 1em;
   border: 1px solid white;
   border-radius: 1em;
   width: 50%;
   margin: 1em auto;
+  font-size: 0.9em;
 }
 
 .walkthrough-details-form-row {
@@ -133,8 +159,13 @@
   width: 100%;
 }
 
-.walkthrough-details-form-input {
+.walkthrough-details-form-label {
   flex: 1 0 auto;
+  width: 7em;
+}
+
+.walkthrough-details-form-input {
+  flex: 3 0 auto;
   margin-left: 0.5em;
 }
 
@@ -144,6 +175,12 @@
 
 .walkthrough-custom-data-row {
   margin-bottom: 1em;
+  word-break: break-all;
+}
+
+.walkthrough-details-button-row {
+  display: flex;
+  justify-content: center;
 }
 
 @keyframes mildHighlight {
@@ -188,8 +225,10 @@
   padding: 0.6em; 
   border-radius: 0.5em;
   margin-left: auto;
-  background-color: darkslategrey;
+  background-color: hsl(200deg, 45%, 60%);
+  border-color: hsl(200deg, 75%, 60%);
   color: white;
+  font-weight: bold;
 }
 
 a, a:visited {

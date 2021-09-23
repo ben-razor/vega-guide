@@ -101,7 +101,7 @@ function tabulateRecords(records, maxRecords) {
     for(let key of keys) {
       let keyText = 'None';
       if(row[key] !== null) {
-        keyText = typeof row[key] === 'object' ? formatObject(row[key], maxRecords) : row[key];
+        keyText = typeof row[key] === 'object' ? formatObject(row[key], maxRecords) : row[key].toString();
       }
       cols.push(<td key={colIndex++}>{keyText}</td>);
     }
@@ -160,7 +160,7 @@ function objectToString(obj, maxRecords) {
       }
     }
     else {
-      entryStrings.push(JSON.stringify(value, undefined, 2).replaceAll(/[{},]/g, ''));
+      entryStrings.push(JSON.stringify(value, undefined, 2).replaceAll(/[{},"]/g, ''));
     }
   }
   if(maxRecords) {
