@@ -276,11 +276,16 @@ let sections = [
   {
     id: "events",
     title: "Streaming Events",
-    graphQL: `{
-  assets {
-    name, symbol, totalSupply
+    graphQL: `subscription {
+  busEvents(types: TimeUpdate, batchSize: 1) {
+    event {
+      ... on TimeUpdate {
+        timestamp
+      }
+    }
   }
-}`
+}
+`
   },
   {
     id: "governance",
