@@ -36,7 +36,6 @@ const editorOptions = {
   readOnly: false,
   mode: 'graphql',
   theme: 'monokai',
-  autofocus: true,
   smartIndent: false,
   tabSize: 2,
   lineWrapping: true
@@ -243,6 +242,34 @@ function App() {
                                                  backDisabled={backDisabled} forwardDisabled={forwardDisabled}
                                                  setSection={setSection} runDisabled={runDisabled} />;
                        
+  let outputPanel = <div className="walkthrough-panels-output">
+    {section.id === 'ordersprepare' &&
+      <VegaTransaction transactionDetails={sessionTransactionDetails} 
+                      setTransactionDetails={setTransactionDetails}
+                      setCustomData={setCustomData}
+                      setValue={setValue} /> }
+    {section.id === 'orderssend' &&
+      <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
+                      setTransactionDetails={setTransactionDetails}
+                      setCustomData={setCustomData}
+                      setValue={setValue}
+                      setResultData={setResultData} setRunDisabled={setRunDisabled} /> }
+    {
+      (
+      customOutput ? customOutput :
+        (
+          syntaxError ? resultsTableSyntaxError :
+          <SyntaxErrorBoundary>
+            {hasRun ? 
+              (client) : 
+              resultsTableDefault
+            }
+          </SyntaxErrorBoundary>
+        )
+      )
+    }
+  </div>
+  
   return (
     <div className="App">
       <div className="walkthrough-header">
@@ -266,38 +293,15 @@ function App() {
           <div className="walkthrough-panels-input">
             <div className="walkthrough-codemirror-container">
               { editorComponent }
-           </div>
-         </div>
-          <div className="walkthrough-panels-output">
-            {section.id === 'ordersprepare' &&
-              <VegaTransaction transactionDetails={sessionTransactionDetails} 
-                               setTransactionDetails={setTransactionDetails}
-                               setCustomData={setCustomData}
-                               setValue={setValue} />
-            }
-            {section.id === 'orderssend' &&
-              <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
-                               setTransactionDetails={setTransactionDetails}
-                               setCustomData={setCustomData}
-                               setValue={setValue}
-                               setResultData={setResultData} setRunDisabled={setRunDisabled} />
-            }
-            {
-              (
-              customOutput ? customOutput:
-                (
-                  syntaxError ? resultsTableSyntaxError :
-                  <SyntaxErrorBoundary>
-                    {hasRun ? 
-                      (client) : 
-                      resultsTableDefault
-                    }
-                  </SyntaxErrorBoundary>
-                )
-              )
-            }
+            </div>
           </div>
+          {!isTiny && outputPanel}
         </div>
+        { isTiny &&
+          <div className="walkthrough-panel walkthrough-panels-io">
+            {isTiny && outputPanel}
+          </div>
+        }
      </div>
      </div>
   );

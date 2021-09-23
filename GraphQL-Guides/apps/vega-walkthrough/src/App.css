@@ -97,6 +97,7 @@
   height: 2em;
   line-height: 2em;
   vertical-align: middle;
+  font-size: 0.8em;
 }
 
 .walkthrough-controls-sections-pagination {
@@ -106,6 +107,11 @@
   justify-content: space-between;
   flex: 3 1 auto;
   background-color: black;
+}
+
+.walkthrough-controls-section {
+  vertical-align: middle;
+  line-height: 2.2em;
 }
 
 .walkthrough-controls-sections-run {
@@ -119,6 +125,13 @@
   color: yellow;
   border-radius: 5px;
   width: 4em;
+}
+
+.walkthrough-control-button:disabled {
+  background-image: initial;
+  background-color: hsl(100deg, 0%, 20%);
+  color:hsl(0deg, 0%, 30%);
+  border-width: 0;
 }
 
 .walkthrough-control-button-run {
@@ -279,12 +292,34 @@ code {
 
 
 @media (max-width: 768px) {
-
+  .walkthrough-controls-section {
+    word-break: break-all;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    width: 6em;
+  }
+  .walkthrough-details-form-panel {
+    box-sizing: content-box;
+    width: 85%;
+  }
+  .walkthrough-details-form-input {
+    width: 7em;
+  }
 }
 
 @media (max-width: 576px) {
   .walkthrough-header {
     display: flex;
     align-items: center;
+  }
+  .walkthrough-panels {
+    flex-direction: column;
+  }
+  .walkthrough-panels-tutorial {
+    width: 100%;
+  }
+  .walkthrough-panels-io {
+    width: 100%;
   }
 }
