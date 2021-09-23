@@ -1,8 +1,8 @@
 import logo from './img/v-vega-1-64.png'; 
 import './App.css';
-import { useEffect, useState, useMemo, Fragment } from 'react'
+import { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
-import { useQuery, useSubscription, gql } from "@apollo/client";
+import { gql } from "@apollo/client";
 import {Controlled as CodeMirror} from 'react-codemirror2'
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';
@@ -13,21 +13,21 @@ import 'codemirror-graphql/lint';
 import 'codemirror-graphql/mode';
 import 'codemirror/theme/monokai.css';
 import rehypeRaw from 'rehype-raw';
+import {useMediaQuery} from 'react-responsive';
 
 
-import { getResultsTable } from './helpers/apollo_helpers';
 import { sections } from './walkthrough/sections'
-import { selectionSetMatchesResult } from '@apollo/client/cache/inmemory/helpers';
 import GraphQLQuery from './components/GraphQLQuery';
 import GraphQLSubscription from './components/GraphQLSubscription';
 import GraphQLAuthQuery from  './components/GraphQLAuthQuery';
-import GraphQLMutation from './components/GraphQLMutation';
 import ProgressPanel from './components/ProgressPanel';
 import { SyntaxErrorBoundary } from './helpers/ErrorBoundary';
 import VegaWallet from './components/VegaWallet';
 import VegaTransaction from './components/VegaTransaction';
 import VegaTransactionSigner from './components/VegaTransactionSigner';
 import VegaOrdersWrapUp from './components/VegaOrdersWrapUp';
+
+import { WalkthroughControls } from './components/WalkthroughElems';
 
 const MAX_RECORDS = 8;
 
@@ -69,6 +69,9 @@ function App() {
   const [startFade, setStartFade] = useState();
 
   let section = sections[sectionIndex];
+
+  const isTiny = useMediaQuery({ query: '(max-width: 576px)' })
+  const isSmall = useMediaQuery({ query: '(max-width: 768px)' })
 
   useEffect(() => {
     let runDisabledAtSectionStart = section.runDisabled;
@@ -236,6 +239,10 @@ function App() {
     customOutput = customData.output;
   }
 
+  let walkthroughControls = <WalkthroughControls sections={sections} sectionIndex={sectionIndex}
+                                                 backDisabled={backDisabled} forwardDisabled={forwardDisabled}
+                                                 setSection={setSection} runDisabled={runDisabled} />;
+                       
   return (
     <div className="App">
       <div className="walkthrough-header">
@@ -244,18 +251,10 @@ function App() {
           <span class="walkthrough-header-name">Vincent</span>  - A Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
+      {isTiny && walkthroughControls}
       <div className={"walkthrough-panels"}>
         <div className="walkthrough-panel walkthrough-panels-tutorial">
-          <div className="walkthrough-controls">
-            <div className="walkthrough-controls-sections-pagination">
-              <button className="walkthrough-control-button" disabled={backDisabled} onClick={() => setSection(sectionIndex - 1)}><i className="fa fa-arrow-left" /></button>
-              <span>{sectionIndex + 1} - {sections[sectionIndex].title}</span>
-              <button className="walkthrough-control-button" disabled={forwardDisabled} onClick={() => setSection(sectionIndex + 1)}><i className="fa fa-arrow-right" /></button>
-            </div>
-            <div className="walkthrough-controls-sections-run">
-              <button disabled={runDisabled} className="walkthrough-control-button-run" onClick={runQuery}>Run Query <i className="fa fa-arrow-right"></i> </button>
-            </div>
-          </div>
+          {!isTiny && walkthroughControls}
           {progressPanel}
           <div className={`walkthrough-panels-tutorial-markdown ${startFade ? "walkthrough-fade-in" : "" }`} >
             <ReactMarkdown rehypePlugins={[rehypeRaw]}>

@@ -3,7 +3,7 @@ import { useEffect, useState, Fragment } from "react";
 const progressContent = {
   'introduction': {
     head: 'Great!',
-    content: 'Click to progress to the next level: Markets.'
+    content: 'Click to progress to the next level.'
   }
 }
 

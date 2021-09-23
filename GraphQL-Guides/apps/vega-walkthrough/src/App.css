@@ -21,6 +21,7 @@
 .walkthrough-logo {
   display: inline-block;
   width: 64px;
+  height: 64px;
   vertical-align: middle;
   margin: 0 0.5em;
 }
@@ -274,4 +275,16 @@ pre {
 code {
   white-space: pre-wrap;
   word-break: break-all;
+}
+
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 576px) {
+  .walkthrough-header {
+    display: flex;
+    align-items: center;
+  }
 }
