@@ -1,6 +1,6 @@
 ### Trader Information 
 
-In the <a href="https://vega.xyz/" targcet="_blank">Vega Protocol</a> each party is identified by their **public key**. The keys are generated and stored by a **wallet**. Traders may have more than one public key. A **party** is an entity represented by a public key, that trades on the system.
+In the <a href="https://vega.xyz/" target="_blank" rel="noreferrer">Vega Protocol</a> each party is identified by their **public key**. The keys are generated and stored by a **wallet**. Traders may have more than one public key. A **party** is an entity represented by a public key, that trades on the system.
 
 Click run to get the public keys of the traders on the system.
 
@@ -22,4 +22,4 @@ Try the following:
 }
 ```
 ___
-Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/party.doc.html" targcet="_blank">Traders</a> 
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/party.doc.html" target="_blank" rel="noreferrer">Traders</a> 

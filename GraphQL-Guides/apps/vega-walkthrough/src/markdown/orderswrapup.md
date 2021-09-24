@@ -1,4 +1,4 @@
-### Placing Orders - Wrapping Up
+### Placing Orders - Summary
 
 If all went well in the previous sections you will have created an order using GraphQL and sent it to the Vega Network to be processed.
 

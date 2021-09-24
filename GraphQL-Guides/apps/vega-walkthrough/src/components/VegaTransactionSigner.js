@@ -86,8 +86,8 @@ function VegaTransactionSigner(props) {
                   <div className="walkthrough-custom-data-row">
                     Signature:
                   </div>
-                  <div> className="walkthrough-custom-data-row"
-                    {newTransactionDetails.signature}
+                  <div className="walkthrough-custom-data-row">
+                    {newTransactionDetails.signature} 
                   </div>
                 </div>;
             }

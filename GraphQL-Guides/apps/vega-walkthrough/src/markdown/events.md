@@ -9,7 +9,7 @@ Vega provides a rich bus event API that you can access using GraphQL **subscript
 The bus provides a number of different <a href="https://docs.fairground.vega.xyz/docs/api-howtos/event-stream/" target="_blank">Event Types</a> with different fields. GraphQL handles this with the concept of <a href="https://graphql.org/learn/queries/#inline-fragments" target="_blank">Inline fragments</a>. You specify the type of event using **... on EventType**. Click run to view server timestamps.
 
 
-Change the type from **TimeUpdated** to **Deposit**. Change the requested fields from **timestamp** to:
+Change the type from **TimeUpdate** to **Deposit**. Change the requested fields from **timestamp** to:
 
 ```
 amount, createdTimestamp, party { id }, asset { symbol }

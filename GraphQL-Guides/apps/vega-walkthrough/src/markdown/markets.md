@@ -2,7 +2,7 @@
 
 Markets list the products available to trade with our asssets.
 
-Click run to list the names of some markets.
+Click Run Query to list the names of some markets.
 
 #### Sub Queries
 
@@ -22,4 +22,4 @@ Run the following query to get recent prices for the markets:
 }
 ```
 ___
-Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/market.doc.html" target="_blank">Markets</a> 
+Check out the schema for <a href="https://docs.fairground.vega.xyz/api/graphql/market.doc.html" target="_blank" rel="noreferrer">Markets</a> 
