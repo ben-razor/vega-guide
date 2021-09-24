@@ -29,3 +29,7 @@ code {
 h3 {
   margin-top: 0.5em;
 }
+
+blockquote {
+  font-style: italic;
+}

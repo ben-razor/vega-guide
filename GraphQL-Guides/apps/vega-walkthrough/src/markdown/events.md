@@ -2,22 +2,20 @@
 
 Vega provides a rich bus event API that you can access using GraphQL **subscriptions**.
 
+> An event is an action or a side-effect that is triggered by a Vega node in response to a state change, for instance, starting of an auction or blockchain time updating.
+
 #### Inline Fragments 
 
-The bus event provides a number of different objects with different fields. GraphQL supports this with the concept of <a href="https://graphql.org/learn/queries/#inline-fragments" target="_blank">Inline fragments</a>
+The bus provides a number of different <a href="https://docs.fairground.vega.xyz/docs/api-howtos/event-stream/" target="_blank">Event Types</a> with different fields. GraphQL handles this with the concept of <a href="https://graphql.org/learn/queries/#inline-fragments" target="_blank">Inline fragments</a>. You specify the type of event using **... on EventType**. Click run to view server timestamps.
 
-subscription {
-  busEvents(types: [TimeUpdate], batchSize: 1) {
-    event {
-    	... on TimeUpdate {
-      	timestamp
-      }
-    }
-  }
-}
 
-#### Assets 
+Change the type from **TimeUpdated** to **Deposit**. Change the requested fields from **timestamp** to:
 
-Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
+```
+amount, createdTimestamp, party { id }, asset { symbol }
+```
 
-Click run to view the results.
+Click Run Query to view the results.
+
+___
+Check out the available <a href="https://docs.fairground.vega.xyz/docs/api-howtos/event-stream/" target="_blank">Event Streams</a>. Then you can access the fields 

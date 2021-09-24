@@ -32,7 +32,7 @@ function GraphQLSubscription(props) {
         }
       }
     }
-  }, [error, data, setResultData])
+  }, [error, data, setResultData, currentFields])
 
   let maxRecords = props.maxRecords;
   let resultsTable = getResultsTable(data, loading, error, maxRecords);

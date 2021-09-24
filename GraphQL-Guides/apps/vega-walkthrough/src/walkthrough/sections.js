@@ -276,20 +276,37 @@ let sections = [
   {
     id: "events",
     title: "Streaming Events",
-    graphQL: `subscription {
-  busEvents(types: [Deposit], batchSize: 1) {
-    event {
-      ... on Deposit {
-        amount, createdTimestamp, party {
-          id
-        }, asset {
-          symbol
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let rows = resultData.busEvents; 
+      let hasRows = rows && rows.length > 0;
+
+      if(hasRows) {
+        let firstRow = rows[0]
+        if(hasKeys(firstRow, ['event']) && firstRow.event.createdTimestamp) {
+          success = true;
         }
+        else {
+          reason = 'The success field was not found in the results'; 
+        }
+      }
+      else {
+        reason = 'no-events-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
+    graphQL: `subscription {
+  busEvents(types: [TimeUpdate], batchSize: 1) {
+    event {
+      ... on TimeUpdate {
+        timestamp
       }
     }
   }
-}
-`
+}`
   },
   {
     id: "governance",
