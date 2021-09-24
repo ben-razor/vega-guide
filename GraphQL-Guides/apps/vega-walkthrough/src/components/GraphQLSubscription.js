@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import { useSubscription } from "@apollo/client";
 import { getResultsTable } from '../helpers/apollo_helpers';            
 
+/**
+ * Wrapper around the Apollo useSubscription hook.
+ */
 function GraphQLSubscription(props) {
   let query = props.query;
   let setResultData = props.setResultData;
 
   const [data, setData] = useState();
-  const [currentFields, setCurrentFields] = useState([]);
+  const [currentFields, setCurrentFields] = useState([]); // Used to check if results changed
 
   const { loading, error, payload } = useSubscription(query, { 
     onSubscriptionData: data => setData(data?.subscriptionData?.data) 

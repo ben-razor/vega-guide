@@ -2,9 +2,19 @@ import React from 'react';
 import { gql, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { useEffect, useState } from 'react';
-import GraphQLMutation from './GraphQLMutation';
+import GraphQLOrderPrepare from './GraphQLOrderPrepare';
 import GraphQLTransactionSender from './GraphQLTransactionSender';
 
+/**
+ * Creates an Apollo authLink and creates an authenticated Testnet client using
+ * a supplied Vega Wallet bearer token.
+ * 
+ * Passes the authenticated client to a GraphQL component to call the mutation
+ * appropriate for the current section.
+ * 
+ * @param {object} props 
+ * @returns 
+ */
 function GraphQLAuthQuery(props) {
   let query = props.query;
   let transactionDetails = props.transactionDetails;
@@ -64,8 +74,6 @@ function GraphQLAuthQuery(props) {
     }
   }, [transactionDetails]);
 
-  let GraphQLHandler;
-
   return <div className="results-graphql-query">
     { error ? 
       error :
@@ -73,7 +81,7 @@ function GraphQLAuthQuery(props) {
         client ?
         (
           section.id === 'ordersprepare' ?
-          <GraphQLMutation query={query} client={client} maxRecords={maxRecords} setResultData={setResultData} 
+          <GraphQLOrderPrepare query={query} client={client} maxRecords={maxRecords} setResultData={setResultData} 
                      transactionDetails={transactionDetails} setTransactionDetails={setTransactionDetails}
                      /> :
           <GraphQLTransactionSender query={query} client={client} maxRecords={maxRecords} setResultData={setResultData} 
@@ -83,7 +91,6 @@ function GraphQLAuthQuery(props) {
         'Waiting for authenticated client to connect...'
       )
     }
-
   </div>;
 }
 

@@ -172,19 +172,19 @@ function App() {
   let backDisabled = (sectionIndex === 0);
   let forwardDisabled = (sectionIndex + 1 === sections.length);
 
-  let client;
+  let output;
   if(isMutation) {
-    client = <GraphQLAuthQuery query={query}
+    output = <GraphQLAuthQuery query={query}
                               transactionDetails={transactionDetails}
                               setTransactionDetails={setTransactionDetails}
                               maxRecords={MAX_RECORDS} setResultData={setResultData}
                               section={section} setRunDisabled={setRunDisabled} />
   }
   else if(isSubscription) {
-    client = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
+    output = <GraphQLSubscription query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
   }
   else {
-    client = <GraphQLQuery query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
+    output = <GraphQLQuery query={query} maxRecords={MAX_RECORDS} setResultData={setResultData} />
   }
 
   let editorComponent;
@@ -268,7 +268,7 @@ function App() {
           syntaxError ? resultsTableSyntaxError :
           <SyntaxErrorBoundary>
             {hasRun ? 
-              (client) : 
+              (output) : 
               resultsTableDefault
             }
           </SyntaxErrorBoundary>
