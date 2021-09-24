@@ -16,4 +16,4 @@ A basic ReactJS app to interact with the GraphQL API of Vega Protocol.
 
 View the source at: [vega-react](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-react)
 
-View the docs at: [Vega React Documentation](https://vega-step-by-step.web.app/docs/vega/vega-react/)
+View the docs at: [Vega ReactJS Starter Documentation](https://vega-step-by-step.web.app/docs/vega/vega-react/)
