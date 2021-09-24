@@ -1,15 +1,17 @@
 ### Governance
 
-The script on the right is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
+A big advantage of Decentralized Exchanges like Vega Protocol over traditional exchanges is that every member of the community can contribute to the decision making.
 
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
+In VegaProtocol this means that you can propose and vote on new markets.
 
-Vega provides APIs to allow you to interact with the system in a flexible way. In this guide we walk through using the GraphQL API. 
+#### Proposals
 
-You can use GraphQL to access every aspect of Vega Protocol. So you have great power.
+This query gets a list of the recent market proposals and the results of the vote.
 
-#### Assets 
+Click Run Query to view the results.
 
-Let's get up and running with a simple example. The query gets tradable assets on Vega Protocol and returns their name, symbol and totalSupply. 
+#### Voting
 
-Click run to view the results.
+The Vega GraphQL API also provides <a href="https://docs.fairground.vega.xyz/api/graphql/mutation.doc.html" rel="noreferrer" target="_blank">mutations</a> to prepare proposals and votes. This is not covered by the walkthrough. It follows the same process as Placing Orders.
+___
+Find out about the <a href="https://docs.fairground.vega.xyz/docs/trading-questions/#governance" target="_blank">Governance Process</a>.

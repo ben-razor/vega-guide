@@ -25,6 +25,7 @@ import VegaWallet from './components/VegaWallet';
 import VegaTransaction from './components/VegaTransaction';
 import VegaTransactionSigner from './components/VegaTransactionSigner';
 import VegaOrdersWrapUp from './components/VegaOrdersWrapUp';
+import WalkthroughWrapUp from './components/WalkthroughWrapUp';
 
 import { WalkthroughControls } from './components/WalkthroughElems';
 
@@ -198,6 +199,11 @@ function App() {
     else if(section.id === 'orderswrapup') {
       editorComponent = <div className="walkthrough-jsx-component">
         <VegaOrdersWrapUp setResultData={setResultData} setCustomData={setCustomData} />
+      </div>;
+    }
+    else if(section.id === 'wrappingup') {
+      editorComponent = <div className="walkthrough-jsx-component">
+        <WalkthroughWrapUp setResultData={setResultData} setCustomData={setCustomData} />
       </div>;
     }
  }

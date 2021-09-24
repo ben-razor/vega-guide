@@ -311,11 +311,48 @@ let sections = [
   {
     id: "governance",
     title: "Governance",
+    progressor: resultData => {
+      let success = false;
+      let reason = '';
+      let rows = resultData.proposals; 
+      let hasRows = rows && rows.length > 0;
+
+      if(hasRows) {
+        let firstRow = rows[0]
+        if(hasKeys(firstRow, ['state', 'datetime', 'terms'])) {
+          success = true;
+        }
+        else {
+          reason = 'The success field was not found in the results'; 
+        }
+      }
+      else {
+        reason = 'no-events-returned';
+      }
+      return [
+        success, reason
+      ]
+    },
     graphQL: `{
-  assets {
-    name, symbol, totalSupply
+  proposals {
+    state, datetime, terms {
+      change {
+        ... on NewMarket {
+          instrument {
+            name, code
+          }
+        }
+      }
+    } 
   }
 }`
+  },
+  {
+    id: "wrappingup",
+    title: "Wrapping Up",
+    jsxComponent: "WalkthroughWrapUp",
+    runDisabled: true,
+    graphQL: ``
   }
 ];
 
