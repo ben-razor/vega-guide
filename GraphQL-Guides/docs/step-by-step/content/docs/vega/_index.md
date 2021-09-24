@@ -10,7 +10,11 @@ title: "Introduction"
 
 This guide will take you step-by-step through how to interact with Vega using GraphQL.
 
-A set of example applications will guide you from simple market data exploration to Vega Protocol mastery using GraphQL. 
+Example applications will guide you from simple market data exploration to Vega Protocol mastery using GraphQL. There are two resources provided:
+
+The [Vega GraphQL Walkthrough](https://vega-walkthrough.web.app/) application.
+
+The [Vega GraphQL React Starter]({{< relref "/docs/vega/vega-react.md" >}}) tutorial.
 
 ## A Quick introduction to Vega Protocol
 

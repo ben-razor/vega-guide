@@ -1,7 +1,7 @@
 ---
-weight: 1
+weight: 20 
 bookFlatSection: true
-title: "ReactJS Starter"
+title: "ReactJS Starter Guide"
 ---
 
 # ReactJS Starter Application
@@ -10,13 +10,13 @@ title: "ReactJS Starter"
 
 This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
 
-The application is available online at [vega-react.web.app](https://vega-react.web.app/).
+The completed application is available online at [ReactJS Starter Application](https://vega-react.web.app/).
 
 The source for the application can be found at [vega-react](https://github.com/ben-razor/vega-guide/tree/main/GraphQL-Guides/apps/vega-react).
 
 This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.
 
-If you are looking for a platform agnostic step-by-step guide to using the Vega GraphQL API you can jump to the [Vega GraphQL Walkthrough]({{< relref "/docs/vega/vega-react-walkthrough.md" >}}) application.
+If you are looking for a platform agnostic step-by-step guide to using the Vega GraphQL API you can jump to the [Vega GraphQL Walkthrough]({{< relref "/docs/vega/vega-walkthrough.md" >}}) application.
 
 ## Prerequisites
 
@@ -204,7 +204,7 @@ The following code in [App.js](https://github.com/ben-razor/vega-guide/blob/main
 We now have a simple ReactJS application that can make queries against the Vega Protocol
 GraphQL API.
 
-The application is available online at [vega-react.web.app](https://vega-react.web.app/).
+The completed application is viewable online at [vega-react.web.app](https://vega-react.web.app/).
 
 The following resources are available to explore the API further: 
 
@@ -219,4 +219,4 @@ This simple application does not provide two key features of the GraphQL system.
 
 These are implemented and explored in the next section of this step-by-step guide: 
 
-The [Vega GraphQL Walkthrough]({{< relref "/docs/vega/vega-react-walkthrough.md" >}}) application.
+The [Vega GraphQL Walkthrough]({{< relref "/docs/vega/vega-walkthrough.md" >}}) application.
