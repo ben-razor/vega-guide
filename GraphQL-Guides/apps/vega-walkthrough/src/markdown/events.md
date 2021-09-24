@@ -15,7 +15,7 @@ Change the type from **TimeUpdate** to **Deposit**. Change the requested fields 
 amount, createdTimestamp, party { id }, asset { symbol }
 ```
 
-Click Run Query to view the results.
+Click Run Query to view the results. (It may take a little time for a new deposit to trigger an event)
 
 ___
 Check out the available <a href="https://docs.fairground.vega.xyz/docs/api-howtos/event-stream/" target="_blank">Event Streams</a>. Then you can access the fields 
