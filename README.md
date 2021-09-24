@@ -4,7 +4,7 @@ This repository explores [Vega Protocol](https://vega.xyz/) as part of the [Gitc
 
 Vega Protocol is a decentralized platform for trading derivatives.
 
-We create a collection of applications and associated documentation to guide a new user in using the Vega Protocol with GraphQL. The submission includes:
+This project creates applications and associated documentation to guide a new user in using the Vega Protocol with GraphQL. The submission includes:
 
 * A [Vega Protocol GraphQL Walkthrough Application](https://vega-walkthrough.web.app/)
 * A Vega Protocol [GraphQL in ReactJS Tutorial](https://vega-step-by-step.web.app/docs/vega/vega-react/) and an online demo of the [ReactJS Starter Application](https://vega-react.web.app/)
