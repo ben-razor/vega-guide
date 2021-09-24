@@ -277,10 +277,14 @@ let sections = [
     id: "events",
     title: "Streaming Events",
     graphQL: `subscription {
-  busEvents(types: TimeUpdate, batchSize: 1) {
+  busEvents(types: [Deposit], batchSize: 1) {
     event {
-      ... on TimeUpdate {
-        timestamp
+      ... on Deposit {
+        amount, createdTimestamp, party {
+          id
+        }, asset {
+          symbol
+        }
       }
     }
   }

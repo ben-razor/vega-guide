@@ -1,12 +1,20 @@
 ### Streaming Events
 
-The script on the right is GraphQL. [GraphQL](https://graphql.org/) is a concise language for making queries.
+Vega provides a rich bus event API that you can access using GraphQL **subscriptions**.
 
-[Vega Protocol](https://vega.xyz/) is a decentralized derivatives trading platform.
+#### Inline Fragments 
 
-Vega provides APIs to allow you to interact with the system in a flexible way. In this guide we walk through using the GraphQL API. 
+The bus event provides a number of different objects with different fields. GraphQL supports this with the concept of <a href="https://graphql.org/learn/queries/#inline-fragments" target="_blank">Inline fragments</a>
 
-You can use GraphQL to access every aspect of Vega Protocol. So you have great power.
+subscription {
+  busEvents(types: [TimeUpdate], batchSize: 1) {
+    event {
+    	... on TimeUpdate {
+      	timestamp
+      }
+    }
+  }
+}
 
 #### Assets 
 

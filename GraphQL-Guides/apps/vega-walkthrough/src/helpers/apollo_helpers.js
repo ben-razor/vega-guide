@@ -122,17 +122,19 @@ function tabulateRecords(records, maxRecords) {
  */
 function cleanObject(obj) {
   let newObj = {};
-  for(const [key, value] of Object.entries(obj)) {
-    let newValue = value;
+  if(obj) {
+    for(const [key, value] of Object.entries(obj)) {
+      let newValue = value;
 
-    if(key !== '__typename') {
-      if(typeof value === 'object') {
-        newValue = cleanObject(value);
+      if(key !== '__typename') {
+        if(typeof value === 'object') {
+          newValue = cleanObject(value);
+        }
+        newObj[key] = newValue;
       }
-      newObj[key] = newValue;
     }
   }
-  return newObj;
+ return newObj;
 }
 
 /**
