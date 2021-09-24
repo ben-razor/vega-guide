@@ -291,6 +291,13 @@ code {
   font-size: 0.9em;
 }
 
+.info-panel-info {
+  font-size: 0.8em;
+  border: 1px solid yellow;
+  padding: 0.5em;
+  width: 30%;
+  float: right;
+}
 
 @media (max-width: 768px) {
   .walkthrough-controls-section {
@@ -306,6 +313,11 @@ code {
   }
   .walkthrough-details-form-input {
     width: 7em;
+  }
+  .info-panel-info {
+    box-sizing: border-box;
+    width: 100%;
+    float: initial;
   }
 }
 

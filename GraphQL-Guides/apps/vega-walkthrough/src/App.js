@@ -26,6 +26,7 @@ import VegaTransaction from './components/VegaTransaction';
 import VegaTransactionSigner from './components/VegaTransactionSigner';
 import VegaOrdersWrapUp from './components/VegaOrdersWrapUp';
 import WalkthroughWrapUp from './components/WalkthroughWrapUp';
+import AppInfo from './components/AppInfo';
 
 import { WalkthroughControls } from './components/WalkthroughElems';
 
@@ -309,6 +310,7 @@ function App() {
           </div>
         }
      </div>
+     <AppInfo />
      </div>
   );
 }
