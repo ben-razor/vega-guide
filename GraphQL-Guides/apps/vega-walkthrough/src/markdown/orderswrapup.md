@@ -15,6 +15,6 @@ The nodes on the Vega network check the validity of the transaction. If accepted
 
 **The transaction that we sent will not be accepted as the account we created has no funds.**
 
-Click **next** to head to the next level.
+Click **next** to head to the **next level**.
 ___
 To create orders for real you use a funded testnet wallet. Check out the <a href="https://fairground.wtf/" target="_blank">Vega Fairground</a> to make real trades on the Vega Testnet.

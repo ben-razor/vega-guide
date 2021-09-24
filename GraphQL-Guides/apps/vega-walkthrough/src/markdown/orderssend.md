@@ -1,6 +1,6 @@
 ### Placing Orders - Sending The Transaction
 
-In the previous steps you obtain a **public key**, **bearer token** and a **hash / blob**.
+In the previous steps you obtain a **public key**, **bearer token** and a **blob**.
 
 #### Signing Transactions
 

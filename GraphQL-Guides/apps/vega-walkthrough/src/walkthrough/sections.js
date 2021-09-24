@@ -261,7 +261,7 @@ let sections = [
   },
   {
     id: "orderswrapup",
-    title: "Placing Orders (4. Wrapping Up)",
+    title: "Placing Orders (4. Summary)",
     jsxComponent: "VegaOrdersWrapUp",
     runDisabled: true,
     progressor: resultData => {

@@ -4,7 +4,7 @@ In the previous step you should have obtained a **public key** and a **bearer to
 
 #### Transaction Hash
 
-Transactions must be **signed** before sending. We first need to prepare the order. This will return a **hash** that will be used in the final step of the order process.
+Transactions must be **signed** before sending. We first need to prepare the order for signing.
 
 #### Prepare Order 
 
