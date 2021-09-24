@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { formatObject } from '../helpers/apollo_helpers';
 
+/**
+ * Displays a form to enter a wallet name and pass phrase.
+ * 
+ * Uses the Vega Protocol Wallet REST API to create a wallet based on the details.
+ * 
+ * After the wallet is created, calls the REST API keys method to generate a public
+ * key.
+ * 
+ * @param {object} props 
+ * @returns 
+ */
 function VegaWallet(props) {
   const [token, setToken] = useState('');
   const [pubKey, setPubKey] = useState('');
   const [mnemonic, setMnemonic] = useState('');
-  const [submitting, setSubmitting] = useState(false);
   const [signedTx, setSignedTx] = useState();
   const [walletName, setWalletName] = useState('');
   const [passPhrase, setPassPhrase] = useState('');
@@ -18,7 +27,6 @@ function VegaWallet(props) {
   const setCustomData = props.setCustomData;
   const setResultData = props.setResultData;
   const setTransactionDetails = props.setTransactionDetails;
-  const section = props.section;
 
   useEffect(() => {
 
@@ -39,14 +47,10 @@ function VegaWallet(props) {
       })
     } 
 
-    setSubmitting(true);
     fetch(url, options).then(response => {
       return response.json();
     })
     .then(json => {
-      setSubmitting(false);
-      console.log(json);
-
       if(json.error) {
         setError(json.error);
       }
@@ -71,8 +75,6 @@ function VegaWallet(props) {
           return keysResponse.json();
         }).then(keysJSON => {
           setPubKey(keysJSON.key.pub)
-         
-          console.log(keysJSON);
         }).catch(keysError => {
           console.log(keysError);
         });
@@ -80,7 +82,6 @@ function VegaWallet(props) {
     })
     .catch(error => {
           console.log(error);
-          setSubmitting(false);
         }
     );
   }, [walletDetails]);
@@ -120,7 +121,7 @@ function VegaWallet(props) {
         mnemonic: mnemonic
       }
     });
-  }, [pubKey, mnemonic, error, token, setCustomData, setTransactionDetails]);
+  }, [pubKey, mnemonic, error, token, setCustomData, setTransactionDetails, setResultData]);
 
   useEffect(() => {
     if(tx && token && pubKey) {
@@ -143,8 +144,6 @@ function VegaWallet(props) {
         return response.json();
       })
       .then(json => {
-        setSubmitting(false);
-        console.log(json);
         setToken(JSON.stringify(json));
         setSignedTx(json);
       })

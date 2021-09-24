@@ -5,6 +5,12 @@ function createRandomHash() {
   return hash;
 }
 
+/**
+ * Grab a recent transaction and create a new GraphQL order based on it.
+ * 
+ * @param {object} props 
+ * @returns 
+ */
 function VegaTransaction(props) {
   const transactionDetails = props.transactionDetails;
   const setTransactionDetails = props.setTransactionDetails;

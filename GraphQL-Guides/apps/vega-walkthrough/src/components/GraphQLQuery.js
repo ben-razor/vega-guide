@@ -2,6 +2,12 @@ import { useQuery } from "@apollo/client";
 import { useEffect } from "react";
 import { getResultsTable } from '../helpers/apollo_helpers';
 
+/**
+ * Wrapper around the Apollo useQuery hook.
+ * 
+ * @param {object} props 
+ * @returns 
+ */
 function GraphQLQuery(props) {
   let query = props.query;
   let maxRecords = props.maxRecords;

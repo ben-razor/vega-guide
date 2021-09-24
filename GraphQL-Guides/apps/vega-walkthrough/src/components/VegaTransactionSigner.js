@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
 import VegaTransactionSender from "./VegaTransactionSender";
 
+/**
+ * Takes some wallet details like pubKey, bearer key and a transaction blob. Uses the Vega
+ * Protocol REST API to sign the transaction.
+ * 
+ * After the transaction is signed, creates a VegaTransactionSender to generate the GraphQL
+ * needed to send the signed transaction. 
+ * 
+ * @param {object} props 
+ * @returns 
+ */
 function VegaTransactionSigner(props) {
   const transactionDetails = props.transactionDetails;
   const setTransactionDetails = props.setTransactionDetails;
@@ -10,9 +20,6 @@ function VegaTransactionSigner(props) {
   const setRunDisabled = props.setRunDisabled;
 
   const section = {id: 'orderssign'};
-
-  const [submitting, setSubmitting] = useState(false);
-  const [orderParams, setOrderParams] = useState();
 
   useEffect(() => {
     let error;
@@ -38,13 +45,10 @@ function VegaTransactionSigner(props) {
             })
           } 
 
-          setSubmitting(true);
-
           fetch(url, options).then(response => {
             return response.json();
           })
           .then(json => {
-            setSubmitting(false);
             console.log(json);
 
             if(json.error) {
@@ -100,7 +104,6 @@ function VegaTransactionSigner(props) {
           })
           .catch(error => {
               console.log(error);
-              setSubmitting(false);
             }
           );
         }

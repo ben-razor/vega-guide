@@ -51,7 +51,7 @@
 }
 
 .walkthrough-panels-tutorial {
-  box-sizing: content-box;
+  box-sizing: border-box;
   background-color: hsl(200deg, 45%, 40%);
   color: white;
   width: 50%;
@@ -65,7 +65,7 @@
 }
 
 .walkthrough-panels-io {
-  box-sizing: content-box;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   border-left-width: 1px;
@@ -295,6 +295,7 @@ code {
   font-size: 0.8em;
   border: 1px solid yellow;
   padding: 0.5em;
+  margin: 0.1em;
   width: 30%;
   float: right;
 }
@@ -317,6 +318,7 @@ code {
   .info-panel-info {
     box-sizing: border-box;
     width: 100%;
+    margin: initial;
     float: initial;
   }
 }
