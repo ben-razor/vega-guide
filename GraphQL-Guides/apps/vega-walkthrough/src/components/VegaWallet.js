@@ -16,14 +16,11 @@ function VegaWallet(props) {
   const [token, setToken] = useState('');
   const [pubKey, setPubKey] = useState('');
   const [mnemonic, setMnemonic] = useState('');
-  const [signedTx, setSignedTx] = useState();
   const [walletName, setWalletName] = useState('');
   const [passPhrase, setPassPhrase] = useState('');
   const [walletDetails, setWalletDetails] = useState();
   const [error, setError] = useState('');
 
-  const tx = props.tx;
-  const propogate = props.propogate;
   const setCustomData = props.setCustomData;
   const setResultData = props.setResultData;
   const setTransactionDetails = props.setTransactionDetails;
@@ -122,36 +119,6 @@ function VegaWallet(props) {
       }
     });
   }, [pubKey, mnemonic, error, token, setCustomData, setTransactionDetails, setResultData]);
-
-  useEffect(() => {
-    if(tx && token && pubKey) {
-      let url = 'https://wallet.testnet.vega.xyz/api/v1/messages';
-      let options = {
-        method: 'POST',
-        headers : { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          "tx": tx,
-          "pubKey": pubKey,
-          "propogate": propogate
-        })
-      } 
-
-      fetch(url, options).then(response => {
-        return response.json();
-      })
-      .then(json => {
-        setToken(JSON.stringify(json));
-        setSignedTx(json);
-      })
-      .catch(error =>{
-        console.log(error);
-      })
-    }
-  }, [tx, token, pubKey, propogate]);
 
   function handleDetailsSubmit(event) {
     let walletDetails = {

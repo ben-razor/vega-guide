@@ -16,23 +16,7 @@ function GraphQLOrderPrepare(props) {
   let setTransactionDetails = props.setTransactionDetails;
   const [blob, setBlob] = useState();
 
-  let staticQuery = gql`
-    mutation {
-      prepareOrderSubmit(
-        marketId: "2201cba5132fcb6e3aa589484eea006a1846826e48978e0b4182b61d0eb0a2a2",
-        price: "13284845",
-        size: "26",
-        side: Buy,
-        timeInForce: GTT,
-        expiration: "2021-09-22T17:37:51.849925031Z",
-        type: Limit,
-        reference: "35ne6e68sn5ivmgwwgutwc",
-      ) {
-        blob
-      }
-    }
-  `;
-  const [prepareOrder, { loading, error, data }] = useMutation(staticQuery, { client: client, errorPolicy: 'all' });
+  const [prepareOrder, { loading, error, data }] = useMutation(query, { client: client, errorPolicy: 'all' });
   
   useEffect(() => {
     if(!error && data && data.prepareOrderSubmit && data.prepareOrderSubmit.blob !== blob) {
