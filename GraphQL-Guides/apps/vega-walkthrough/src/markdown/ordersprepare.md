@@ -1,18 +1,20 @@
-### Placing Orders - Getting a Transaction Hash
+### Placing Orders - Sending The Order
 
 In the previous step you should have obtained a **public key** and a **bearer token**. These should be displayed in the console output. If not, you may want to redo the previous step.
 
-#### Transaction Hash
+#### Order Data 
 
-Transactions must be **signed** before sending. We first need to prepare the order for signing.
+We have gathered some recent order information and created a JSON object based on it. If the previous step was completed, the JSON will contain your **public key**.
 
-#### Prepare Order 
+#### Signing
 
-We have gathered some recent order information and created a GraphQL **mutation** based on it.
+Click Run Query to send the order. A HTTP request is created with the JSON in the body and your bearer token in the Authorization header.
 
-We return a field called **blob**. This is the data that we supply when signing the transaction.
+If all goes well you should see a **signature** in the console. The servers will use this to verify that you are authorized to make transactions fromm the **public key**.
 
-Click **Run Query** to get a **blob**.
+#### Sending
+
+The JSON field **propogate** means that after the server has signed the query, it will forward it for processing.
 ___
 
 Check out the <a href="https://docs.fairground.vega.xyz/docs/api-howtos/wallet/" target="_blank" rel="noreferrer">Vega Wallet API Documentation</a> to see how to manage wallets.

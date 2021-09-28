@@ -190,19 +190,19 @@ let sections = [
   },
   {
     id: "ordersprepare",
-    title: "Placing Orders (2. Prepare Order)",
+    title: "Placing Orders (2. Send Order)",
     auth: true,
     progressor: resultData => {
       let success = false;
       let reason = '';
-      let data = resultData.prepareOrderSubmit;
+      let data = resultData;
 
       if(data) {
-        if(hasKeys(data, ['blob'])) {
+        if(data.signature && data.signature.value) {
           success = true;
         }
         else {
-          reason = 'Transaction has blob is not in the results.'; 
+          reason = 'Transaction signature was not in the result.'; 
         }
       }
       else {
@@ -212,56 +212,24 @@ let sections = [
         success, reason
       ]
     },
-    graphQL: `mutation {
-  prepareOrderSubmit(
-    marketId: "496ab9e8db8911859f5837c7c3df1f2c6456c5e59f5e9e226cc6a83991f8860c",
-    price: "100000",
-    size: "100",
-    side: Buy,
-    timeInForce: GTT,
-    expiration: "2022-01-02T15:04:05Z",
-    type: Limit,
-    reference: "12345667",
-  ) {
-    blob
-  }
-}`
-  },
-  {
-    id: "orderssend",
-    title: "Placing Orders (3. Send Tx)",
-    runDisabled: true,
-    progressor: resultData => {
-      let success = false;
-      let reason = '';
-      let result = resultData.submitTransaction; 
-
-      if(result) {
-        if(hasKeys(result, ['success'])) {
-          success = true;
-        }
-        else {
-          reason = 'The success field was not found in the results'; 
-        }
-      }
-      else {
-        reason = 'no-data-returned';
-      }
-      return [
-        success, reason
-      ]
+    rest: `{
+      "orderSubmission": {
+        "marketId": "2201cba5132fcb6e3aa589484eea006a1846826e48978e0b4182b61d0eb0a2a2",
+        "price": "10",
+        "size": "34",
+        "side": "SIDE_BUY",
+        "timeInForce": "TIME_IN_FORCE_GTT",
+        "expiresAt": 1632860434402000000,
+        "type": "TYPE_LIMIT",
+        "reference": "any_reference_you_like" 
     },
-    graphQL: `mutation {
-  submitTransaction(
-    info: "GraphQL submitTransaction query will appear here when the transaction has been signed."
-    
-    info2: "Signing with the Vega REST API will take place if all the information from the previous steps have been provided") {
-  }
+    "pubKey": "pubkey_is_entered_here",
+    "propagate": "true"
 }`
   },
   {
     id: "orderswrapup",
-    title: "Placing Orders (4. Summary)",
+    title: "Placing Orders (3. Summary)",
     jsxComponent: "VegaOrdersWrapUp",
     runDisabled: true,
     progressor: resultData => {

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { gql, ApolloClient, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
+import { getResultsTable } from '../helpers/apollo_helpers';
+
 function createRandomHash() {
   let hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   return hash;
@@ -16,6 +18,7 @@ function VegaTransaction(props) {
   const setTransactionDetails = props.setTransactionDetails;
   const setCustomData = props.setCustomData;
   const setValue = props.setValue;
+  const rest = props.rest;
 
   const [orderParams, setOrderParams] = useState();
 
@@ -64,23 +67,30 @@ function VegaTransaction(props) {
       let price = parseInt(orderParams.price, 10) || "10";
       let size = orderParams.size || "10";
 
-      let graphQL = `mutation {
-  prepareOrderSubmit(
-    marketId: "${orderParams.marketId}",
-    price: "${price}",
-    size: "${size}",
-    side: ${orderParams.side},
-    timeInForce: ${orderParams.timeInForce},
-    expiration: "${orderParams.expiration}",
-    type: ${orderParams.type},
-    reference: "${orderParams.reference}",
-  ) {
-    blob
-  }
-}
-`;
+      let pubKey = 'NO_PUBLIC_KEY_IS_PRESENT'
+      if(transactionDetails.pubKey) {
+        pubKey = transactionDetails.pubKey;
+      }
 
-      setValue(graphQL);
+      let date = new Date(orderParams.expiration);
+      let timestamp = date.getTime() * 1e6;
+
+      let rest = `{
+  "orderSubmission": {
+    "marketId": "${orderParams.marketId}",
+    "price": "${price}",
+    "size": "${size}",
+    "side": "SIDE_${orderParams.side.toUpperCase()}",
+    "timeInForce": "TIME_IN_FORCE_${orderParams.timeInForce.toUpperCase()}",
+    "expiresAt": "${timestamp}",
+    "type": "TYPE_${orderParams.type.toUpperCase()}",
+    "reference": "${orderParams.reference}"
+  },
+  "pubKey": "${pubKey}",
+  "propagate": true
+}` ;
+
+      setValue(rest);
     }
  }, [orderParams, setValue]);
 
@@ -101,6 +111,79 @@ function VegaTransaction(props) {
       })
     }
   }, [transactionDetails, setCustomData]);
+
+  useEffect(() => {
+    if(!rest) {
+      return;
+    }
+    let error;
+    let output;
+    if(transactionDetails) {
+      if(transactionDetails.pubKey && transactionDetails.token) {
+        let url = 'https://wallet.testnet.vega.xyz/api/v1/command/sync';
+        const headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${transactionDetails.token}`
+        }
+
+        let options = {
+          method: 'POST',
+          headers : headers,
+          body: rest.replaceAll(/[\n\r]/g, '')
+        } 
+
+        fetch(url, options).then(response => {
+          return response.json();
+        })
+        .then(json => {
+          console.log(json);
+
+          if(json.error) {
+            error = JSON.stringify(json.error);
+          }
+          else if(json.errors) {
+            error = JSON.stringify(json.errors);
+          }
+          else {
+            output = <div>
+              <div className="walkthrough-custom-data-row">Signature</div>
+              <div className="walkthrough-custom-data-row">{json.signature.value}</div>
+            </div> 
+          }
+          
+          setCustomData({
+            'error': error,
+            'data': json,
+            'output': output
+          });
+        })
+        .catch(error => {
+            console.log(error);
+          }
+        );
+      }
+      else {
+        error = "Public key and bearer token were not supplied."
+        setCustomData({
+          'error': error,
+          'data': {},
+          'output': <div className="walkthrough-custom-data">
+            <div className="walkthrough-custom-data-row">{error}</div>
+            <div className="walkthrough-custom-data-row">You may need to complete the previous steps.</div>
+          </div>
+        });
+      }
+    }
+    else {
+      error = "No transaction details were supplied.";
+      setCustomData({
+        'error': error,
+        'data': {},
+        'output': error 
+      });
+    }
+  }, [rest, transactionDetails, setCustomData]);
 
   return <div className="walkthrough-vega-transaction"></div>;
 }

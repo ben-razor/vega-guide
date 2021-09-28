@@ -32,7 +32,7 @@ import { WalkthroughControls } from './components/WalkthroughElems';
 
 const MAX_RECORDS = 8;
 
-const editorOptions = {
+let editorOptions = {
   lineNumbers: true,
   readOnly: false,
   mode: 'graphql',
@@ -57,6 +57,7 @@ function App() {
   const [sectionIndex, setSectionIndex] = useState(0);
   const [hasRun, setHasRun] = useState(false);
   const [query, setQuery] = useState(gql`${initialTemplate}`);
+  const [rest, setREST] = useState();
   const [syntaxError, setSyntaxError] = useState('');
   const [jsxComponent, setJsxComponent] = useState();
   const [customData, setCustomData] = useState(); // Output handler for non graphQL components like forms
@@ -119,7 +120,12 @@ function App() {
       setJsxComponent();
     }
 
-    setValue(section.graphQL);
+    if(section.graphQL) {
+      setValue(section.graphQL);
+    }
+    else if(section.rest) {
+      setValue(section.rest);
+    }
 
     setStartFade(false);
     setTimeout(() => setStartFade(true), 1);
@@ -150,13 +156,19 @@ function App() {
   }
 
   function runQuery() {
-    let gqlQuery = queryTextToGraphQL(value);
+    if(section.graphQL) {
+      let gqlQuery = queryTextToGraphQL(value);
 
-    if(gqlQuery) {
-      setQuery(gqlQuery);
-      setHasRun(true);
-      setCustomData();
+      if(gqlQuery) {
+        setQuery(gqlQuery);
+        setHasRun(true);
+        setCustomData();
+      }
     }
+    else if(section.rest) {
+      setREST(value);
+    }
+      
   }
 
   let resultsTableDefault = 'Output from the query will be displayed here.'
@@ -209,6 +221,9 @@ function App() {
     }
  }
   else {
+    if(section.rest) {
+      editorOptions.mode = 'json';
+    }
     editorComponent =  <CodeMirror 
       className="walkthrough-codemirror"
       value={value}
@@ -254,7 +269,7 @@ function App() {
       <VegaTransaction transactionDetails={sessionTransactionDetails} 
                       setTransactionDetails={setTransactionDetails}
                       setCustomData={setCustomData}
-                      setValue={setValue} /> }
+                      setValue={setValue} rest={rest} /> }
     {section.id === 'orderssend' &&
       <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
                       setTransactionDetails={setTransactionDetails}
