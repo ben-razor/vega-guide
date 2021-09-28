@@ -10,7 +10,7 @@ We have gathered some recent order information and created a JSON object based o
 
 Click Run Query to send the order. A HTTP request is created with the JSON in the body and your bearer token in the Authorization header.
 
-If all goes well you should see a **signature** in the console. The servers will use this to verify that you are authorized to make transactions fromm the **public key**.
+If all goes well you should see a **signature** in the console. The servers will use this to verify that you are authorized to make transactions with the **public key**.
 
 #### Sending
 

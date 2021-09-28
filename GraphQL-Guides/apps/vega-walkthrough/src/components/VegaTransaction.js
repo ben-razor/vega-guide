@@ -17,6 +17,7 @@ function VegaTransaction(props) {
   const transactionDetails = props.transactionDetails;
   const setTransactionDetails = props.setTransactionDetails;
   const setCustomData = props.setCustomData;
+  const setResultData = props.setResultData;
   const setValue = props.setValue;
   const rest = props.rest;
 
@@ -146,12 +147,20 @@ function VegaTransaction(props) {
             error = JSON.stringify(json.errors);
           }
           else {
+            setResultData(json);
+
             output = <div>
               <div className="walkthrough-custom-data-row">Signature</div>
               <div className="walkthrough-custom-data-row">{json.signature.value}</div>
             </div> 
           }
           
+          if(error) {
+            output = <div>There is a syntax error in your query.<p>
+              And it goes a little something like this...</p><p>{error}</p>
+            </div>
+          }
+
           setCustomData({
             'error': error,
             'data': json,

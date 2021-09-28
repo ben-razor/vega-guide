@@ -167,8 +167,8 @@ function App() {
     }
     else if(section.rest) {
       setREST(value);
+      setHasRun(true);
     }
-      
   }
 
   let resultsTableDefault = 'Output from the query will be displayed here.'
@@ -269,6 +269,7 @@ function App() {
       <VegaTransaction transactionDetails={sessionTransactionDetails} 
                       setTransactionDetails={setTransactionDetails}
                       setCustomData={setCustomData}
+                      setResultData={setResultData}
                       setValue={setValue} rest={rest} /> }
     {section.id === 'orderssend' &&
       <VegaTransactionSigner transactionDetails={sessionTransactionDetails} 
