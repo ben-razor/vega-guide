@@ -8,7 +8,7 @@ This project creates applications and associated documentation to guide a new us
 
 * A [Vega Protocol GraphQL Walkthrough Application](https://vega-walkthrough.web.app/)
 * A Vega Protocol [GraphQL in ReactJS Tutorial](https://vega-step-by-step.web.app/docs/vega/vega-react/) and an online demo of the [ReactJS Starter Application](https://vega-react.web.app/)
-* A [Documentation Book](https://vega-step-by-step.web.app/docs/vega/vega-react/) explaining the tutorial applications
+* A [Documentation Book](https://vega-step-by-step.web.app/docs/vega/) explaining the tutorial applications
 
 ## About This Document
 
