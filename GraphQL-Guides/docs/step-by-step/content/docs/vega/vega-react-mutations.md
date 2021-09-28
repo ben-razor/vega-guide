@@ -2,6 +2,7 @@
 weight: 30 
 bookFlatSection: true
 title: "ReactJS GraphQL Mutations"
+bookHidden: true
 ---
 
 # ReactJS GraphQL Mutations

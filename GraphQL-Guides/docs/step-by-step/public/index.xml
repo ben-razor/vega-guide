@@ -1,6 +1,44 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vega Step by Step on Vega - Step by Step using GraphQL</title><link>/</link><description>Recent content in Vega Step by Step on Vega - Step by Step using GraphQL</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>GraphQL Walkthrough</title><link>/docs/vega/vega-walkthrough/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/vega/vega-walkthrough/</guid><description>Vega GraphQL Walkthrough # Introduction # To help you get familar with the Vega Protocol GraphQL API, we provide an online Walkthrough Application to exectute queries and updates.
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vega Step by Step on Vega - Step by Step using GraphQL</title>
+    <link>/</link>
+    <description>Recent content in Vega Step by Step on Vega - Step by Step using GraphQL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GraphQL Walkthrough</title>
+      <link>/docs/vega/vega-walkthrough/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/vega/vega-walkthrough/</guid>
+      <description>Vega GraphQL Walkthrough #  Introduction #  To help you get familar with the Vega Protocol GraphQL API, we provide an online Walkthrough Application to exectute queries and updates.
 Along the way you will learn how to:
-View markets, orders, trades and accounts Subscribe to live market updates Place orders and manage your account Interact with the Vega Ecosystem through Governance Proposals The source for the application can be found at vega-walkthrough.</description></item><item><title>ReactJS Starter Guide</title><link>/docs/vega/vega-react/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/docs/vega/vega-react/</guid><description>ReactJS Starter Application # Introduction # This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
+ View markets, orders, trades and accounts Subscribe to live market updates Place orders and manage your account Interact with the Vega Ecosystem through Governance Proposals  The source for the application can be found at vega-walkthrough.</description>
+    </item>
+    
+    <item>
+      <title>ReactJS Starter Guide</title>
+      <link>/docs/vega/vega-react/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/vega/vega-react/</guid>
+      <description>ReactJS Starter Application #  Introduction #  This guide will take you through the creation of a basic application in ReactJS that interacts with the Vega Protocol using GraphQL.
 The completed application is available online at ReactJS Starter Application.
 The source for the application can be found at vega-react.
-This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.</description></item></channel></rss>
+This guide is for those looking for a starting point to build ReactJS applications that use the Vega GraphQL API.</description>
+    </item>
+    
+    <item>
+      <title>ReactJS GraphQL Mutations</title>
+      <link>/docs/vega/vega-react-mutations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/vega/vega-react-mutations/</guid>
+      <description>ReactJS GraphQL Mutations #  Introduction #  In the Vega GraphQL React Starter tutorial we created a simple application to query information using the Vega Protocol GraphQL API.
+The application does not support GraphQL mutations to create and update records. In this short guide we explain how mutations were implemented in the Vega GraphQL Walkthrough application.
+These instructions use ReactJS and Apollo GraphQL Client to interact with the Vega GraphQL API.</description>
+    </item>
+    
+  </channel>
+</rss>

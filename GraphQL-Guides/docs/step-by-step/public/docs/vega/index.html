@@ -1,144 +1,304 @@
-<!doctype html><html lang=en dir=ltr>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Vega Step by Step using GraphQL #  Introduction #  This guide will take you step-by-step through how to interact with Vega using GraphQL.
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vega Step by Step using GraphQL #  Introduction #  This guide will take you step-by-step through how to interact with Vega using GraphQL.
 Example applications will guide you from simple market data exploration to Vega Protocol mastery using GraphQL. There are two resources provided:
 The Vega GraphQL Walkthrough application.
 The Vega GraphQL React Starter tutorial.
 A Quick introduction to Vega Protocol #  Vega Protocol is a decentralized derivatives trading platform.">
-<meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Introduction">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="/docs/vega/">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Introduction" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/docs/vega/" />
+
 <title>Introduction | Vega - Step by Step using GraphQL</title>
-<link rel=manifest href=/manifest.json>
-<link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=stylesheet href=/book.min.e266b67d6047ded2c8705ec21ad56c63e7374b598652a963e05e03a585ff276b.css>
-<script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.3870fcd7cd4b5c9fec122d3f4b6053315219adfac8198731ae951df2d7dbbb59.js></script>
-<link rel=alternate type=application/rss+xml href=/docs/vega/index.xml title="Vega - Step by Step using GraphQL">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.e266b67d6047ded2c8705ec21ad56c63e7374b598652a963e05e03a585ff276b.css" >
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.dad4cde0764e899005b9854fa9577b371d347905414bbaaf594c5c36f8e51017.js" ></script>
+<link rel="alternate" type="application/rss+xml" href="/docs/vega/index.xml" title="Vega - Step by Step using GraphQL" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
 </head>
-<body dir=ltr>
-<input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control>
-<main class="container flex">
-<aside class=book-menu>
-<div class=book-menu-content>
-<nav>
-<h2 class=book-brand>
-<a class="flex align-center" href=/><span>Vega - Step by Step using GraphQL</span>
-</a>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Vega - Step by Step using GraphQL</span>
+  </a>
 </h2>
-<div class=book-search>
-<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
-<div class="book-search-spinner hidden"></div>
-<ul id=book-search-results></ul>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
 </div>
-<ul>
-<li class=book-section-flat>
-<a href=/docs/vega/ class=active>Introduction</a>
-<ul>
-<li>
-<a href=/docs/vega/vega-walkthrough/>GraphQL Walkthrough</a>
-</li>
-<li>
-<a href=/docs/vega/vega-react/>ReactJS Starter Guide</a>
-</li>
-</ul>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <a href="/docs/vega/" class=" active">Introduction</a>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/vega/vega-walkthrough/" class="">GraphQL Walkthrough</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/vega/vega-react/" class="">ReactJS Starter Guide</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/vega/vega-react-mutations/" class="">ReactJS GraphQL Mutations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </nav>
-<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Introduction</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
 </div>
-</aside>
-<div class=book-page>
-<header class=book-header>
-<div class="flex align-center justify-between">
-<label for=menu-control>
-<img src=/svg/menu.svg class=book-icon alt=Menu>
-</label>
-<strong>Introduction</strong>
-<label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
-</label>
-</div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#a-quick-introduction-to-vega-protocol>A Quick introduction to Vega Protocol</a></li>
-<li><a href=#prerequisites>Prerequisites</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#a-quick-introduction-to-vega-protocol">A Quick introduction to Vega Protocol</a></li>
+    <li><a href="#prerequisites">Prerequisites</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
-</aside>
-</header>
-<article class=markdown><h1 id=vega-step-by-step-using-graphql>
-Vega Step by Step using GraphQL
-<a class=anchor href=#vega-step-by-step-using-graphql>#</a>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="vega-step-by-step-using-graphql">
+  Vega Step by Step using GraphQL
+  <a class="anchor" href="#vega-step-by-step-using-graphql">#</a>
 </h1>
-<h2 id=introduction>
-Introduction
-<a class=anchor href=#introduction>#</a>
+<h2 id="introduction">
+  Introduction
+  <a class="anchor" href="#introduction">#</a>
 </h2>
 <p>This guide will take you step-by-step through how to interact with Vega using GraphQL.</p>
 <p>Example applications will guide you from simple market data exploration to Vega Protocol mastery using GraphQL. There are two resources provided:</p>
-<p>The <a href=https://vega-walkthrough.web.app/>Vega GraphQL Walkthrough</a> application.</p>
-<p>The <a href=/docs/vega/vega-react/>Vega GraphQL React Starter</a> tutorial.</p>
-<h2 id=a-quick-introduction-to-vega-protocol>
-A Quick introduction to Vega Protocol
-<a class=anchor href=#a-quick-introduction-to-vega-protocol>#</a>
+<p>The <a href="https://vega-walkthrough.web.app/">Vega GraphQL Walkthrough</a> application.</p>
+<p>The <a href="/docs/vega/vega-react/">Vega GraphQL React Starter</a> tutorial.</p>
+<h2 id="a-quick-introduction-to-vega-protocol">
+  A Quick introduction to Vega Protocol
+  <a class="anchor" href="#a-quick-introduction-to-vega-protocol">#</a>
 </h2>
-<p><a href=https://vega.xyz/>Vega Protocol</a> is a decentralized derivatives trading platform.</p>
+<p><a href="https://vega.xyz/">Vega Protocol</a> is a decentralized derivatives trading platform.</p>
 <p>A trading platform allows people to make agreements to trade assets when specified conditions such as price and timing are met. Derivatives are contracts whose value is based on underlying assets.</p>
-<p><a href=https://vega.xyz/>Vega Protocol</a> is decentralized. Instead of using a centralized organisation like a bank or traditional exchange, a network of computers is used to verify trades and agreements between parties.</p>
+<p><a href="https://vega.xyz/">Vega Protocol</a> is decentralized. Instead of using a centralized organisation like a bank or traditional exchange, a network of computers is used to verify trades and agreements between parties.</p>
 <p>Each user has an identifier called a <strong>public key</strong>. Before a transaction is sent to the Vega network it is signed using a related <strong>private key</strong>. The public key, signed transaction, and previous transaction information are used by the network to ensure that the transaction is valid.</p>
 <p>A <strong>wallet</strong> stores the keys and handles tasks such as signing transactions.</p>
-<h2 id=prerequisites>
-Prerequisites
-<a class=anchor href=#prerequisites>#</a>
+<h2 id="prerequisites">
+  Prerequisites
+  <a class="anchor" href="#prerequisites">#</a>
 </h2>
-<h4 id=vega>
-Vega
-<a class=anchor href=#vega>#</a>
+<h4 id="vega">
+  Vega
+  <a class="anchor" href="#vega">#</a>
 </h4>
-<p>Before using this guide check out the <a href=https://docs.fairground.vega.xyz/>Vega Documentation</a>.</p>
-<p>To use Vega you first need to set up a <a href=https://docs.fairground.vega.xyz/docs/wallet/>wallet</a>.</p>
-<p>You can try out Vega using on the web using the <a href=https://console.fairground.wtf/>Testnet Fairground Console</a>.</p>
-<h4 id=graphql>
-GraphQL
-<a class=anchor href=#graphql>#</a>
+<p>Before using this guide check out the <a href="https://docs.fairground.vega.xyz/">Vega Documentation</a>.</p>
+<p>To use Vega you first need to set up a <a href="https://docs.fairground.vega.xyz/docs/wallet/">wallet</a>.</p>
+<p>You can try out Vega using on the web using the <a href="https://console.fairground.wtf/">Testnet Fairground Console</a>.</p>
+<h4 id="graphql">
+  GraphQL
+  <a class="anchor" href="#graphql">#</a>
 </h4>
-<p>Open the <a href=https://lb.testnet.vega.xyz/playground>Vega GraphQL playground</a>. You can use it alongside this tutorial to explore the full Vega GraphQL API.</p>
+<p>Open the <a href="https://lb.testnet.vega.xyz/playground">Vega GraphQL playground</a>. You can use it alongside this tutorial to explore the full Vega GraphQL API.</p>
 </article>
-<footer class=book-footer>
-<div class="flex flex-wrap justify-between">
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
 </div>
-<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
-</footer>
-<div class=book-comments>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
 </div>
-<label for=menu-control class="hidden book-menu-overlay"></label>
-</div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#introduction>Introduction</a></li>
-<li><a href=#a-quick-introduction-to-vega-protocol>A Quick introduction to Vega Protocol</a></li>
-<li><a href=#prerequisites>Prerequisites</a>
-<ul>
-<li></li>
-</ul>
-</li>
-</ul>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#a-quick-introduction-to-vega-protocol">A Quick introduction to Vega Protocol</a></li>
+    <li><a href="#prerequisites">Prerequisites</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
-</div>
-</aside>
-</main>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
