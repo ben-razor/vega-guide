@@ -12,6 +12,6 @@ Click Run Query to view the results.
 
 #### Voting
 
-The Vega GraphQL API also provides <a href="https://docs.fairground.vega.xyz/api/graphql/mutation.doc.html" rel="noreferrer" target="_blank">mutations</a> to prepare proposals and votes. This is not covered by the walkthrough. It follows the same process as Placing Orders.
+The Vega GraphQL API also provides <a href="https://docs.fairground.vega.xyz/api/graphql/mutation.doc.html" rel="noreferrer" target="_blank">mutations</a> to prepare proposals and votes.
 ___
 Find out about the <a href="https://docs.fairground.vega.xyz/docs/trading-questions/#governance" target="_blank">Governance Process</a>.
