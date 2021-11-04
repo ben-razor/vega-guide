@@ -298,7 +298,7 @@ function App() {
       <div className="walkthrough-header">
         <img alt="Vega GraphQL Walkthrough Logo" src={logo} className="walkthrough-logo"/>
         <h3 className="walkthrough-header-title">
-          <span class="walkthrough-header-name">Vincent</span>  - A Vega Protocol GraphQL Walkthrough
+          <span className="walkthrough-header-name">Vincent</span>  - A Vega Protocol GraphQL Walkthrough
         </h3>
       </div>
       {isTiny && walkthroughControls}

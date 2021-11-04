@@ -37,27 +37,30 @@ function VegaTransaction(props) {
     if(!loading && !error) {
       let newOrderParams;
       let rows = data.markets;
-      let recentTrade = rows[0];
-      if(recentTrade) {
-        let marketId = recentTrade.id;
-        let orders = recentTrade.orders; 
-        if(orders && orders[0]) {
-          let order = orders[0];
-          let reference = createRandomHash();
 
-          newOrderParams = {
-            marketId: marketId,
-            price: order.price,
-            size: order.size,
-            side: order.side,
-            timeInForce: order.timeInForce,
-            expiration: order.expiresAt,
-            type: order.type,
-            reference: reference
-          };
+      if(rows && rows.length) {
+        let recentTrade = rows[0];
+        if(recentTrade) {
+          let marketId = recentTrade.id;
+          let orders = recentTrade.orders; 
+          if(orders && orders[0]) {
+            let order = orders[0];
+            let reference = createRandomHash();
+
+            newOrderParams = {
+              marketId: marketId,
+              price: order.price,
+              size: order.size,
+              side: order.side,
+              timeInForce: order.timeInForce,
+              expiration: order.expiresAt,
+              type: order.type,
+              reference: reference
+            };
+          }
+
+          setOrderParams(newOrderParams);
         }
-
-        setOrderParams(newOrderParams);
       }
     }
   }, [data, error, loading]);

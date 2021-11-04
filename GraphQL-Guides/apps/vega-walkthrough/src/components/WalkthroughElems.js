@@ -10,7 +10,7 @@ function WalkthroughControls(props) {
   return <div className="walkthrough-controls">
     <div className="walkthrough-controls-sections-pagination">
       <button className="walkthrough-control-button" disabled={backDisabled} onClick={() => setSection(sectionIndex - 1)}><i className="fa fa-arrow-left" /></button>
-      <span class="walkthrough-controls-section">{sectionIndex + 1} - {sections[sectionIndex].title}</span>
+      <span className="walkthrough-controls-section">{sectionIndex + 1} - {sections[sectionIndex].title}</span>
       <button className="walkthrough-control-button" disabled={forwardDisabled} onClick={() => setSection(sectionIndex + 1)}><i className="fa fa-arrow-right" /></button>
     </div>
     <div className="walkthrough-controls-sections-run">

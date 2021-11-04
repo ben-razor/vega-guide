@@ -142,21 +142,27 @@ function App() {
    */
   function tabulateRecords(records) {
     let table;
-    let keys = Object.keys(records[0]).filter(x => !x.startsWith('__'));
-    let header = <tr> {keys.map(key => <th>{key}</th>)} </tr>
-    let rows = [];
-    for(let row of records) {
-      let cols = [];
-      for(let key of keys) {
-        let keyText = 'None';
-        if(row[key] !== null) {
-          keyText = typeof row[key] === 'object' ? formatObject(row[key]) : row[key];
+    try {
+      let keys = Object.keys(records[0]).filter(x => !x.startsWith('__'));
+      let header = <tr> {keys.map(key => <th>{key}</th>)} </tr>
+      let rows = [];
+      for(let row of records) {
+        let cols = [];
+        for(let key of keys) {
+          let keyText = 'None';
+          if(row[key] !== null) {
+            keyText = typeof row[key] === 'object' ? formatObject(row[key]) : row[key];
+          }
+          cols.push(<td>{keyText}</td>);
         }
-        cols.push(<td>{keyText}</td>);
+        rows.push(<tr>{cols}</tr>)
       }
-      rows.push(<tr>{cols}</tr>)
+      table = <table className="results-table"><thead>{header}</thead><tbody>{rows}</tbody></table>
     }
-    table = <table className="results-table"><thead>{header}</thead><tbody>{rows}</tbody></table>
+    catch(e) {
+      table = <div>No results were returned.</div>
+      console.log(e);
+    }
 
     return table;
   }
